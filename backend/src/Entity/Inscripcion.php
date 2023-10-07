@@ -22,7 +22,7 @@ class Inscripcion
     #[OA\Property(ref: new Model(type: Torneo::class))]
     private ?Torneo $torneo = null;
 
-    #[ORM\OneToOne(inversedBy: 'inscripcion', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'inscripcion', cascade: ['persist'/*, 'remove'*/])]
     #[Groups(["create", "update"])]
     #[OA\Property(ref: new Model(type: Equipo::class))]
     private ?Equipo $equipo = null;

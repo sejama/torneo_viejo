@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[OA\Tag(name: 'Equipos')]
@@ -35,7 +36,28 @@ class EquipoController extends AbstractController
         if(count($equipos) == 0) {
             return $this->json([Response::HTTP_NO_CONTENT, "No se encontraron Equipos"]);
         }else{
-            return $this->json([Response::HTTP_OK, $equipos]);
+            return $this->json($equipos, Response::HTTP_OK,[], [
+                ObjectNormalizer::ATTRIBUTES => [
+                    'id', 
+                    'nombre',
+                    'observacion',
+                    'createdAt',
+                    'updatedAt',
+                    'inscripcion' => [
+                        'id',
+                        'habilitado',
+                        'torneo' => [
+                            'id',
+                            'nombre',
+                            'fechaInicio',
+                            'fechaFin',
+                            'observacion',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    ]
+                ]
+            ]);
         }
     }
 
@@ -57,7 +79,28 @@ class EquipoController extends AbstractController
     public function getEquipo(Equipo $equipo): JsonResponse
     {
         try{
-            return $this->json([Response::HTTP_OK, $equipo]);
+            return $this->json($equipo, Response::HTTP_OK,[], [
+                ObjectNormalizer::ATTRIBUTES => [
+                    'id', 
+                    'nombre',
+                    'observacion',
+                    'createdAt',
+                    'updatedAt',
+                    'inscripcion' => [
+                        'id',
+                        'habilitado',
+                        'torneo' => [
+                            'id',
+                            'nombre',
+                            'fechaInicio',
+                            'fechaFin',
+                            'observacion',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    ]
+                ]
+            ]);
         }
         catch(\Exception $e){
                 //return $this->json([Response::HTTP_NOT_FOUND, "No se encontró el Equipo"]);

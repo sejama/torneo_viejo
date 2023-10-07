@@ -16,11 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Nelmio\ApiDocBundle\Annotation\Model;
-
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 #[OA\Tag(name: 'Insripciones')]
 #[Route("/api", "api_", format: "json")]
@@ -42,16 +38,21 @@ class InscripcionController extends AbstractController
         if(count($inscripciones) == 0) {
             return $this->json([Response::HTTP_NO_CONTENT, "No se encontraron inscripciones"]);
         }else{
-            $encoder = new JsonEncoder();
-            $defaultContext = [
-                AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function (object $object, string $format, array $context): int {
-                return $object->getId();
-                },
-            ];
-            $normalizer = new ObjectNormalizer(null, null, null, null, null, null, $defaultContext);
-
-            $serializer = new Serializer([$normalizer], [$encoder]);
-            return $this->json([Response::HTTP_OK, $serializer->serialize($inscripciones, 'json')]);
+            return $this->json($inscripciones, Response::HTTP_OK, [], [
+                ObjectNormalizer::ATTRIBUTES => [
+                    'id', 
+                    'torneo' => [
+                        'id', 
+                        'nombre'
+                    ], 
+                    'equipo' => [
+                        'id', 
+                        'nombre'
+                    ],
+                    'createdAt',
+                    'updatedAt',
+                    'habilitado']
+            ]);
         }
     }
 
@@ -72,12 +73,24 @@ class InscripcionController extends AbstractController
     #[Route('/inscripcion/{id}', name: 'get_inscripcion', methods: ["GET"])]
     public function getInscripcion(Inscripcion $inscripcion): JsonResponse
     {
-        try{
-            return $this->json([Response::HTTP_OK, $inscripcion]);
-        }
-        catch(\Exception $e){
-                //return $this->json([Response::HTTP_NOT_FOUND, "No se encontró la inscripción"]);
-                throw new BadRequestHttpException($e->getMessage());
+        if ($inscripcion) {
+            return $this->json($inscripcion, Response::HTTP_OK, [], [
+                ObjectNormalizer::ATTRIBUTES => [
+                    'id', 
+                    'torneo' => [
+                        'id', 
+                        'nombre'
+                    ], 
+                    'equipo' => [
+                        'id', 
+                        'nombre'
+                    ],
+                    'createdAt',
+                    'updatedAt',
+                    'habilitado']
+            ]);
+        }else{
+            return $this->json(Response::HTTP_NOT_FOUND);
         }
     }
 
@@ -125,7 +138,21 @@ class InscripcionController extends AbstractController
         $em->persist($inscripcion);
         $em->flush();
 
-        return $this->json([Response::HTTP_CREATED, $inscripcion]);
+        return $this->json($inscripcion, Response::HTTP_CREATED, [], [
+            ObjectNormalizer::ATTRIBUTES => [
+                'id', 
+                'torneo' => [
+                    'id', 
+                    'nombre'
+                ], 
+                'equipo' => [
+                    'id', 
+                    'nombre'
+                ],
+                'createdAt',
+                'updatedAt',
+                'habilitado']
+        ]);
     }
 
     #[OA\Response(
@@ -152,18 +179,35 @@ class InscripcionController extends AbstractController
         $requestBody = json_decode($request->getContent(), true);
 
         if(isset($requestBody['torneo']))
-            $inscripcion->setTorneo($requestBody['torneo']);
+            $inscripcion->setTorneo($em->getRepository(Torneo::class)->find((int)$requestBody['torneo']));
         
         if(isset($requestBody['equipo']))
-            $inscripcion->setEquipo($requestBody['equipo']);
+            $inscripcion->setEquipo($em->getRepository(Equipo::class)->find((int)$requestBody['equipo']));
 
-        if(isset($requestBody['habilitado']))
+        if(isset($requestBody['habilitado'])){
             $inscripcion->setHabilitado($requestBody['habilitado']);
+        }else{
+            $inscripcion->setHabilitado(false);
+        }
 
         $em->persist($inscripcion);
         $em->flush();
 
-        return $this->json([Response::HTTP_ACCEPTED, $inscripcion]);
+        return $this->json($inscripcion, Response::HTTP_CREATED, [], [
+            ObjectNormalizer::ATTRIBUTES => [
+                'id', 
+                'torneo' => [
+                    'id', 
+                    'nombre'
+                ], 
+                'equipo' => [
+                    'id', 
+                    'nombre'
+                ],
+                'createdAt',
+                'updatedAt',
+                'habilitado']
+        ]);
     }
 
     #[OA\Response(

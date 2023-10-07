@@ -13,6 +13,7 @@ use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[OA\Tag(name: 'Torneos')]
@@ -35,7 +36,30 @@ class TorneoController extends AbstractController
         if(count($torneos) == 0) {
             return $this->json([Response::HTTP_NO_CONTENT, "No se encontraron torneos"]);
         }else{
-            return $this->json([Response::HTTP_OK, $torneos]);
+            return $this->json($torneos, Response::HTTP_OK,[], [
+                ObjectNormalizer::ATTRIBUTES => [
+                    'id', 
+                    'nombre',
+                    'fechaInicio',
+                    'fechaFin',
+                    'fechaInicioInscripcion',
+                    'fechaFinInscripcion',
+                    'observacion',
+                    'createdAt',
+                    'updatedAt',
+                    'inscripcions' => [
+                        'id',
+                        'habilitado',
+                        'equipo' => [
+                            'id',
+                            'nombre',
+                            'observacion',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    ]
+                ]
+            ]);
         }
     }
 
@@ -57,7 +81,30 @@ class TorneoController extends AbstractController
     public function getTorneo(Torneo $torneo): JsonResponse
     {
         try{
-            return $this->json([Response::HTTP_OK, $torneo]);
+            return $this->json($torneo, Response::HTTP_OK,[], [
+                ObjectNormalizer::ATTRIBUTES => [
+                    'id', 
+                    'nombre',
+                    'fechaInicio',
+                    'fechaFin',
+                    'fechaInicioInscripcion',
+                    'fechaFinInscripcion',
+                    'observacion',
+                    'createdAt',
+                    'updatedAt',
+                    'inscripcions' => [
+                        'id',
+                        'habilitado',
+                        'equipo' => [
+                            'id',
+                            'nombre',
+                            'observacion',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    ]
+                ]
+            ]);
         }
         catch(\Exception $e){
                 //return $this->json([Response::HTTP_NOT_FOUND, "No se encontró el torneo"]);
