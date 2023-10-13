@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DotSpinner } from '@uiball/loaders';
+import FormEquipo from './FormEquipo';
 
-
- 
  function Api() {
     const [isLoading, setIsLoading] = useState(true);
     const [titulo, setTitulo] = useState(null);
@@ -23,7 +22,10 @@ import { DotSpinner } from '@uiball/loaders';
     );
     }
     return (
-        <h1>{titulo}</h1>
+        <>
+            <h1>{titulo}</h1>
+            <FormEquipo />
+        </>
     )
 }
 

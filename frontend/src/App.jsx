@@ -6,6 +6,7 @@ import Tabla from './componentes/Tabla';
 import Partido from './componentes/Partido';
 import zona from './componentes/datos'
 import Selector from './componentes/Select';
+import Api from './componentes/Api';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<h1>Inicio</h1>} />
+          <Route path="/" element={<Api />} />
           <Route path="/tablas" element={<Tabla datos={zona} />} />
           <Route path="/partidos" element={<Partido />} />
           <Route path="/selector" element={<Selector/>} />
