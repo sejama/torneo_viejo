@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Enum;
+
 enum Categoria: string 
 {
     case TREINTA = '+30'; // femenino 8 2*4

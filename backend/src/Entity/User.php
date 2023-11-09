@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use OpenApi\Attributes as OA;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -16,16 +21,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(["create", "update", "ingresar"])]
     private ?string $username = null;
-
-    #[ORM\Column]
-    private array $roles = [];
-
+    
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(["create", "update", "ingresar"])]
     private ?string $password = null;
+
+    #[ORM\Column]
+    #[Groups(["create", "update", ])]
+    #[OA\Property(type: 'array', items: new OA\Items(type: 'string'))]
+    private array $roles = [];
+
 
     public function getId(): ?int
     {
