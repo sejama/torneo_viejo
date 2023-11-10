@@ -41,6 +41,14 @@ class EquipoController extends AbstractController
                     'id', 
                     'nombre',
                     'observacion',
+                    'genero' => [
+                        'id',
+                        'nombre'
+                    ],
+                    'categoria' => [
+                        'id',
+                        'nombre'
+                    ],
                     'createdAt',
                     'updatedAt',
                     'inscripcion' => [
@@ -84,6 +92,14 @@ class EquipoController extends AbstractController
                     'id', 
                     'nombre',
                     'observacion',
+                    'genero' => [
+                        'id',
+                        'nombre'
+                    ],
+                    'categoria' => [
+                        'id',
+                        'nombre'
+                    ],
                     'createdAt',
                     'updatedAt',
                     'inscripcion' => [

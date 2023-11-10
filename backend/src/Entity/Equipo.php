@@ -32,6 +32,12 @@ class Equipo
     #[ORM\OneToOne(mappedBy: 'equipo', cascade: ['persist', 'remove'])]
     private ?Inscripcion $inscripcion = null;
 
+    #[ORM\ManyToOne(inversedBy: 'equipos')]
+    private ?Genero $genero = null;
+
+    #[ORM\ManyToOne(inversedBy: 'equipos')]
+    private ?Categoria $categoria = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +114,30 @@ class Equipo
         }
 
         $this->inscripcion = $inscripcion;
+
+        return $this;
+    }
+
+    public function getGenero(): ?Genero
+    {
+        return $this->genero;
+    }
+
+    public function setGenero(?Genero $genero): static
+    {
+        $this->genero = $genero;
+
+        return $this;
+    }
+
+    public function getCategoria(): ?Categoria
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria(?Categoria $categoria): static
+    {
+        $this->categoria = $categoria;
 
         return $this;
     }
