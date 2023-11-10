@@ -32,19 +32,17 @@ class IngresarController extends AbstractController
             ref: new Model(type: User::class, groups: ["ingresar"])
         )
     )]
-    #[Route('/ingresar', name: 'app_ingresar', methods: ["POST"])]
-    public function ingresar(
-        #[CurrentUser] ?User $user
+    #[Route('/login', name: 'app_login', methods: ["POST"])]
+    public function login(
+        #[CurrentUser] ?User $user //#[CurrentUser] $user = null
     ): JsonResponse
     {
-        if (null === $user) {
-            return $this->json([
-                'message' => 'missing credentials',
-            ], Response::HTTP_UNAUTHORIZED);
-        }
+        //$requestBody = json_decode($request->getContent(), true);
+        //$user = $this->getUser();
+        
         $token = "..."; // somehow create an API token for $user
         return $this->json([
-            'user'  => $user->getUserIdentifier(),
+            'user' => $user ? $user->getId() : null,
             'token' => $token,
         ]);
     }

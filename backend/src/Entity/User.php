@@ -31,10 +31,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(["create", "update", "ingresar"])]
     private ?string $password = null;
 
-    #[ORM\Column]
-    #[Groups(["create", "update", ])]
-    #[OA\Property(type: 'array', items: new OA\Items(type: 'string'))]
-    private array $roles = [];
+    #[ORM\Column(type: 'json')]
+    #[Groups(["create", "update"])]
+    #[OA\Property(type: 'array', items: new OA\Items(type: 'string'), example: ['ROLE_ADMIN', 'ROLE_USER'])]
+    private array $roles = ['ROLE_ADMIN', 'ROLE_USER'];
 
 
     public function getId(): ?int

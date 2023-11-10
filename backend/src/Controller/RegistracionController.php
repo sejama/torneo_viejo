@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +33,7 @@ class RegistracionController extends AbstractController
             ref: new Model(type: User::class, groups: ["create"])
         )
     )]
-
+    #[Security(name="Bearer")]
     #[Route("/registrar", name:'create_user', methods: ["POST"])]
     public function createUser(
         UserPasswordHasherInterface $passwordHasher,
