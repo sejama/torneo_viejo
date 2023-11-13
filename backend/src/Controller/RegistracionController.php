@@ -33,7 +33,7 @@ class RegistracionController extends AbstractController
             ref: new Model(type: User::class, groups: ["create"])
         )
     )]
-    #[Security(name="Bearer")]
+    //#[Security(name="Bearer")]
     #[Route("/registrar", name:'create_user', methods: ["POST"])]
     public function createUser(
         UserPasswordHasherInterface $passwordHasher,
