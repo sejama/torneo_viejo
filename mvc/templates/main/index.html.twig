@@ -9,6 +9,7 @@
             <tr>
                 <th>Genero</th>
                 <th>Categoria</th>
+                <th>Cantidad de equipos</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
             <tr>
                 <td>{{ categoria.genero.nombre }}</td>
                 <td>{{ categoria.categoria.nombre }}</td>
+                <td>{{ categoria.equipos.count() }}</td>
             </tr>
     {% endfor %}
         </tbody>

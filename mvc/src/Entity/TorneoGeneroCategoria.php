@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TorneoGeneroCategoriaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +25,14 @@ class TorneoGeneroCategoria
 
     #[ORM\ManyToOne(inversedBy: 'torneoGeneroCategorias')]
     private ?Categoria $categoria = null;
+
+    #[ORM\OneToMany(mappedBy: 'torneoGeneroCategoria', targetEntity: Equipo::class)]
+    private Collection $equipos;
+
+    public function __construct()
+    {
+        $this->equipos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -61,6 +71,36 @@ class TorneoGeneroCategoria
     public function setCategoria(?Categoria $categoria): static
     {
         $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipo>
+     */
+    public function getEquipos(): Collection
+    {
+        return $this->equipos;
+    }
+
+    public function addEquipo(Equipo $equipo): static
+    {
+        if (!$this->equipos->contains($equipo)) {
+            $this->equipos->add($equipo);
+            $equipo->setTorneoGeneroCategoria($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipo(Equipo $equipo): static
+    {
+        if ($this->equipos->removeElement($equipo)) {
+            // set the owning side to null (unless already changed)
+            if ($equipo->getTorneoGeneroCategoria() === $this) {
+                $equipo->setTorneoGeneroCategoria(null);
+            }
+        }
 
         return $this;
     }
