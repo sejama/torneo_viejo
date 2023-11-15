@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TorneoGeneroCategoria{% endblock %}
+
+{% block body %}
+    <h1>TorneoGeneroCategoria</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ torneo_genero_categorium.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_torneo_genero_categoria_index') }}">back to list</a>
+
+    <a href="{{ path('app_torneo_genero_categoria_edit', {'id': torneo_genero_categorium.id}) }}">edit</a>
+
+    {{ include('torneo_genero_categoria/_delete_form.html.twig') }}
+{% endblock %}

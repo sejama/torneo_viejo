@@ -2,32 +2,38 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoriaRepository;
+use App\Repository\TorneoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoriaRepository::class)]
-class Categoria
+#[ORM\Entity(repositoryClass: TorneoRepository::class)]
+class Torneo
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 64, unique: true)]
+    #[ORM\Column(length: 255)]
     private ?string $nombre = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $descripcion = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTimeImmutable $fechaInicio = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?\DateTimeImmutable $fechaFin = null;
 
-    #[ORM\OneToMany(mappedBy: 'categoria', targetEntity: TorneoGeneroCategoria::class)]
+    #[ORM\Column]
+    private ?\DateTimeImmutable $fechaInicioInscripcion = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $fechaFinInscripcion = null;
+
+    #[ORM\OneToMany(mappedBy: 'torneo', targetEntity: TorneoGeneroCategoria::class)]
     private Collection $torneoGeneroCategorias;
 
     public function __construct()
@@ -64,29 +70,50 @@ class Categoria
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getFechaInicio(): ?\DateTimeImmutable
     {
-        return $this->createdAt;
+        return $this->fechaInicio;
     }
 
-    #[ORM\PrePersist]
-    public function setCreatedAt(): static
+    public function setFechaInicio(\DateTimeImmutable $fechaInicio): static
     {
-        $this->createdAt = new \DateTimeImmutable('now');
+        $this->fechaInicio = $fechaInicio;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getFechaFin(): ?\DateTimeImmutable
     {
-        return $this->updatedAt;
+        return $this->fechaFin;
     }
 
-    #[ORM\PrePersist]
-    #[ORM\PreUpdate]
-    public function setUpdatedAt(): static
+    public function setFechaFin(\DateTimeImmutable $fechaFin): static
     {
-        $this->updatedAt = new \DateTimeImmutable('now');
+        $this->fechaFin = $fechaFin;
+
+        return $this;
+    }
+
+    public function getFechaInicioInscripcion(): ?\DateTimeImmutable
+    {
+        return $this->fechaInicioInscripcion;
+    }
+
+    public function setFechaInicioInscripcion(\DateTimeImmutable $fechaInicioInscripcion): static
+    {
+        $this->fechaInicioInscripcion = $fechaInicioInscripcion;
+
+        return $this;
+    }
+
+    public function getFechaFinInscripcion(): ?\DateTimeImmutable
+    {
+        return $this->fechaFinInscripcion;
+    }
+
+    public function setFechaFinInscripcion(\DateTimeImmutable $fechaFinInscripcion): static
+    {
+        $this->fechaFinInscripcion = $fechaFinInscripcion;
 
         return $this;
     }
@@ -103,7 +130,7 @@ class Categoria
     {
         if (!$this->torneoGeneroCategorias->contains($torneoGeneroCategoria)) {
             $this->torneoGeneroCategorias->add($torneoGeneroCategoria);
-            $torneoGeneroCategoria->setCategoria($this);
+            $torneoGeneroCategoria->setTorneo($this);
         }
 
         return $this;
@@ -113,8 +140,8 @@ class Categoria
     {
         if ($this->torneoGeneroCategorias->removeElement($torneoGeneroCategoria)) {
             // set the owning side to null (unless already changed)
-            if ($torneoGeneroCategoria->getCategoria() === $this) {
-                $torneoGeneroCategoria->setCategoria(null);
+            if ($torneoGeneroCategoria->getTorneo() === $this) {
+                $torneoGeneroCategoria->setTorneo(null);
             }
         }
 

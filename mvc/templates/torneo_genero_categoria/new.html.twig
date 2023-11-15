@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TorneoGeneroCategoria{% endblock %}
+
+{% block body %}
+    <h1>Create new TorneoGeneroCategoria</h1>
+
+    {{ include('torneo_genero_categoria/_form.html.twig') }}
+
+    <a href="{{ path('app_torneo_genero_categoria_index') }}">back to list</a>
+{% endblock %}
