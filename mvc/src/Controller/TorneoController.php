@@ -28,6 +28,8 @@ class TorneoController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $torneo = new Torneo();
+        $torneo->setCreatedAt(new \DateTimeImmutable());
+        $torneo->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(TorneoType::class, $torneo);
         $form->handleRequest($request);
 
@@ -55,6 +57,7 @@ class TorneoController extends AbstractController
     #[Route('/{id}/edit', name: 'app_torneo_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Torneo $torneo, EntityManagerInterface $entityManager): Response
     {
+        $torneo->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(TorneoType::class, $torneo);
         $form->handleRequest($request);
 

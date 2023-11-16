@@ -3,7 +3,9 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
+    {% if torneo  %}
     <h1>{{ torneo.nombre }}! ✅</h1>
+    {% if torneo.torneoGeneroCategorias.count() > 0 %}
     <table class="table">
         <thead>
             <tr>
@@ -22,5 +24,11 @@
     {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <h2>No hay configuracion de genero y categoria</h2>
+    {% endif %}
+    {% else %}
+    <h1>No existe torneo</h1>
+    {% endif %}
 </div>
 {% endblock %}

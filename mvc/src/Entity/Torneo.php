@@ -36,6 +36,12 @@ class Torneo
     #[ORM\OneToMany(mappedBy: 'torneo', targetEntity: TorneoGeneroCategoria::class)]
     private Collection $torneoGeneroCategorias;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     public function __construct()
     {
         $this->torneoGeneroCategorias = new ArrayCollection();
@@ -144,6 +150,33 @@ class Torneo
                 $torneoGeneroCategoria->setTorneo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
+    {
+        $this->createdAt = new \DateTimeImmutable('now');
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): static
+    {
+        $this->updatedAt = new \DateTimeImmutable('now');
 
         return $this;
     }
