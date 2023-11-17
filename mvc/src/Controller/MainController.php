@@ -10,11 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-
     #[Route('/', name: 'app_main')]
     public function index(TorneoRepository $tr, TorneoGeneroCategoriaRepository $tgcr): Response
     {
-        $torneo = $tr->findAll()[1]; //$tr->find(4);
+        $torneo = $tr->findAll()[0]; //$tr->find(4);
         $inscriptos = $tgcr->findBy(['torneo' => $torneo]);
         return $this->render('main/index.html.twig', [
             'torneo' => $torneo,

@@ -35,9 +35,13 @@ class TorneoGeneroCategoria
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'torneoGeneroCategoria', targetEntity: Zona::class)]
+    private Collection $zonas;
+
     public function __construct()
     {
         $this->equipos = new ArrayCollection();
+        $this->zonas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,6 +138,36 @@ class TorneoGeneroCategoria
     public function setUpdatedAt(): static
     {
         $this->updatedAt = new \DateTimeImmutable('now');
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Zona>
+     */
+    public function getZonas(): Collection
+    {
+        return $this->zonas;
+    }
+
+    public function addZona(Zona $zona): static
+    {
+        if (!$this->zonas->contains($zona)) {
+            $this->zonas->add($zona);
+            $zona->setTorneoGeneroCategoria($this);
+        }
+
+        return $this;
+    }
+
+    public function removeZona(Zona $zona): static
+    {
+        if ($this->zonas->removeElement($zona)) {
+            // set the owning side to null (unless already changed)
+            if ($zona->getTorneoGeneroCategoria() === $this) {
+                $zona->setTorneoGeneroCategoria(null);
+            }
+        }
 
         return $this;
     }

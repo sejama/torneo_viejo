@@ -25,6 +25,9 @@ class Equipo
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToOne(mappedBy: 'equipo', cascade: ['persist', 'remove'])]
+    private ?Zona $zona = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +80,28 @@ class Equipo
     public function setUpdatedAt(): static
     {
         $this->updatedAt = new \DateTimeImmutable('now');
+
+        return $this;
+    }
+
+    public function getZona(): ?Zona
+    {
+        return $this->zona;
+    }
+
+    public function setZona(?Zona $zona): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($zona === null && $this->zona !== null) {
+            $this->zona->setEquipo(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($zona !== null && $zona->getEquipo() !== $this) {
+            $zona->setEquipo($this);
+        }
+
+        $this->zona = $zona;
 
         return $this;
     }
