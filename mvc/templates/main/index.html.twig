@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Torneo{% endblock %}
 
 {% block body %}
     {% if torneo  %}
@@ -30,21 +30,28 @@
     {% else %}
     <h1>No existe torneo</h1>
     {% endif %}
-
-    {% for key, zonasind in zonas %}
-    <div class="card text-center">
-        <div class="card-header">
-            <h4>Zona {{ key }}</h4>
+    {% for key, categorias in zonas %}
+        <h1> {{ key }}</h1>
+        {% for key, equipos in categorias %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h4>Zona {{ key }}</h4>
+                        </div>
+                            <ul class="list-group list-group-flush">
+                                {% for equipo in equipos %}
+                                    <li class="list-group-item">{{ equipo.nombre }}</li>
+                                {% endfor %}
+                            </ul>
+                    </div>
+                    </br>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                {% for zona in zonasind %}
-                    <li class="list-group-item">{{ zona.nombre }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    </br>
+        
+        {% endfor %}
     {% endfor %}
 
 
