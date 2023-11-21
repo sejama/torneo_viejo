@@ -27,13 +27,8 @@ class Equipo
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'equipo', targetEntity: ZonaEquipo::class)]
-    private Collection $zonaEquipos;
-
-    public function __construct()
-    {
-        $this->zonaEquipos = new ArrayCollection();
-    }
+    #[ORM\OneToOne(mappedBy: 'equipo', cascade: ['persist', 'remove'])]
+    private ?ZonaEquipo $zonaEquipo = null;
 
     public function getId(): ?int
     {
@@ -91,32 +86,24 @@ class Equipo
         return $this;
     }
 
-    /**
-     * @return Collection<int, ZonaEquipo>
-     */
-    public function getZonaEquipos(): Collection
+    public function getZonaEquipo(): ?ZonaEquipo
     {
-        return $this->zonaEquipos;
+        return $this->zonaEquipo;
     }
 
-    public function addZonaEquipo(ZonaEquipo $zonaEquipo): static
+    public function setZonaEquipo(?ZonaEquipo $zonaEquipo): static
     {
-        if (!$this->zonaEquipos->contains($zonaEquipo)) {
-            $this->zonaEquipos->add($zonaEquipo);
+        // unset the owning side of the relation if necessary
+        if ($zonaEquipo === null && $this->zonaEquipo !== null) {
+            $this->zonaEquipo->setEquipo(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($zonaEquipo !== null && $zonaEquipo->getEquipo() !== $this) {
             $zonaEquipo->setEquipo($this);
         }
 
-        return $this;
-    }
-
-    public function removeZonaEquipo(ZonaEquipo $zonaEquipo): static
-    {
-        if ($this->zonaEquipos->removeElement($zonaEquipo)) {
-            // set the owning side to null (unless already changed)
-            if ($zonaEquipo->getEquipo() === $this) {
-                $zonaEquipo->setEquipo(null);
-            }
-        }
+        $this->zonaEquipo = $zonaEquipo;
 
         return $this;
     }

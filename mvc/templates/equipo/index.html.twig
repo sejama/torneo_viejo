@@ -23,7 +23,7 @@
                 <td>{{ equipo.nombre }}</td>
                 <td>{{ equipo.torneoGeneroCategoria.genero.nombre }}</td>
                 <td>{{ equipo.torneoGeneroCategoria.categoria.nombre }}</td>
-                <td>{{ equipo.zonaEquipos[0].zona.id }}</td>
+                <td>{{ equipo.zonaEquipo.zona.id }}</td>
 
                 <td>
                     <a href="{{ path('app_equipo_show', {'id': equipo.id}) }}">show</a>

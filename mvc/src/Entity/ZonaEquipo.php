@@ -16,7 +16,7 @@ class ZonaEquipo
     #[ORM\ManyToOne(inversedBy: 'zonaEquipos')]
     private ?Zona $zona = null;
 
-    #[ORM\ManyToOne(inversedBy: 'zonaEquipos')]
+    #[ORM\OneToOne(inversedBy: 'zonaEquipo', cascade: ['persist', 'remove'])]
     private ?Equipo $equipo = null;
 
     public function getId(): ?int

@@ -30,5 +30,22 @@
     {% else %}
     <h1>No existe torneo</h1>
     {% endif %}
-</div>
+
+    {% for key, zonasind in zonas %}
+    <div class="card text-center">
+        <div class="card-header">
+            <h4>Zona {{ key }}</h4>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for zona in zonasind %}
+                    <li class="list-group-item">{{ zona.nombre }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </br>
+    {% endfor %}
+
+
 {% endblock %}

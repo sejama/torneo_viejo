@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Manager\ZonaManager;
 use App\Repository\TorneoGeneroCategoriaRepository;
 use App\Repository\TorneoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,13 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function index(TorneoRepository $tr, TorneoGeneroCategoriaRepository $tgcr): Response
+    public function index(TorneoRepository $tr, TorneoGeneroCategoriaRepository $tgcr, ZonaManager $zm): Response
     {
         $torneo = $tr->findAll()[0]; //$tr->find(4);
         $inscriptos = $tgcr->findBy(['torneo' => $torneo]);
+        $zonas = $zm->armadoZona();
         return $this->render('main/index.html.twig', [
             'torneo' => $torneo,
             'inscriptos' => $inscriptos,
+            'zonas' => $zonas
         ]);
     }
 }

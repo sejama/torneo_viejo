@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231119185059 extends AbstractMigration
+final class Version20231121142451 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -27,7 +27,7 @@ final class Version20231119185059 extends AbstractMigration
         $this->addSql('CREATE TABLE torneo_genero_categoria (id INT AUTO_INCREMENT NOT NULL, torneo_id INT DEFAULT NULL, genero_id INT DEFAULT NULL, categoria_id INT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_D2F850FAA0139802 (torneo_id), INDEX IDX_D2F850FABCE7B795 (genero_id), INDEX IDX_D2F850FA3397707A (categoria_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(180) NOT NULL, roles JSON NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649F85E0677 (username), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE zona (id INT AUTO_INCREMENT NOT NULL, torneo_genero_categoria_id INT DEFAULT NULL, INDEX IDX_A786041ED7CF149E (torneo_genero_categoria_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE zona_equipo (id INT AUTO_INCREMENT NOT NULL, zona_id INT DEFAULT NULL, equipo_id INT DEFAULT NULL, INDEX IDX_7FC57583104EA8FC (zona_id), INDEX IDX_7FC5758323BFBED (equipo_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE zona_equipo (id INT AUTO_INCREMENT NOT NULL, zona_id INT DEFAULT NULL, equipo_id INT DEFAULT NULL, INDEX IDX_7FC57583104EA8FC (zona_id), UNIQUE INDEX UNIQ_7FC5758323BFBED (equipo_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', available_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', delivered_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE equipo ADD CONSTRAINT FK_C49C530BD7CF149E FOREIGN KEY (torneo_genero_categoria_id) REFERENCES torneo_genero_categoria (id)');
         $this->addSql('ALTER TABLE torneo_genero_categoria ADD CONSTRAINT FK_D2F850FAA0139802 FOREIGN KEY (torneo_id) REFERENCES torneo (id)');
