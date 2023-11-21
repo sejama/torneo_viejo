@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EquipoRepository::class)]
@@ -25,8 +27,13 @@ class Equipo
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToOne(mappedBy: 'equipo', cascade: ['persist', 'remove'])]
-    private ?Zona $zona = null;
+    #[ORM\OneToMany(mappedBy: 'equipo', targetEntity: ZonaEquipo::class)]
+    private Collection $zonaEquipos;
+
+    public function __construct()
+    {
+        $this->zonaEquipos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -84,24 +91,32 @@ class Equipo
         return $this;
     }
 
-    public function getZona(): ?Zona
+    /**
+     * @return Collection<int, ZonaEquipo>
+     */
+    public function getZonaEquipos(): Collection
     {
-        return $this->zona;
+        return $this->zonaEquipos;
     }
 
-    public function setZona(?Zona $zona): static
+    public function addZonaEquipo(ZonaEquipo $zonaEquipo): static
     {
-        // unset the owning side of the relation if necessary
-        if ($zona === null && $this->zona !== null) {
-            $this->zona->setEquipo(null);
+        if (!$this->zonaEquipos->contains($zonaEquipo)) {
+            $this->zonaEquipos->add($zonaEquipo);
+            $zonaEquipo->setEquipo($this);
         }
 
-        // set the owning side of the relation if necessary
-        if ($zona !== null && $zona->getEquipo() !== $this) {
-            $zona->setEquipo($this);
-        }
+        return $this;
+    }
 
-        $this->zona = $zona;
+    public function removeZonaEquipo(ZonaEquipo $zonaEquipo): static
+    {
+        if ($this->zonaEquipos->removeElement($zonaEquipo)) {
+            // set the owning side to null (unless already changed)
+            if ($zonaEquipo->getEquipo() === $this) {
+                $zonaEquipo->setEquipo(null);
+            }
+        }
 
         return $this;
     }

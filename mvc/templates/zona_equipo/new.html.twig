@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ZonaEquipo{% endblock %}
+
+{% block body %}
+    <h1>Create new ZonaEquipo</h1>
+
+    {{ include('zona_equipo/_form.html.twig') }}
+
+    <a href="{{ path('app_zona_equipo_index') }}">back to list</a>
+{% endblock %}

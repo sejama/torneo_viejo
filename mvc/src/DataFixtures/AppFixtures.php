@@ -8,6 +8,8 @@ use App\Entity\Genero;
 use App\Entity\Torneo;
 use App\Entity\TorneoGeneroCategoria;
 use App\Entity\User;
+use App\Entity\Zona;
+use App\Entity\ZonaEquipo;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -131,35 +133,243 @@ class AppFixtures extends Fixture
         $tgcm50->setUpdatedAt(new \DateTimeImmutable('now'));
         $manager->persist($tgcm50);
 
-        $f30s = ['EL QUILLA','LA EMILIA','CSDC CORRRIENTES','INFINITO','ALIANZA SANTOTO','LA MILONETA','FUNDACION CORRIENTES','MAMIS RESISTENCIA'];
-        foreach($f30s as $f30) {
+        $zonaf301 = new Zona();
+        $zonaf301->setTorneoGeneroCategoria($tgcf30);
+        $manager->persist($zonaf301);
+
+        $zonaf302 = new Zona();
+        $zonaf302->setTorneoGeneroCategoria($tgcf30);
+        $manager->persist($zonaf302);
+
+        //$f30s = ['INFINITO','CSDC CORRRIENTES','LA EMILIA','EL QUILLA','FUNDACION CORRIENTES','LA MILONETA','ALIANZA SANTOTO','MAMIS RESISTENCIA'];
+        $f30s1 = ['INFINITO','CSDC CORRRIENTES','LA EMILIA','EL QUILLA'];
+        $f30s2 = ['FUNDACION CORRIENTES','LA MILONETA','ALIANZA SANTOTO','MAMIS RESISTENCIA'];
+        
+        foreach($f30s1 as $f30) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f30);
+            $equipo->setTorneoGeneroCategoria($tgcf30);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+
+            $manager->persist($equipo);
+            
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf301);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach($f30s2 as $f30) {
             $equipo = new Equipo();
             $equipo->setNombre($f30);
             $equipo->setTorneoGeneroCategoria($tgcf30);
             $equipo->setCreatedAt(new \DateTimeImmutable('now'));
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
+            
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf302);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
         }
 
-        $f35s = ['REGATAS','MALUCA','LAS BRUJAS','LAS CUERVAS','EL QUILLA','VILLA DORA','MALA MIA','LAS VIRGI','OVJ PAISANDU','APA','ADELANTE','LAS GOLOS','SOC SPORT ROLDAN','ON FIRE','NAUTICO AVELLANEDA','AQUELARRE URUGUAY','TREDE/BIRRA','MONSTARD'];
-        foreach ($f35s as $f35) {
+        $zonaf3515 = new Zona();
+        $zonaf3515->setTorneoGeneroCategoria($tgcf35);
+        $manager->persist($zonaf3515);
+
+        $zonaf3525 = new Zona();
+        $zonaf3525->setTorneoGeneroCategoria($tgcf35);
+        $manager->persist($zonaf3525);
+
+        $zonaf3534 = new Zona();
+        $zonaf3534->setTorneoGeneroCategoria($tgcf35);
+        $manager->persist($zonaf3534);
+
+        $zonaf3544 = new Zona();
+        $zonaf3544->setTorneoGeneroCategoria($tgcf35);
+        $manager->persist($zonaf3544);
+
+        //$f35s = ['REGATAS','MALUCA','LAS BRUJAS','LAS CUERVAS','EL QUILLA','VILLA DORA','MALA MIA','LAS VIRGI','OVJ PAISANDU','APA','ADELANTE','LAS GOLOS','SOC SPORT ROLDAN','ON FIRE','NAUTICO AVELLANEDA','AQUELARRE URUGUAY','TREDE/BIRRA','MONSTARD'];
+        $f35s1 = ['REGATAS','MALUCA','LAS BRUJAS','LAS CUERVAS','EL QUILLA'];
+        $f35s2 = ['VILLA DORA','MALA MIA','LAS VIRGI','OVJ PAISANDU','APA'];
+        $f35s3 = ['ADELANTE','LAS GOLOS','SOC SPORT ROLDAN','ON FIRE'];
+        $f35s4 = ['NAUTICO AVELLANEDA','AQUELARRE URUGUAY','TREDE/BIRRA','MONSTARD'];
+        foreach ($f35s1 as $f35) {
             $equipo = new Equipo();
             $equipo->setNombre($f35);
             $equipo->setTorneoGeneroCategoria($tgcf35);
             $equipo->setCreatedAt(new \DateTimeImmutable('now'));
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf3515);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
         }
 
-        $f42s = ['MALUCA','MALA MIA','LAS GOLOS','MONSTARD','BISARRAS','LA MADRID','SF ALTO VOLEY','LAS VIEJA DE TATI','CANARIAS','COSTA MIX','LAS FENIX','UNI SF','INFINITO','CTRO REC SGO ESTERO','AMIGAS POR EL VOLEY','GUEMES SALTA','GYE E.R.','KUÑA','VOLEY MONTE','MICUMAN','LAS BRANCAS','12 REINAS','EL REJUNTE','PANSAS VERDES'];
-        foreach ($f42s as $f42) {
+        foreach ($f35s2 as $f35) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f35);
+            $equipo->setTorneoGeneroCategoria($tgcf35);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf3525);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach ($f35s3 as $f35) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f35);
+            $equipo->setTorneoGeneroCategoria($tgcf35);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf3534);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach ($f35s4 as $f35) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f35);
+            $equipo->setTorneoGeneroCategoria($tgcf35);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf3544);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        $zonaf421 = new Zona();
+        $zonaf421->setTorneoGeneroCategoria($tgcf42);
+        $manager->persist($zonaf421);
+
+        $zonaf422 = new Zona();
+        $zonaf422->setTorneoGeneroCategoria($tgcf42);
+        $manager->persist($zonaf422);
+
+        $zonaf423 = new Zona();
+        $zonaf423->setTorneoGeneroCategoria($tgcf42);
+        $manager->persist($zonaf423);
+
+        $zonaf424 = new Zona();
+        $zonaf424->setTorneoGeneroCategoria($tgcf42);
+        $manager->persist($zonaf424);
+
+        $zonaf425 = new Zona();
+        $zonaf425->setTorneoGeneroCategoria($tgcf42);
+        $manager->persist($zonaf425);
+
+        $zonaf426 = new Zona();
+        $zonaf426->setTorneoGeneroCategoria($tgcf42);
+        $manager->persist($zonaf426);
+
+        //$f42s = ['MALUCA','SF ALTO VOLEY','INFINITO','VOLEY MONTE','MALA MIA','LAS VIEJA DE TATI','CTRO REC SGO ESTERO','MICUMAN','LAS GOLOS','CANARIAS','AMIGAS POR EL VOLEY','LAS BRANCAS','MONSTARD','COSTA MIX','GUEMES SALTA','12 REINAS','BISARRAS','LAS FENIX','GYE E.R.','EL REJUNTE','LA MADRID','UNI SF','KUÑA','PANSAS VERDES'];
+        $f42s1 = ['MALUCA','SF ALTO VOLEY','INFINITO','VOLEY MONTE'];
+        $f42s2 = ['MALA MIA','LAS VIEJA DE TATI','CTRO REC SGO ESTERO','MICUMAN'];
+        $f42s3 = ['LAS GOLOS','CANARIAS','AMIGAS POR EL VOLEY','LAS BRANCAS'];
+        $f42s4 = ['MONSTARD','COSTA MIX','GUEMES SALTA','12 REINAS'];
+        $f42s5 = ['BISARRAS','LAS FENIX','GYE E.R.','EL REJUNTE'];
+        $f42s6 = ['LA MADRID','UNI SF','KUÑA','PANSAS VERDES'];
+
+        foreach ($f42s1 as $f42) {
             $equipo = new Equipo();
             $equipo->setNombre($f42);
             $equipo->setTorneoGeneroCategoria($tgcf42);
             $equipo->setCreatedAt(new \DateTimeImmutable('now'));
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf421);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
         }
+
+        foreach ($f42s2 as $f42) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f42);
+            $equipo->setTorneoGeneroCategoria($tgcf42);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf422);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach ($f42s3 as $f42) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f42);
+            $equipo->setTorneoGeneroCategoria($tgcf42);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf423);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach ($f42s4 as $f42) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f42);
+            $equipo->setTorneoGeneroCategoria($tgcf42);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+            
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf424);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach ($f42s5 as $f42) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f42);
+            $equipo->setTorneoGeneroCategoria($tgcf42);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+            
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf425);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach ($f42s6 as $f42) {
+            $equipo = new Equipo();
+            $equipo->setNombre($f42);
+            $equipo->setTorneoGeneroCategoria($tgcf42);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+            
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonaf426);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        $zonam35 = new Zona();
+        $zonam35->setTorneoGeneroCategoria($tgcm35);
+        $manager->persist($zonam35);
 
         $m35s = ['BOLA 8','LA GARRA','RACING RECONQUISTA','DESPELOTE','ROMANG FUTBOL CLUB','CLUB DE AMIGOS'];
         foreach ($m35s as $m35) {
@@ -169,26 +379,90 @@ class AppFixtures extends Fixture
             $equipo->setCreatedAt(new \DateTimeImmutable('now'));
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonam35);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
         }
 
-        $m42s = ['MAXI SANTA FE','NO PASA NARANJA','PAYSANDU','ROSARIO VOLEY','HAVANNA','BANCO PROVINCIA','DEF MORENO','LA TRIBU'];
-        foreach ($m42s as $m42) {
+        $zonam421 = new Zona();
+        $zonam421->setTorneoGeneroCategoria($tgcm42);
+        $manager->persist($zonam421);
+
+        $zonam422 = new Zona();
+        $zonam422->setTorneoGeneroCategoria($tgcm42);
+        $manager->persist($zonam422);
+
+        //$m42s = ['MAXI SANTA FE','PAYSANDU','HAVANNA','DEF MORENO','NO PASA NARANJA','ROSARIO VOLEY','BANCO PROVINCIA','LA TRIBU'];
+        $m42s1 = ['MAXI SANTA FE','PAYSANDU','HAVANNA','DEF MORENO'];
+        $m42s2 = ['NO PASA NARANJA','ROSARIO VOLEY','BANCO PROVINCIA','LA TRIBU'];
+        foreach ($m42s1 as $m42) {
             $equipo = new Equipo();
             $equipo->setNombre($m42);
             $equipo->setTorneoGeneroCategoria($tgcm42);
             $equipo->setCreatedAt(new \DateTimeImmutable('now'));
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonam421);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
         }
 
-        $m50s = ['TACUAREMBO','UNI SJ','TUCUMAN DE GIMNASIA','LPV','LOS PERKIN','LA TRIBU','DEF MORENO','RIO CUARTO','BANCO HISPANO','ALGO DISTINTO'];
-        foreach ($m50s as $m50) {
+        foreach ($m42s2 as $m42) {
+            $equipo = new Equipo();
+            $equipo->setNombre($m42);
+            $equipo->setTorneoGeneroCategoria($tgcm42);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+            
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonam422);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        $zonam501 = new Zona();
+        $zonam501->setTorneoGeneroCategoria($tgcm50);
+        $manager->persist($zonam501);
+
+        $zonam502 = new Zona();
+        $zonam502->setTorneoGeneroCategoria($tgcm50);
+        $manager->persist($zonam502);
+
+        //$m50s = ['TACUAREMBO','TUCUMAN DE GIMNASIA','LOS PERKIN','DEF MORENO','BANCO HISPANO','UNI SJ','LPV','LA TRIBU','RIO CUARTO','ALGO DISTINTO'];
+        $m50s1 = ['TACUAREMBO','TUCUMAN DE GIMNASIA','LOS PERKIN','DEF MORENO','BANCO HISPANO'];
+        $m50s2 = ['UNI SJ','LPV','LA TRIBU','RIO CUARTO','ALGO DISTINTO'];
+
+        foreach ($m50s1 as $m50) {
             $equipo = new Equipo();
             $equipo->setNombre($m50);
             $equipo->setTorneoGeneroCategoria($tgcm50);
             $equipo->setCreatedAt(new \DateTimeImmutable('now'));
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
+
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonam501);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
+        }
+
+        foreach ($m50s2 as $m50) {
+            $equipo = new Equipo();
+            $equipo->setNombre($m50);
+            $equipo->setTorneoGeneroCategoria($tgcm50);
+            $equipo->setCreatedAt(new \DateTimeImmutable('now'));
+            $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
+            $manager->persist($equipo);
+            
+            $zonaEquipo = new ZonaEquipo();
+            $zonaEquipo->setZona($zonam502);
+            $zonaEquipo->setEquipo($equipo);
+            $manager->persist($zonaEquipo);
         }
 
         $manager->flush();

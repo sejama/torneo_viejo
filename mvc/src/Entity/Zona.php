@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ZonaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ZonaRepository::class)]
@@ -16,8 +18,13 @@ class Zona
     #[ORM\ManyToOne(inversedBy: 'zonas')]
     private ?TorneoGeneroCategoria $torneoGeneroCategoria = null;
 
-    #[ORM\OneToOne(inversedBy: 'zona', cascade: ['persist', 'remove'])]
-    private ?Equipo $equipo = null;
+    #[ORM\OneToMany(mappedBy: 'zona', targetEntity: ZonaEquipo::class)]
+    private Collection $zonaEquipos;
+
+    public function __construct()
+    {
+        $this->zonaEquipos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,15 +43,34 @@ class Zona
         return $this;
     }
 
-    public function getEquipo(): ?Equipo
+    /**
+     * @return Collection<int, ZonaEquipo>
+     */
+    public function getZonaEquipos(): Collection
     {
-        return $this->equipo;
+        return $this->zonaEquipos;
     }
 
-    public function setEquipo(?Equipo $equipo): static
+    public function addZonaEquipo(ZonaEquipo $zonaEquipo): static
     {
-        $this->equipo = $equipo;
+        if (!$this->zonaEquipos->contains($zonaEquipo)) {
+            $this->zonaEquipos->add($zonaEquipo);
+            $zonaEquipo->setZona($this);
+        }
 
         return $this;
     }
+
+    public function removeZonaEquipo(ZonaEquipo $zonaEquipo): static
+    {
+        if ($this->zonaEquipos->removeElement($zonaEquipo)) {
+            // set the owning side to null (unless already changed)
+            if ($zonaEquipo->getZona() === $this) {
+                $zonaEquipo->setZona(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -2,20 +2,19 @@
 
 namespace App\Form;
 
-use App\Entity\Equipo;
+use App\Entity\Zona;
 use App\Entity\TorneoGeneroCategoria;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class EquipoType extends AbstractType
+class ZonaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nombre')
             ->add('torneoGeneroCategoria', EntityType::class, [
                 'class' => TorneoGeneroCategoria::class,
                 'choice_label' => function (TorneoGeneroCategoria $torneoGeneroCategoria) {
@@ -37,19 +36,20 @@ class EquipoType extends AbstractType
                 /*'required' => true,
                 'constraints' => [
                     new Choice([
-                        'choices' => function (TorneoGeneroCategoria $torneoGeneroCategoria) {
-                            return $torneoGeneroCategoria->getTorneo()->getNombre() . ' - ' . $torneoGeneroCategoria->getGenero()->getNombre() . ' - ' . $torneoGeneroCategoria->getCategoria()->getNombre();
-                        },
-                        'message' => 'Seleccione un torneo, género y categoría',
-                    ]),
-                ],*/
-            ]);
+                    'choices' => function (TorneoGeneroCategoria $torneoGeneroCategoria) {
+                        return $torneoGeneroCategoria->getTorneo()->getNombre() . ' - ' . $torneoGeneroCategoria->getGenero()->getNombre() . ' - ' . $torneoGeneroCategoria->getCategoria()->getNombre();
+                    },
+                    'message' => 'Seleccione un torneo, género y categoría',
+                ]),
+            ],*/
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Equipo::class,
+            'data_class' => Zona::class,
         ]);
     }
 }
