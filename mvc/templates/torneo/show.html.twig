@@ -43,6 +43,7 @@
     <a href="{{ path('app_torneo_edit', {'id': torneo.id}) }}">edit</a>
 
     {{ include('torneo/_delete_form.html.twig') }}
+
     {% for inscriptos in torneo.torneoGeneroCategorias %}
         {{ inscriptos.genero.nombre }}
         {{ inscriptos.categoria.nombre }}
@@ -55,7 +56,7 @@
             <br>
         </form>
         <script>
-            let cantidadZona{{ inscriptos.id }} = document.getElementById("cantidadZona{{ inscriptos.id }}");
+         let cantidadZona{{ inscriptos.id }} = document.getElementById("cantidadZona{{ inscriptos.id }}");
             confirmar{{ inscriptos.id }}.onclick = function(){
                 cantidadZona{{ inscriptos.id }}.disabled = true;
                 confirmar{{ inscriptos.id }}.disabled = true;
@@ -71,28 +72,49 @@
                     input.min = "0";
                     if (({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) == 0)
                     {
-                        input.max = ({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value);
+                        input.value = input.max = ({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value);
                     }else{
-                        input.max = ({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value) + ({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) - 1;
+                        input.value = input.max = ({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value) + ({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) - 1;
                     }
                     input.placeholder = "Cantidad de equipos";
                     document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(label);
                     document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(input);
                     document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(document.createElement("br"));
                 }
+                
                 let botonConfirmar = document.createElement("input");
                 botonConfirmar.type = "button";
                 botonConfirmar.name = "confirmarCantidadEquiposZona{{ inscriptos.id }}";
                 botonConfirmar.id = "confirmarCantidadEquiposZona{{ inscriptos.id }}";
                 botonConfirmar.value = "Enviar";
                 document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(botonConfirmar);
+
+                document.getElementById("confirmarCantidadEquiposZona{{ inscriptos.id }}").onclick = function(){
+                    cantidadzonas = document.getElementById("cantidadZona{{ inscriptos.id }}").value;
+                    cantidadEquiposZona = [];
+                    suma = 0
+                    mensaje = "Se va armar " + cantidadzonas + " zonas de "
+                    for (let i = 0; i < cantidadzonas; i++) {
+                        cantidadEquiposZona[i] = parseInt(document.getElementById("cantidadEquiposZona" + {{ inscriptos.id }} + i).value)
+                        suma += cantidadEquiposZona[i];
+                        if (i == cantidadzonas - 1){
+                            mensaje += cantidadEquiposZona[i] + " equipos.";
+                        }else{
+                            mensaje += cantidadEquiposZona[i] + " equipos, ";
+                        }
+                    }
+                    if (suma == {{ inscriptos.equipos.count() }}){
+                         alert(mensaje);
+                    }else{
+                        alert("La suma de los equipos no coincide con la cantidad de equipos inscriptos");
+                    }
+               
             }
-        </script>
-        <br>
+            }
+
+            
+    </script>
+    <br>
     {% endfor %}
 {% endblock %}
-{% block javascripts %}
-    <script>
-        //console.log(total);
-    </script>
-{% endblock %}
+
