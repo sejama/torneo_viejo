@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Torneo index</h1>
-
+    <a href="{{ path('app_torneo_new') }}">Crear Torneo</a>
     <table class="table">
         <thead>
             <tr>
@@ -15,7 +15,7 @@
                 <th>FechaFin</th>
                 <th>FechaInicioInscripcion</th>
                 <th>FechaFinInscripcion</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -29,8 +29,8 @@
                 <td>{{ torneo.fechaInicioInscripcion ? torneo.fechaInicioInscripcion|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ torneo.fechaFinInscripcion ? torneo.fechaFinInscripcion|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_torneo_show', {'id': torneo.id}) }}">show</a>
-                    <a href="{{ path('app_torneo_edit', {'id': torneo.id}) }}">edit</a>
+                    <a href="{{ path('app_torneo_show', {'id': torneo.id}) }}">Consultar</a>
+                    <a href="{{ path('app_torneo_edit', {'id': torneo.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -40,6 +40,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_torneo_new') }}">Create new</a>
 {% endblock %}

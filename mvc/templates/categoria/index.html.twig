@@ -4,16 +4,16 @@
 
 {% block body %}
     <h1>Categoria index</h1>
-
+    <a href="{{ path('app_categoria_new') }}">Crear Categoria</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                {# <th>CreatedAt</th>
+                <th>UpdatedAt</th> #}
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +22,11 @@
                 <td>{{ categorium.id }}</td>
                 <td>{{ categorium.nombre }}</td>
                 <td>{{ categorium.descripcion }}</td>
-                <td>{{ categorium.createdAt ? categorium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ categorium.updatedAt ? categorium.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+               {#  <td>{{ categorium.createdAt ? categorium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ categorium.updatedAt ? categorium.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
                 <td>
-                    <a href="{{ path('app_categoria_show', {'id': categorium.id}) }}">show</a>
-                    <a href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">edit</a>
+                    <a href="{{ path('app_categoria_show', {'id': categorium.id}) }}">Consultar</a>
+                    <a href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -36,6 +36,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_categoria_new') }}">Create new</a>
 {% endblock %}

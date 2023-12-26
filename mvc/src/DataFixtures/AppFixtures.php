@@ -37,10 +37,10 @@ class AppFixtures extends Fixture
         $torneo = new Torneo();
         $torneo->setNombre('Torneo de prueba');
         $torneo->setDescripcion('Descripcion torneo de prueba');
-        $torneo->setFechaInicio(new \DateTimeImmutable('2024-01-01'));
-        $torneo->setFechaFin(new \DateTimeImmutable('2024-01-31'));
+        $torneo->setFechaInicio(new \DateTimeImmutable('2024-01-01 09:00:00'));
+        $torneo->setFechaFin(new \DateTimeImmutable('2024-01-31 20:00:00'));
         $torneo->setFechaInicioInscripcion(new \DateTimeImmutable('2020-12-01'));
-        $torneo->setFechaFinInscripcion(new \DateTimeImmutable('2020-12-31'));
+        $torneo->setFechaFinInscripcion(new \DateTimeImmutable('2023-12-31 23:59:59'));
         $torneo->setCreatedAt(new \DateTimeImmutable('now'));
         $torneo->setUpdatedAt(new \DateTimeImmutable('now'));
         $manager->persist($torneo);

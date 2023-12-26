@@ -4,12 +4,12 @@
 
 {% block body %}
     <h1>ZonaEquipo index</h1>
-
+    <a href="{{ path('app_zona_equipo_new') }}">Crear Zona Equipo</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -17,8 +17,8 @@
             <tr>
                 <td>{{ zona_equipo.id }}</td>
                 <td>
-                    <a href="{{ path('app_zona_equipo_show', {'id': zona_equipo.id}) }}">show</a>
-                    <a href="{{ path('app_zona_equipo_edit', {'id': zona_equipo.id}) }}">edit</a>
+                    <a href="{{ path('app_zona_equipo_show', {'id': zona_equipo.id}) }}">Consultar</a>
+                    <a href="{{ path('app_zona_equipo_edit', {'id': zona_equipo.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -28,6 +28,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_zona_equipo_new') }}">Create new</a>
 {% endblock %}

@@ -4,13 +4,13 @@
 
 {% block body %}
     <h1>Genero index</h1>
-
+    <a href="{{ path('app_genero_new') }}">Crear Genero</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +19,8 @@
                 <td>{{ genero.id }}</td>
                 <td>{{ genero.nombre }}</td>
                 <td>
-                    <a href="{{ path('app_genero_show', {'id': genero.id}) }}">show</a>
-                    <a href="{{ path('app_genero_edit', {'id': genero.id}) }}">edit</a>
+                    <a href="{{ path('app_genero_show', {'id': genero.id}) }}">Consultar</a>
+                    <a href="{{ path('app_genero_edit', {'id': genero.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +30,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_genero_new') }}">Create new</a>
 {% endblock %}

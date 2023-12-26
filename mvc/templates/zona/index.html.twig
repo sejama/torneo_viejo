@@ -4,12 +4,12 @@
 
 {% block body %}
     <h1>Zona index</h1>
-
+    <a href="{{ path('app_zona_new') }}">Crear Zona</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -17,8 +17,8 @@
             <tr>
                 <td>{{ zona.id }}</td>
                 <td>
-                    <a href="{{ path('app_zona_show', {'id': zona.id}) }}">show</a>
-                    <a href="{{ path('app_zona_edit', {'id': zona.id}) }}">edit</a>
+                    <a href="{{ path('app_zona_show', {'id': zona.id}) }}">Consultar</a>
+                    <a href="{{ path('app_zona_edit', {'id': zona.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -28,6 +28,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_zona_new') }}">Create new</a>
 {% endblock %}
