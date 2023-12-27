@@ -15,15 +15,15 @@
                         Admin
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/torneo">Torneo</a></li>
-                        <li><a class="dropdown-item" href="/genero">Genero</a></li>
-                        <li><a class="dropdown-item" href="/categoria">Categoria</a></li>
-                        <li><a class="dropdown-item" href="/torneo/genero/categoria">Configurar Genero - Categoria</a></li>
+                        <li><a class="dropdown-item" href="{{path('app_torneo_index')}}">Torneo</a></li>
+                        <li><a class="dropdown-item" href="{{path('app_genero_index')}}">Genero</a></li>
+                        <li><a class="dropdown-item" href="{{path('app_categoria_index')}}">Categoria</a></li>
+                        <li><a class="dropdown-item" href="{{path('app_torneo_genero_categoria_index')}}">Configurar Genero - Categoria</a></li>
 
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-link" aria-current="page" href="/equipo">Equipos</a>
+                    <a class="nav-link" aria-current="page" href="{{path('app_equipo_index')}}">Equipos</a>
                 </li>
                 {% endif %}
             </ul>
