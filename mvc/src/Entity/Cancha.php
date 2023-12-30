@@ -47,9 +47,10 @@ class Cancha
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTimeImmutable('now');
 
         return $this;
     }
@@ -59,9 +60,11 @@ class Cancha
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): static
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTimeImmutable('now');
 
         return $this;
     }

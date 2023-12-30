@@ -26,6 +26,8 @@ class EquipoController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $equipo = new Equipo();
+        $equipo->setCreatedAt(new \DateTimeImmutable());
+        $equipo->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(EquipoType::class, $equipo);
         $form->handleRequest($request);
 
@@ -53,6 +55,7 @@ class EquipoController extends AbstractController
     #[Route('/{id}/edit', name: 'app_equipo_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Equipo $equipo, EntityManagerInterface $entityManager): Response
     {
+        $equipo->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(EquipoType::class, $equipo);
         $form->handleRequest($request);
 

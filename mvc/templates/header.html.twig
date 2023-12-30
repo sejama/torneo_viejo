@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{ path('app_main') }}">Inicio</a>
                 </li>
-                 {% if app.user %}
+                {% if app.user %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Admin
@@ -24,16 +24,18 @@
                 </li>
                 <li>
                     <a class="nav-link" aria-current="page" href="{{path('app_equipo_index')}}">Equipos</a>
+                    <a class="nav-link" aria-current="page" href="{{path('app_club_index')}}">Club</a>
+                    <a class="nav-link" aria-current="page" href="{{path('app_cancha_index')}}">Cancha</a>
                 </li>
                 {% endif %}
             </ul>
             <ul class="navbar-nav justify-content-end">
                 {% if app.user %}
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/logout">Cerrar Sesión</a>
+                    <a class="nav-link" aria-current="page" href="{{path('app_logout')}}">Cerrar Sesión</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/register">Registrar</a>
+                    <a class="nav-link" aria-current="page" href="{{path('app_register')}}">Registrar</a>
                 </li>
                 {% else %}
                 <li class="nav-item">

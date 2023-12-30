@@ -28,6 +28,8 @@ class TorneoGeneroCategoriaController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $torneoGeneroCategorium = new TorneoGeneroCategoria();
+        $torneoGeneroCategorium->setCreatedAt(new \DateTimeImmutable());
+        $torneoGeneroCategorium->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(TorneoGeneroCategoriaType::class, $torneoGeneroCategorium);
         $form->handleRequest($request);
 
@@ -55,6 +57,7 @@ class TorneoGeneroCategoriaController extends AbstractController
     #[Route('/{id}/edit', name: 'app_torneo_genero_categoria_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TorneoGeneroCategoria $torneoGeneroCategorium, EntityManagerInterface $entityManager): Response
     {
+        $torneoGeneroCategorium->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(TorneoGeneroCategoriaType::class, $torneoGeneroCategorium);
         $form->handleRequest($request);
 

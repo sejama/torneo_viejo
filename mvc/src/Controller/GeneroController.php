@@ -28,6 +28,8 @@ class GeneroController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $genero = new Genero();
+        $genero->setCreatedAt(new \DateTimeImmutable());
+        $genero->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(GeneroType::class, $genero);
         $form->handleRequest($request);
 
@@ -55,6 +57,7 @@ class GeneroController extends AbstractController
     #[Route('/{id}/edit', name: 'app_genero_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Genero $genero, EntityManagerInterface $entityManager): Response
     {
+        $genero->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(GeneroType::class, $genero);
         $form->handleRequest($request);
 
