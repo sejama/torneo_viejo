@@ -14,7 +14,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_main')]
     public function index(TorneoRepository $tr, TorneoGeneroCategoriaRepository $tgcr, TorneoManager $tm): Response
     {
-        $torneo = $tr->findAll()[0]; //$tr->find(4);
+        $torneo = $tr->findAll() ? $tr->findAll()[0] : null; //$tr->find(4);
         $inscriptos = $tgcr->findBy(['torneo' => $torneo]);
         $zonas = $tm->armadoZona();
         return $this->render('main/index.html.twig', [
