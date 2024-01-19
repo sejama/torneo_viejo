@@ -91,6 +91,7 @@ class AppFixtures extends Fixture
         $tgcf30->setCategoria($cat30);
         $tgcf30->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcf30->setUpdatedAt(new \DateTimeImmutable('now'));
+        $tgcf30->setCerrado(true);
         $manager->persist($tgcf30);
 
         $tgcf35 = new TorneoGeneroCategoria();
@@ -99,6 +100,7 @@ class AppFixtures extends Fixture
         $tgcf35->setCategoria($cat35);
         $tgcf35->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcf35->setUpdatedAt(new \DateTimeImmutable('now'));
+        $tgcf35->setCerrado(true);
         $manager->persist($tgcf35);
 
         $tgcf42 = new TorneoGeneroCategoria();
@@ -107,6 +109,7 @@ class AppFixtures extends Fixture
         $tgcf42->setCategoria($cat42);
         $tgcf42->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcf42->setUpdatedAt(new \DateTimeImmutable('now'));
+        $tgcf42->setCerrado(true);
         $manager->persist($tgcf42);
 
         $tgcm35 = new TorneoGeneroCategoria();
@@ -115,6 +118,7 @@ class AppFixtures extends Fixture
         $tgcm35->setCategoria($cat35);
         $tgcm35->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcm35->setUpdatedAt(new \DateTimeImmutable('now'));
+        $tgcm35->setCerrado(true);
         $manager->persist($tgcm35);
 
         $tgcm42 = new TorneoGeneroCategoria();
@@ -123,6 +127,7 @@ class AppFixtures extends Fixture
         $tgcm42->setCategoria($cat42);
         $tgcm42->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcm42->setUpdatedAt(new \DateTimeImmutable('now'));
+        $tgcm42->setCerrado(true);
         $manager->persist($tgcm42);
 
         $tgcm50 = new TorneoGeneroCategoria();
@@ -131,6 +136,7 @@ class AppFixtures extends Fixture
         $tgcm50->setCategoria($cat50);
         $tgcm50->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcm50->setUpdatedAt(new \DateTimeImmutable('now'));
+        $tgcm50->setCerrado(true);
         $manager->persist($tgcm50);
 
         $zonaf301 = new Zona();

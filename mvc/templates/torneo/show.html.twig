@@ -45,11 +45,12 @@
     {{ include('torneo/_delete_form.html.twig') }}
 
     {% for inscriptos in torneo.torneoGeneroCategorias %}
+        {% if inscriptos.cerrado == 0  %}
         {{ inscriptos.genero.nombre }}
         {{ inscriptos.categoria.nombre }}
         Total de equipos anotados: 
         {{ inscriptos.equipos.count() }}
-        <form id="formCantidadZona{{ inscriptos.id }}">
+        <form id="formCantidadZona{{ inscriptos.id }}" action="{{ path('app_torneo_armar_zona', { 'id' : inscriptos.id }) }}" method="POST">
             <label for="cantidadZona{{ inscriptos.id }}">Cantidad de zonas</label>
             <input type="number" name="cantidadZona{{ inscriptos.id }}" id="cantidadZona{{ inscriptos.id }}" value="1" min="1" max="{{ inscriptos.equipos.count() }}">
             <input type="button" name="confirmar{{ inscriptos.id }}" id="confirmar{{ inscriptos.id }}" value="Confirmar">
@@ -72,9 +73,9 @@
                     input.min = "0";
                     if (({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) == 0)
                     {
-                        input.value = input.max = ({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value);
+                        input.value = input.max = Math.trunc({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value);
                     }else{
-                        input.value = input.max = ({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value) + ({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) - 1;
+                        input.value = input.max = Math.trunc(({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value) + ({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) - 1);
                     }
                     input.placeholder = "Cantidad de equipos";
                     document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(label);
@@ -103,8 +104,10 @@
                             mensaje += cantidadEquiposZona[i] + " equipos, ";
                         }
                     }
+                    mensaje += " Del TorneoGeneroCategoria " + {{ inscriptos.id }} + ".";
                     if (suma == {{ inscriptos.equipos.count() }}){
                         alert(mensaje);
+                        document.getElementById("formCantidadZona{{ inscriptos.id }}").submit();
                     }else{
                         alert("La suma de los equipos no coincide con la cantidad de equipos inscriptos");
                     }
@@ -114,6 +117,7 @@
             
     </script>
     <br>
+    {% endif %}
     {% endfor %}
 {% endblock %}
 

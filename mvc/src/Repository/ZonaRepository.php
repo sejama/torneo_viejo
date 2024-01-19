@@ -21,6 +21,12 @@ class ZonaRepository extends ServiceEntityRepository
         parent::__construct($registry, Zona::class);
     }
 
+    public function guardarZona(Zona $zona): void
+    {
+        $this->_em->persist($zona);
+        $this->_em->flush();
+    }
+
 //    /**
 //     * @return Zona[] Returns an array of Zona objects
 //     */

@@ -21,6 +21,12 @@ class TorneoGeneroCategoriaRepository extends ServiceEntityRepository
         parent::__construct($registry, TorneoGeneroCategoria::class);
     }
 
+    public function actualizarTGC(TorneoGeneroCategoria $tgc): void
+    {
+        $tgc->setUpdatedAt(new \DateTimeImmutable('now'));
+        $this->_em->flush();
+    }
+
 //    /**
 //     * @return TorneoGeneroCategoria[] Returns an array of TorneoGeneroCategoria objects
 //     */

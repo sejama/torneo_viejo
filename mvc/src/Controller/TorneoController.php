@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Torneo;
 use App\Form\TorneoType;
+use App\Manager\TorneoManager;
 use App\Repository\TorneoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -82,5 +83,19 @@ class TorneoController extends AbstractController
         }
 
         return $this->redirectToRoute('app_torneo_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/armarZona/', name: 'app_torneo_armar_zona', methods: ['POST'])]
+    public function armarZona(Request $request, TorneoManager $tm): Response
+    {
+        $idTorneoGeneroCategoria = (int)$request->get('id');
+        $cantidadZonas = (int)$request->request->count();
+        $array = [];
+        for ($i=0; $i < $cantidadZonas; $i++) { 
+            $array[] = (int)$request->request->get('cantidadEquiposZona'.$idTorneoGeneroCategoria.$i);
+        }
+        $tm->armadoFixture($idTorneoGeneroCategoria, $cantidadZonas, $array);
+
+        return $this->redirectToRoute('app_main');
     }
 }

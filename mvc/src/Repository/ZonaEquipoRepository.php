@@ -21,6 +21,12 @@ class ZonaEquipoRepository extends ServiceEntityRepository
         parent::__construct($registry, ZonaEquipo::class);
     }
 
+    public function guardarZonaEquipo(ZonaEquipo $zonaEquipo): void
+    {
+        $this->_em->persist($zonaEquipo);
+        $this->_em->flush();
+    }
+
 //    /**
 //     * @return ZonaEquipo[] Returns an array of ZonaEquipo objects
 //     */

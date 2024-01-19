@@ -38,6 +38,9 @@ class TorneoGeneroCategoria
     #[ORM\OneToMany(mappedBy: 'torneoGeneroCategoria', targetEntity: Zona::class)]
     private Collection $zonas;
 
+    #[ORM\Column]
+    private ?bool $cerrado = null;
+
     public function __construct()
     {
         $this->equipos = new ArrayCollection();
@@ -168,6 +171,18 @@ class TorneoGeneroCategoria
                 $zona->setTorneoGeneroCategoria(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isCerrado(): ?bool
+    {
+        return $this->cerrado;
+    }
+
+    public function setCerrado(bool $cerrado): static
+    {
+        $this->cerrado = $cerrado;
 
         return $this;
     }
