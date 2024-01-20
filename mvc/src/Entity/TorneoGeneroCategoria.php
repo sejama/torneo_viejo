@@ -39,7 +39,7 @@ class TorneoGeneroCategoria
     private Collection $zonas;
 
     #[ORM\Column]
-    private ?bool $cerrado = null;
+    private ?bool $cerrado = false;
 
     public function __construct()
     {

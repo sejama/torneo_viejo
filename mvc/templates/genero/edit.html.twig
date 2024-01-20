@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Genero{% endblock %}
+{% block title %}Modificar Genero{% endblock %}
 
 {% block body %}
-    <h1>Edit Genero</h1>
+    <h1>Modificar Genero</h1>
 
-    {{ include('genero/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('genero/_form.html.twig', {'button_label': 'Modificar'}) }}
 
-    <a href="{{ path('app_genero_index') }}">back to list</a>
+    <a href="{{ path('app_genero_index') }}">Volver</a>
 
     {{ include('genero/_delete_form.html.twig') }}
 {% endblock %}

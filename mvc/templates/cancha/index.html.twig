@@ -4,15 +4,14 @@
 
 {% block body %}
     <h1>Cancha index</h1>
-
+    <a href="{{ path('app_cancha_new') }}">Crear Cancha</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Club</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -20,11 +19,10 @@
             <tr>
                 <td>{{ cancha.id }}</td>
                 <td>{{ cancha.nombre }}</td>
-                <td>{{ cancha.createdAt ? cancha.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ cancha.updatedAt ? cancha.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cancha.club.nombre }}</td>
                 <td>
-                    <a href="{{ path('app_cancha_show', {'id': cancha.id}) }}">show</a>
-                    <a href="{{ path('app_cancha_edit', {'id': cancha.id}) }}">edit</a>
+                    <a href="{{ path('app_cancha_show', {'id': cancha.id}) }}">Consultar</a>
+                    <a href="{{ path('app_cancha_edit', {'id': cancha.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +32,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_cancha_new') }}">Create new</a>
 {% endblock %}

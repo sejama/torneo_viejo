@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}TorneoGeneroCategoria{% endblock %}
+{% block title %}Configurar Genero Categoria{% endblock %}
 
 {% block body %}
-    <h1>TorneoGeneroCategoria</h1>
+    <h1>Configurar Torneo Genero Categoria</h1>
 
     <table class="table">
         <tbody>
@@ -14,9 +14,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_torneo_genero_categoria_index') }}">back to list</a>
+    <a href="{{ path('app_torneo_genero_categoria_index') }}">Volver</a>
 
-    <a href="{{ path('app_torneo_genero_categoria_edit', {'id': torneo_genero_categorium.id}) }}">edit</a>
+    <a href="{{ path('app_torneo_genero_categoria_edit', {'id': torneo_genero_categorium.id}) }}">Modificar</a>
 
     {{ include('torneo_genero_categoria/_delete_form.html.twig') }}
 {% endblock %}

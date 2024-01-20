@@ -4,16 +4,14 @@
 
 {% block body %}
     <h1>Club index</h1>
-
+    <a href="{{ path('app_club_new') }}">Crear Club</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Direccion</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +20,9 @@
                 <td>{{ club.id }}</td>
                 <td>{{ club.nombre }}</td>
                 <td>{{ club.direccion }}</td>
-                <td>{{ club.createdAt ? club.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ club.updatedAt ? club.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_club_show', {'id': club.id}) }}">show</a>
-                    <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
+                    <a href="{{ path('app_club_show', {'id': club.id}) }}">Consultar</a>
+                    <a href="{{ path('app_club_edit', {'id': club.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -36,6 +32,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_club_new') }}">Create new</a>
 {% endblock %}

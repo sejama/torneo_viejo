@@ -17,7 +17,7 @@ class CanchaType extends AbstractType
             ->add('nombre')
             ->add('club', EntityType::class, [
                 'class' => Club::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nombre',
             ])
         ;
     }
