@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Partido{% endblock %}
+
+{% block body %}
+    <h1>Edit Partido</h1>
+
+    {{ include('partido/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_partido_index') }}">back to list</a>
+
+    {{ include('partido/_delete_form.html.twig') }}
+{% endblock %}

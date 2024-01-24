@@ -38,9 +38,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_torneo_index') }}">back to list</a>
+    <a href="{{ path('app_torneo_index') }}">Volver</a>
 
-    <a href="{{ path('app_torneo_edit', {'id': torneo.id}) }}">edit</a>
+    <a href="{{ path('app_torneo_edit', {'id': torneo.id}) }}">Editar</a>
 
     {{ include('torneo/_delete_form.html.twig') }}
 
@@ -51,25 +51,31 @@
         Total de equipos anotados: 
         {{ inscriptos.equipos.count() }}
         <form id="formCantidadZona{{ inscriptos.id }}" action="{{ path('app_torneo_armar_zona', { 'id' : inscriptos.id }) }}" method="POST">
+            <div>
             <label for="cantidadZona{{ inscriptos.id }}">Cantidad de zonas</label>
             <input type="number" name="cantidadZona{{ inscriptos.id }}" id="cantidadZona{{ inscriptos.id }}" value="1" min="1" max="{{ inscriptos.equipos.count() }}">
             <input type="button" name="confirmar{{ inscriptos.id }}" id="confirmar{{ inscriptos.id }}" value="Confirmar">
+            <input type="button" class="d-none" name="limpiar{{ inscriptos.id }}" id="limpiar{{ inscriptos.id }}" value="Limpiar">
             <br>
+            </div>
         </form>
         <script>
          let cantidadZona{{ inscriptos.id }} = document.getElementById("cantidadZona{{ inscriptos.id }}");
             confirmar{{ inscriptos.id }}.onclick = function(){
                 cantidadZona{{ inscriptos.id }}.disabled = true;
                 confirmar{{ inscriptos.id }}.disabled = true;
-
+                document.getElementById("limpiar{{ inscriptos.id }}").classList.remove("d-none");
                 for (let i = 0; i < cantidadZona{{ inscriptos.id }}.value; i++) {
+                    div = document.createElement("div");
+                    div.id = "divCantidadEquiposZona" + {{ inscriptos.id }} + i;
                     label = document.createElement("label");
+                    label.id = "labelCantidadEquiposZona" + {{ inscriptos.id }} + i;
                     label.setAttribute("for", "cantidadEquiposZona" + {{ inscriptos.id }} + i);
                     label.innerHTML = "Cantidad de equipos en la zona " + (i + 1);
                     input = document.createElement("input");
                     input.type = "number";
-                    input.name = "cantidadEquiposZona" + {{ inscriptos.id }} + i;
-                    input.id = "cantidadEquiposZona" + {{ inscriptos.id }} + i;
+                    input.name = "inputCantidadEquiposZona" + {{ inscriptos.id }} + i;
+                    input.id = "inputCantidadEquiposZona" + {{ inscriptos.id }} + i;
                     input.min = "0";
                     if (({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) == 0)
                     {
@@ -78,9 +84,10 @@
                         input.value = input.max = Math.trunc(({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value) + ({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) - 1);
                     }
                     input.placeholder = "Cantidad de equipos";
-                    document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(label);
-                    document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(input);
-                    document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(document.createElement("br"));
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(div);
+                    
                 }
                 
                 let botonConfirmar = document.createElement("input");
@@ -96,7 +103,7 @@
                     suma = 0
                     mensaje = "Se va armar " + cantidadzonas + " zonas de "
                     for (let i = 0; i < cantidadzonas; i++) {
-                        cantidadEquiposZona[i] = parseInt(document.getElementById("cantidadEquiposZona" + {{ inscriptos.id }} + i).value)
+                        cantidadEquiposZona[i] = parseInt(document.getElementById("inputCantidadEquiposZona" + {{ inscriptos.id }} + i).value)
                         suma += cantidadEquiposZona[i];
                         if (i == cantidadzonas - 1){
                             mensaje += cantidadEquiposZona[i] + " equipos.";
@@ -114,10 +121,32 @@
                 }
             }
 
-            
+            document.getElementById("limpiar{{ inscriptos.id }}").onclick = function(){
+                cantidadZona{{ inscriptos.id }}.disabled = false;
+                confirmar{{ inscriptos.id }}.disabled = false;
+                document.getElementById("limpiar{{ inscriptos.id }}").classList.add("d-none");
+                for (let i = 0; i < cantidadZona{{ inscriptos.id }}.value; i++) {
+                    document.getElementById("labelCantidadEquiposZona" + {{ inscriptos.id }} + i).remove();
+                    document.getElementById("inputCantidadEquiposZona" + {{ inscriptos.id }} + i).remove();
+                }
+                document.getElementById("confirmarCantidadEquiposZona{{ inscriptos.id }}").remove();
+                document.getElementById("cantidadZona{{ inscriptos.id }}").value = 1;
+            }
     </script>
-    <br>
+    
+    {% else %}
+    <div>
+    {{ inscriptos.genero.nombre }}
+    {{ inscriptos.categoria.nombre }}
+    Total de equipos anotados: 
+    {{ inscriptos.equipos.count() }}
+    <div>
+    Armar los partidos: 
+    <button type="button" class="btn btn-primary">Armar</button>
+    </div>
+    </div>
     {% endif %}
+    <br>
     {% endfor %}
 {% endblock %}
 

@@ -21,9 +21,13 @@ class Zona
     #[ORM\OneToMany(mappedBy: 'zona', targetEntity: ZonaEquipo::class)]
     private Collection $zonaEquipos;
 
+    #[ORM\OneToMany(mappedBy: 'zona', targetEntity: Partido::class)]
+    private Collection $partidos;
+
     public function __construct()
     {
         $this->zonaEquipos = new ArrayCollection();
+        $this->partidos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Zona
             // set the owning side to null (unless already changed)
             if ($zonaEquipo->getZona() === $this) {
                 $zonaEquipo->setZona(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Partido>
+     */
+    public function getPartidos(): Collection
+    {
+        return $this->partidos;
+    }
+
+    public function addPartido(Partido $partido): static
+    {
+        if (!$this->partidos->contains($partido)) {
+            $this->partidos->add($partido);
+            $partido->setZona($this);
+        }
+
+        return $this;
+    }
+
+    public function removePartido(Partido $partido): static
+    {
+        if ($this->partidos->removeElement($partido)) {
+            // set the owning side to null (unless already changed)
+            if ($partido->getZona() === $this) {
+                $partido->setZona(null);
             }
         }
 

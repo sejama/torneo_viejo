@@ -92,7 +92,7 @@ class TorneoController extends AbstractController
         $cantidadZonas = (int)$request->request->count();
         $array = [];
         for ($i=0; $i < $cantidadZonas; $i++) { 
-            $array[] = (int)$request->request->get('cantidadEquiposZona'.$idTorneoGeneroCategoria.$i);
+            $array[] = (int)$request->request->get('inputCantidadEquiposZona'.$idTorneoGeneroCategoria.$i);
         }
         $tm->armadoFixture($idTorneoGeneroCategoria, $cantidadZonas, $array);
 
