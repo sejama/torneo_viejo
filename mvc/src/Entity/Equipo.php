@@ -128,7 +128,7 @@ class Equipo
         return $this->partidosLocal;
     }
 
-    public function addPartido(Partido $partidosLocal): static
+    public function addPartidoLocal(Partido $partidosLocal): static
     {
         if (!$this->partidosLocal->contains($partidosLocal)) {
             $this->partidosLocal->add($partidosLocal);
@@ -138,7 +138,7 @@ class Equipo
         return $this;
     }
 
-    public function removePartido(Partido $partidosLocal): static
+    public function removePartidoLocal(Partido $partidosLocal): static
     {
         if ($this->partidosLocal->removeElement($partidosLocal)) {
             // set the owning side to null (unless already changed)

@@ -2,19 +2,23 @@
 
 namespace App\Manager;
 
+use App\Entity\Partido;
 use App\Entity\Zona;
 use App\Entity\ZonaEquipo;
 use App\Repository\EquipoRepository;
+use App\Repository\PartidoRepository;
 use App\Repository\TorneoGeneroCategoriaRepository;
 use App\Repository\ZonaEquipoRepository;
 use App\Repository\ZonaRepository;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class TorneoManager{
     public function __construct(
         private EquipoRepository $equipoRepository,
         private ZonaRepository $zonaRepository,
         private ZonaEquipoRepository $zonaEquipoRepository,
-        private TorneoGeneroCategoriaRepository $torneoGeneroCategoriaRepository
+        private TorneoGeneroCategoriaRepository $torneoGeneroCategoriaRepository,
+        private PartidoRepository $partidoRepository
 
     ) {
         
@@ -57,5 +61,30 @@ class TorneoManager{
             }
         }
         $this->torneoGeneroCategoriaRepository->actualizarTGC($torneoGeneroCategoria->setCerrado(true));
+    }
+
+    public function armarPartidos(int $id): void
+    {   
+        $zonas = $this->zonaRepository->findAll();
+        $equipos = $this->equipoRepository->findAll();
+        $zonaOk = null;
+        foreach ($zonas as $zona) {
+            if ($zona->getTorneoGeneroCategoria()->getId() === $id)
+            {
+                $zonaOk = $zona;
+            }
+        }
+
+        var_dump($zonaOk);die();
+
+        foreach ($equipos as $equipo) {
+            if ($equipo->getZonaEquipo()->getZona()->getId() === $zonaOk->getId())
+            {
+                $partido = new Partido();
+                $partido->setZona($zonaOk);
+                $this->partidoRepository->guardarPartido($partido);
+            }
+        }
+        die();
     }
 }

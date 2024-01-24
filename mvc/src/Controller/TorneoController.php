@@ -98,4 +98,15 @@ class TorneoController extends AbstractController
 
         return $this->redirectToRoute('app_main');
     }
+
+    #[Route('/{id}/armarFixture/', name: 'app_torneo_armar_fixture', methods: ['POST'])]
+    public function armarFixture(Request $request, TorneoManager $tm): Response
+    {
+            $idTorneoGeneroCategoria = (int)$request->get('id');
+            $tm->armarPartidos($idTorneoGeneroCategoria);
+
+            return $this->redirectToRoute('app_main');
+
+    }
+        
 }
