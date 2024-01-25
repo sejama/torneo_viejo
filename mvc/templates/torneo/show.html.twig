@@ -141,10 +141,12 @@
     Total de equipos anotados: 
     {{ inscriptos.equipos.count() }}
     <div>
+    {% if inscriptos.creado == 0  %}
     <form id="formArmarPartidos{{inscriptos.id}}" action="{{ path('app_torneo_armar_fixture', { 'id' : inscriptos.id }) }}" method="POST">
         Armar los partidos:
         <input id="armarPartido{{inscriptos.id}}"  type="button" value="Armar"></input>
     </form>
+    {% endif %}
     <script>
         document.getElementById('armarPartido{{inscriptos.id}}').onclick = function(){
             alert("Se van a armar los partidos de {{ inscriptos.genero.nombre }} {{ inscriptos.categoria.nombre }}");

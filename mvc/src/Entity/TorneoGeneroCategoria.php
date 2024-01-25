@@ -41,6 +41,9 @@ class TorneoGeneroCategoria
     #[ORM\Column]
     private ?bool $cerrado = false;
 
+    #[ORM\Column]
+    private ?bool $creado = false;
+
     public function __construct()
     {
         $this->equipos = new ArrayCollection();
@@ -183,6 +186,18 @@ class TorneoGeneroCategoria
     public function setCerrado(bool $cerrado): static
     {
         $this->cerrado = $cerrado;
+
+        return $this;
+    }
+
+    public function isCreado(): ?bool
+    {
+        return $this->creado;
+    }
+
+    public function setCreado(bool $creado): static
+    {
+        $this->creado = $creado;
 
         return $this;
     }

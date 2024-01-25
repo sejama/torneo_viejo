@@ -14,17 +14,17 @@ class Partido
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'partidos')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Cancha $cancha = null;
 
     #[ORM\ManyToOne(inversedBy: 'partidos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Zona $zona = null;
 
-    #[ORM\ManyToOne(inversedBy: 'partidos')]
+    #[ORM\ManyToOne]
     private ?Equipo $equipoLocal = null;
 
-    #[ORM\ManyToOne(inversedBy: 'partidosVisitante')]
+    #[ORM\ManyToOne]
     private ?Equipo $equipoVisitante = null;
 
     public function getId(): ?int

@@ -48,6 +48,9 @@ class TorneoManager{
                 $equiposZona[] = $equipo;
             }
         }
+        if ($torneoGeneroCategoria->isCerrado()) {
+            return;
+        }
         $id = 0;
         for ($i=0; $i < $cantidadZonas; $i++) { 
             $zona = new Zona();
@@ -64,27 +67,26 @@ class TorneoManager{
     }
 
     public function armarPartidos(int $id): void
-    {   
-        $zonas = $this->zonaRepository->findAll();
-        $equipos = $this->equipoRepository->findAll();
-        $zonaOk = null;
+    {
+        $torneoGeneroCategoria = $this->torneoGeneroCategoriaRepository->find($id);
+        if ($torneoGeneroCategoria->isCreado()) {
+            return;
+        }
+        $zonas = $this->zonaRepository->findBy(['torneoGeneroCategoria' => $id]);
         foreach ($zonas as $zona) {
-            if ($zona->getTorneoGeneroCategoria()->getId() === $id)
-            {
-                $zonaOk = $zona;
+            $equipos = $this->zonaEquipoRepository->findBy(['zona' => $zona->getId()]);
+            for ($i=0; $i < count($equipos); $i++) {
+                for ($j=$i+1; $j < count($equipos); $j++) { 
+                    $partido = new Partido();
+                    $partido->setZona($zona);
+                    $partido->setEquipoLocal($equipos[$i]->getEquipo());
+                    $partido->setEquipoVisitante($equipos[$j]->getEquipo());
+                    $this->partidoRepository->guardarPartido($partido);
+                    
+                }
             }
         }
-
-        var_dump($zonaOk);die();
-
-        foreach ($equipos as $equipo) {
-            if ($equipo->getZonaEquipo()->getZona()->getId() === $zonaOk->getId())
-            {
-                $partido = new Partido();
-                $partido->setZona($zonaOk);
-                $this->partidoRepository->guardarPartido($partido);
-            }
-        }
-        die();
+        $this->torneoGeneroCategoriaRepository->actualizarTGC($torneoGeneroCategoria->setCreado(true));
+        
     }
 }

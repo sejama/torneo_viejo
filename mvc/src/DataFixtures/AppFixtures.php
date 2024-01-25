@@ -91,7 +91,6 @@ class AppFixtures extends Fixture
         $tgcf30->setCategoria($cat30);
         $tgcf30->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcf30->setUpdatedAt(new \DateTimeImmutable('now'));
-        $tgcf30->setCerrado(true);
         $manager->persist($tgcf30);
 
         $tgcf35 = new TorneoGeneroCategoria();
@@ -100,7 +99,6 @@ class AppFixtures extends Fixture
         $tgcf35->setCategoria($cat35);
         $tgcf35->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcf35->setUpdatedAt(new \DateTimeImmutable('now'));
-        $tgcf35->setCerrado(true);
         $manager->persist($tgcf35);
 
         $tgcf42 = new TorneoGeneroCategoria();
@@ -109,7 +107,6 @@ class AppFixtures extends Fixture
         $tgcf42->setCategoria($cat42);
         $tgcf42->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcf42->setUpdatedAt(new \DateTimeImmutable('now'));
-        $tgcf42->setCerrado(true);
         $manager->persist($tgcf42);
 
         $tgcm35 = new TorneoGeneroCategoria();
@@ -118,7 +115,6 @@ class AppFixtures extends Fixture
         $tgcm35->setCategoria($cat35);
         $tgcm35->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcm35->setUpdatedAt(new \DateTimeImmutable('now'));
-        $tgcm35->setCerrado(true);
         $manager->persist($tgcm35);
 
         $tgcm42 = new TorneoGeneroCategoria();
@@ -127,7 +123,6 @@ class AppFixtures extends Fixture
         $tgcm42->setCategoria($cat42);
         $tgcm42->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcm42->setUpdatedAt(new \DateTimeImmutable('now'));
-        $tgcm42->setCerrado(true);
         $manager->persist($tgcm42);
 
         $tgcm50 = new TorneoGeneroCategoria();
@@ -136,16 +131,15 @@ class AppFixtures extends Fixture
         $tgcm50->setCategoria($cat50);
         $tgcm50->setCreatedAt(new \DateTimeImmutable('now'));
         $tgcm50->setUpdatedAt(new \DateTimeImmutable('now'));
-        $tgcm50->setCerrado(true);
         $manager->persist($tgcm50);
 
-        $zonaf301 = new Zona();
+        /*$zonaf301 = new Zona();
         $zonaf301->setTorneoGeneroCategoria($tgcf30);
         $manager->persist($zonaf301);
 
         $zonaf302 = new Zona();
         $zonaf302->setTorneoGeneroCategoria($tgcf30);
-        $manager->persist($zonaf302);
+        $manager->persist($zonaf302);*/
 
         //$f30s = ['INFINITO','CSDC CORRRIENTES','LA EMILIA','EL QUILLA','FUNDACION CORRIENTES','LA MILONETA','ALIANZA SANTOTO','MAMIS RESISTENCIA'];
         $f30s1 = ['INFINITO','CSDC CORRRIENTES','LA EMILIA','EL QUILLA'];
@@ -160,10 +154,10 @@ class AppFixtures extends Fixture
 
             $manager->persist($equipo);
             
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf301);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach($f30s2 as $f30) {
@@ -174,13 +168,13 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
             
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf302);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
-        $zonaf3515 = new Zona();
+        /*$zonaf3515 = new Zona();
         $zonaf3515->setTorneoGeneroCategoria($tgcf35);
         $manager->persist($zonaf3515);
 
@@ -194,7 +188,7 @@ class AppFixtures extends Fixture
 
         $zonaf3544 = new Zona();
         $zonaf3544->setTorneoGeneroCategoria($tgcf35);
-        $manager->persist($zonaf3544);
+        $manager->persist($zonaf3544);*/
 
         //$f35s = ['REGATAS','MALUCA','LAS BRUJAS','LAS CUERVAS','EL QUILLA','VILLA DORA','MALA MIA','LAS VIRGI','OVJ PAISANDU','APA','ADELANTE','LAS GOLOS','SOC SPORT ROLDAN','ON FIRE','NAUTICO AVELLANEDA','AQUELARRE URUGUAY','TREDE/BIRRA','MONSTARD'];
         $f35s1 = ['REGATAS','MALUCA','LAS BRUJAS','LAS CUERVAS','EL QUILLA'];
@@ -209,10 +203,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf3515);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f35s2 as $f35) {
@@ -223,10 +217,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf3525);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f35s3 as $f35) {
@@ -237,10 +231,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf3534);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f35s4 as $f35) {
@@ -251,13 +245,13 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf3544);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
-        $zonaf421 = new Zona();
+        /*$zonaf421 = new Zona();
         $zonaf421->setTorneoGeneroCategoria($tgcf42);
         $manager->persist($zonaf421);
 
@@ -279,7 +273,7 @@ class AppFixtures extends Fixture
 
         $zonaf426 = new Zona();
         $zonaf426->setTorneoGeneroCategoria($tgcf42);
-        $manager->persist($zonaf426);
+        $manager->persist($zonaf426);*/
 
         //$f42s = ['MALUCA','SF ALTO VOLEY','INFINITO','VOLEY MONTE','MALA MIA','LAS VIEJA DE TATI','CTRO REC SGO ESTERO','MICUMAN','LAS GOLOS','CANARIAS','AMIGAS POR EL VOLEY','LAS BRANCAS','MONSTARD','COSTA MIX','GUEMES SALTA','12 REINAS','BISARRAS','LAS FENIX','GYE E.R.','EL REJUNTE','LA MADRID','UNI SF','KUÑA','PANSAS VERDES'];
         $f42s1 = ['MALUCA','SF ALTO VOLEY','INFINITO','VOLEY MONTE'];
@@ -297,10 +291,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf421);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f42s2 as $f42) {
@@ -311,10 +305,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf422);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f42s3 as $f42) {
@@ -325,10 +319,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf423);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f42s4 as $f42) {
@@ -339,10 +333,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
             
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf424);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f42s5 as $f42) {
@@ -353,10 +347,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
             
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf425);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($f42s6 as $f42) {
@@ -367,15 +361,15 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
             
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonaf426);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
-        $zonam35 = new Zona();
+        /*$zonam35 = new Zona();
         $zonam35->setTorneoGeneroCategoria($tgcm35);
-        $manager->persist($zonam35);
+        $manager->persist($zonam35);*/
 
         $m35s = ['BOLA 8','LA GARRA','RACING RECONQUISTA','DESPELOTE','ROMANG FUTBOL CLUB','CLUB DE AMIGOS'];
         foreach ($m35s as $m35) {
@@ -386,19 +380,19 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonam35);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
-        $zonam421 = new Zona();
+        /*$zonam421 = new Zona();
         $zonam421->setTorneoGeneroCategoria($tgcm42);
         $manager->persist($zonam421);
 
         $zonam422 = new Zona();
         $zonam422->setTorneoGeneroCategoria($tgcm42);
-        $manager->persist($zonam422);
+        $manager->persist($zonam422);*/
 
         //$m42s = ['MAXI SANTA FE','PAYSANDU','HAVANNA','DEF MORENO','NO PASA NARANJA','ROSARIO VOLEY','BANCO PROVINCIA','LA TRIBU'];
         $m42s1 = ['MAXI SANTA FE','PAYSANDU','HAVANNA','DEF MORENO'];
@@ -411,10 +405,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonam421);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($m42s2 as $m42) {
@@ -425,19 +419,19 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
             
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonam422);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
-        $zonam501 = new Zona();
+        /*$zonam501 = new Zona();
         $zonam501->setTorneoGeneroCategoria($tgcm50);
         $manager->persist($zonam501);
 
         $zonam502 = new Zona();
         $zonam502->setTorneoGeneroCategoria($tgcm50);
-        $manager->persist($zonam502);
+        $manager->persist($zonam502);*/
 
         //$m50s = ['TACUAREMBO','TUCUMAN DE GIMNASIA','LOS PERKIN','DEF MORENO','BANCO HISPANO','UNI SJ','LPV','LA TRIBU','RIO CUARTO','ALGO DISTINTO'];
         $m50s1 = ['TACUAREMBO','TUCUMAN DE GIMNASIA','LOS PERKIN','DEF MORENO','BANCO HISPANO'];
@@ -451,10 +445,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
 
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonam501);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         foreach ($m50s2 as $m50) {
@@ -465,10 +459,10 @@ class AppFixtures extends Fixture
             $equipo->setUpdatedAt(new \DateTimeImmutable('now'));
             $manager->persist($equipo);
             
-            $zonaEquipo = new ZonaEquipo();
+            /*$zonaEquipo = new ZonaEquipo();
             $zonaEquipo->setZona($zonam502);
             $zonaEquipo->setEquipo($equipo);
-            $manager->persist($zonaEquipo);
+            $manager->persist($zonaEquipo);*/
         }
 
         $manager->flush();
