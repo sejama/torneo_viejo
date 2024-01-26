@@ -10,7 +10,6 @@ use App\Repository\PartidoRepository;
 use App\Repository\TorneoGeneroCategoriaRepository;
 use App\Repository\ZonaEquipoRepository;
 use App\Repository\ZonaRepository;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class TorneoManager{
     public function __construct(
