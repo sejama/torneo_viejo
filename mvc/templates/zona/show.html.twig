@@ -1,15 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Zona{% endblock %}
+
 
 {% block body %}
-    <h1>Zona</h1>
+    <h1>{% block title %}Zona {{ zona.id }}{% endblock %}</h1>
 
-    <table class="table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Posición</th>
+            <th scope="col">Equipo</th>
+            <th scope="col">Partidos Jugados</th>
+            <th scope="col">Partidos Ganados</th>
+            <th scope="col">Partidos Perdidos</th>
+            <th scope="col">Set Favor</th>
+            <th scope="col">Set Contra</th>
+            <th scope="col">Diferencia Set</th>
+            <th scope="col">Puntos Favor</th>
+            <th scope="col">Puntos Contra</th>
+            <th scope="col">Diferencia Puntos</th>
+            <th scope="col">Puntos</th>
+            </tr>
+        </thead>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ zona.id }}</td>
+                <th scope="row">Posición</th>
+                <td>Equipo</td>
+                <td>Partidos Jugados</td>
+                <td>Partidos Ganados</td>
+                <td>Partidos Perdidos</td>
+                <td>Set Favor</td>
+                <td>Set Contra</td>
+                <td>Diferencia Set</td>
+                <td>Puntos Favor</td>
+                <td>Puntos Contra</td>
+                <td>Diferencia Puntos</td>
+                <td>Puntos</td>
             </tr>
         </tbody>
     </table>
