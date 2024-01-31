@@ -30,6 +30,15 @@ class Equipo
     #[ORM\OneToOne(mappedBy: 'equipo', cascade: ['persist', 'remove'])]
     private ?ZonaEquipo $zonaEquipo = null;
 
+    private $puntos = 0;
+    private $partidosJugados = 0;
+    private $partidosGanados = 0;
+    private $partidosPerdidos = 0;
+    private $setsAFavor = 0;
+    private $setsEnContra = 0;
+    private $puntosAFavor = 0;
+    private $puntosEnContra = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,5 +115,113 @@ class Equipo
         $this->zonaEquipo = $zonaEquipo;
 
         return $this;
+    }
+
+    public function getPuntos(): int
+    {
+        return $this->puntos;
+    }
+
+    public function setPuntos(int $puntos): static
+    {
+        $this->puntos = $puntos;
+
+        return $this;
+    }
+
+    public function getPartidosJugados(): int
+    {
+        return $this->partidosJugados;
+    }
+
+    public function setPartidosJugados(int $partidosJugados): static
+    {
+        $this->partidosJugados = $partidosJugados;
+
+        return $this;
+    }
+
+    public function getPartidosGanados(): int
+    {
+        return $this->partidosGanados;
+    }
+
+    public function setPartidosGanados(int $partidosGanados): static
+    {
+        $this->partidosGanados = $partidosGanados;
+
+        return $this;
+    }
+
+    public function getPartidosPerdidos(): int
+    {
+        return $this->partidosPerdidos;
+    }
+
+    public function setPartidosPerdidos(int $partidosPerdidos): static
+    {
+        $this->partidosPerdidos = $partidosPerdidos;
+
+        return $this;
+    }
+
+    public function getSetsAFavor(): int
+    {
+        return $this->setsAFavor;
+    }
+
+    public function setSetsAFavor(int $setsAFavor): static
+    {
+        $this->setsAFavor = $setsAFavor;
+
+        return $this;
+    }
+
+    public function getSetsEnContra(): int
+    {
+        return $this->setsEnContra;
+    }
+
+    public function setSetsEnContra(int $setsEnContra): static
+    {
+        $this->setsEnContra = $setsEnContra;
+
+        return $this;
+    }
+
+    public function getDiferenciaSets(): int
+    {
+        return $this->setsAFavor - $this->setsEnContra;
+    }
+
+    
+
+    public function getPuntosAFavor(): int
+    {
+        return $this->puntosAFavor;
+    }
+
+    public function setPuntosAFavor(int $puntosAFavor): static
+    {
+        $this->puntosAFavor = $puntosAFavor;
+
+        return $this;
+    }
+
+    public function getPuntosEnContra(): int
+    {
+        return $this->puntosEnContra;
+    }
+
+    public function setPuntosEnContra(int $puntosEnContra): static
+    {
+        $this->puntosEnContra = $puntosEnContra;
+
+        return $this;
+    }
+
+    public function getDiferenciaPuntos(): int
+    {
+        return $this->puntosAFavor - $this->puntosEnContra;
     }
 }

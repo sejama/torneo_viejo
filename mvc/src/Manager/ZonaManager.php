@@ -15,22 +15,10 @@ class ZonaManager{
     public function calcularPosiciones(int $idZona){
         $zona = $this->zonaRepository->find($idZona);
         $partidos = $zona->getPartidos();
-        $posiciones = [
-            'equipos' => $equipo = null,
-            'puntos' => 0,
-            'partidosJugados' => 0,
-            'partidosGanados' => 0,
-            'partidosPerdidos' => 0,
-            'setsAFavor' => 0,
-            'setsEnContra' => 0,
-            'diferenciaSets' => 0,
-            'puntosAFavor' => 0,
-            'puntosEnContra' => 0,
-            'diferenciaPuntos' => 0,
-        ];
+        $posiciones = [];
         foreach ($partidos as $partido) {
 
-            $local = $partido->getLocal();
+            $local = $partido->getEquipoLocal();
             $localSet = [];
             $localSet[] = $partido->getLocalSet1() ?? 0;
             $localSet[] = $partido->getLocalSet2() ?? 0;
@@ -38,7 +26,7 @@ class ZonaManager{
             $localSet[] = $partido->getLocalSet4() ?? 0;
             $localSet[] = $partido->getLocalSet5() ?? 0;
         
-            $visitante = $partido->getVisitante();
+            $visitante = $partido->getEquipoVisitante();
             $visitanteSet = [];
             $visitanteSet[] = $partido->getVisitanteSet1() ?? 0;
             $visitanteSet[] = $partido->getVisitanteSet2() ?? 0;
@@ -46,29 +34,86 @@ class ZonaManager{
             $visitanteSet[] = $partido->getVisitanteSet4() ?? 0;
             $visitanteSet[] = $partido->getVisitanteSet5() ?? 0;
 
-            $localPuntosFavor = $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4] + $localSet[5];
-            $localPuntosContra = $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4] + $visitanteSet[5];
+            $localPuntosFavor = $localSet[0] + $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4];
+            $localPuntosContra = $visitanteSet[0] + $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4];
             $localSetFavor = 0;
             $localSetContra = 0;
 
-            $visitantePuntosFavor = $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4] + $visitanteSet[5];
-            $visitantePuntosContra = $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4] + $localSet[5];
+            $visitantePuntosFavor = $visitanteSet[0] + $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4];
+            $visitantePuntosContra = $localSet[0] + $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4];
             $visitanteSetFavor = 0;
             $visitanteSetContra = 0;
 
-            for($i = 0; $i < 5; $i++){
-                if($localSet[$i] > $visitanteSet[$i]){
-                    $localSetFavor++;
-                    $visitanteSetContra++;
-                }else{
-                    $visitanteSetFavor++;
-                    $localSetContra++;
+
+            if ($localPuntosFavor != 0 && $visitantePuntosFavor != 0) {
+                for($i = 0; $i < 4; $i++){
+                    if ($localSet[$i] != 0 && $visitanteSet[$i] != 0) {
+                        if($localSet[$i] > $visitanteSet[$i]){
+                            $localSetFavor++;
+                            $visitanteSetContra++;
+                        }else{
+                            $visitanteSetFavor++;
+                            $localSetContra++;
+                        }
+                    }
                 }
+
+                if ($localSetFavor > $visitanteSetFavor) {
+                    $local->setPartidosGanados( $local->getPartidosGanados() + 1 );
+                    $visitante->setPartidosPerdidos( $visitante->getPartidosPerdidos() + 1 );
+                }else{
+                    $visitante->setPartidosGanados( $visitante->getPartidosGanados() + 1 );
+                    $local->setPartidosPerdidos( $local->getPartidosPerdidos() + 1 );
+                }
+                $local->setPartidosJugados( $local->getPartidosJugados() + 1 );
+
+                $local->setSetsAFavor( $local->getSetsAFavor() + $localSetFavor );
+                $local->setSetsEnContra( $local->getSetsEnContra() + $localSetContra );
+
+                $local->setPuntosAFavor( $local->getPuntosAFavor() + $localPuntosFavor ) ;
+                $local->setPuntosEnContra( $local->getPuntosEnContra() + $localPuntosContra );
+
+                $visitante->setPartidosJugados( $visitante->getPartidosJugados() + 1 );
+
+                $visitante->setSetsAFavor( $visitante->getSetsAFavor() + $visitanteSetFavor );
+                $visitante->setSetsEnContra( $visitante->getSetsEnContra() + $visitanteSetContra );
+
+                $visitante->setPuntosAFavor( $visitante->getPuntosAFavor() + $visitantePuntosFavor );
+                $visitante->setPuntosEnContra( $visitante->getPuntosEnContra() + $visitantePuntosContra );
+
+                $local->setPuntos( $local->getPartidosGanados() * 2 + $local->getPartidosPerdidos() );
+                $visitante->setPuntos( $visitante->getPartidosGanados() * 2 + $visitante->getPartidosPerdidos() );
+            }
+            if (in_array($local, $posiciones)) {
+                $posiciones[array_search($local, $posiciones)] = $local;
+            }else{
+                $posiciones[] = $local;
             }
 
-
-
-            
+            if (in_array($visitante, $posiciones)) {
+                $posiciones[array_search($visitante, $posiciones)] = $visitante;
+            }else{
+                $posiciones[] = $visitante;
+            }
         }
+
+        return $this->ordenarPosiciones($posiciones);
     }
+
+    private function ordenarPosiciones($posiciones){
+        usort($posiciones, function($a, $b){
+            if ($a->getPartidosGanados() == $b->getPartidosGanados()) {
+                if ($a->getSetsAFavor() == $b->getSetsAFavor()) {
+                    if ($a->getPuntosAFavor() == $b->getPuntosAFavor()) {
+                        return 0;
+                    }
+                    return ($a->getPuntosAFavor() > $b->getPuntosAFavor()) ? -1 : 1;
+                }
+                return ($a->getSetsAFavor() > $b->getSetsAFavor()) ? -1 : 1;
+            }
+            return ($a->getPartidosGanados() > $b->getPartidosGanados()) ? -1 : 1;
+        });
+        return $posiciones;
+    }
+    
 }

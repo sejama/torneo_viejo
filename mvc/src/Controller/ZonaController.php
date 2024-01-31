@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Zona;
 use App\Form\ZonaType;
+use App\Manager\ZonaManager;
 use App\Repository\ZonaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,10 +46,12 @@ class ZonaController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_zona_show', methods: ['GET'])]
-    public function show(Zona $zona): Response
-    {
+    public function show(Zona $zona, ZonaManager $zm ): Response
+    {   
+        $posiciones = $zm->calcularPosiciones($zona->getId());
         return $this->render('zona/show.html.twig', [
             'zona' => $zona,
+            'posiciones' => $posiciones
         ]);
     }
 
