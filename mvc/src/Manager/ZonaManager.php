@@ -102,16 +102,16 @@ class ZonaManager{
 
     private function ordenarPosiciones($posiciones){
         usort($posiciones, function($a, $b){
-            if ($a->getPartidosGanados() == $b->getPartidosGanados()) {
-                if ($a->getSetsAFavor() == $b->getSetsAFavor()) {
-                    if ($a->getPuntosAFavor() == $b->getPuntosAFavor()) {
+            if ($a->getPuntos() == $b->getPuntos()) {
+                if ($a->getDiferenciaSets() == $b->getDiferenciaSets()) {
+                    if ($a->getDiferenciaPuntos() == $b->getDiferenciaPuntos()) {
                         return 0;
                     }
-                    return ($a->getPuntosAFavor() > $b->getPuntosAFavor()) ? -1 : 1;
+                    return ($a->getDiferenciaPuntos() > $b->getDiferenciaPuntos()) ? -1 : 1;
                 }
-                return ($a->getSetsAFavor() > $b->getSetsAFavor()) ? -1 : 1;
+                return ($a->getDiferenciaSets() > $b->getDiferenciaSets()) ? -1 : 1;
             }
-            return ($a->getPartidosGanados() > $b->getPartidosGanados()) ? -1 : 1;
+            return ($a->getPuntos() > $b->getPuntos()) ? -1 : 1;
         });
         return $posiciones;
     }
