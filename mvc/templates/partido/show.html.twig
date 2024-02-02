@@ -5,6 +5,49 @@
 {% block body %}
     <h1>Partido</h1>
 
+    {% set setLocalTotal =  0 %}
+    {% set setVisitanteTotal =  0 %}
+    
+    {% if partido.localSet1 > 0 and   partido.visitanteSet1 > 0 %}
+        {% if partido.localSet1 > partido.visitanteSet1 %}
+            {% set setLocalTotal =  1 %}
+        {% else %}
+            {% set setVisitanteTotal =  1 %}
+        {% endif %}
+    {% endif %} 
+    
+    {% if partido.localSet2 >= 0 and   partido.visitanteSet2 > 0 %}
+        {% if partido.localSet2 > partido.visitanteSet2 %}
+            {% set setLocalTotal = setLocalTotal +  1 %}
+        {% else %}
+            {% set setVisitanteTotal = setVisitanteTotal +  1 %}
+        {% endif %}
+    {% endif %} 
+    
+    {% if partido.localSet3 > 0 and   partido.visitanteSet3 > 0 %}
+        {% if partido.localSet3 > partido.visitanteSet3 %}
+            {% set setLocalTotal = setLocalTotal +  1 %}
+        {% else %}
+            {% set setVisitanteTotal = setVisitanteTotal +  1 %}
+        {% endif %}
+    {% endif %} 
+    
+    {% if partido.localSet4 > 0 and   partido.visitanteSet4 > 0 %}
+        {% if partido.localSet4 > partido.visitanteSet4 %}
+            {% set setLocalTotal = setLocalTotal +  1 %}
+        {% else %}
+            {% set setVisitanteTotal = setVisitanteTotal +  1 %}
+        {% endif %}
+    {% endif %} 
+    
+    {% if partido.localSet5 > 0 and   partido.visitanteSet5 > 0 %}
+        {% if partido.localSet5 > partido.visitanteSet5 %}
+            {% set setLocalTotal = setLocalTotal +  1 %}
+        {% else %}
+            {% set setVisitanteTotal = setVisitanteTotal +  1 %}
+        {% endif %}
+    {% endif %}
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -26,8 +69,8 @@
             <td>{{ partido.localSet3 }}</td>
             <td>{{ partido.localSet4 }}</td>
             <td>{{ partido.localSet5 }}</td>
-            <td> </td>
-
+            <td>{{ setLocalTotal }}</td>
+            <td>{{ partido.localSet1 + partido.localSet2 + partido.localSet3 + partido.localSet4 + partido.localSet5 }}</td>
             </tr>
             <tr>
             <th scope="row">{{ partido.equipoVisitante.nombre }}</th>
@@ -36,6 +79,8 @@
             <td>{{ partido.visitanteSet3 }}</td>
             <td>{{ partido.visitanteSet4 }}</td>
             <td>{{ partido.visitanteSet5 }}</td>
+            <td>{{ setVisitanteTotal }}</td>
+            <td>{{ partido.visitanteSet1 + partido.visitanteSet2 + partido.visitanteSet3 + partido.visitanteSet4 + partido.visitanteSet5 }}</td>
             </tr>
         </tbody>
     </table>

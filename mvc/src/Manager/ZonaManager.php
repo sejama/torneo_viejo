@@ -34,20 +34,20 @@ class ZonaManager{
             $visitanteSet[] = $partido->getVisitanteSet4() ?? 0;
             $visitanteSet[] = $partido->getVisitanteSet5() ?? 0;
 
-            $localPuntosFavor = $localSet[0] + $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4];
-            $localPuntosContra = $visitanteSet[0] + $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4];
+            $localPuntosFavor = $visitantePuntosContra = $localSet[0] + $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4];
+            $localPuntosContra = $visitantePuntosFavor = $visitanteSet[0] + $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4];
             $localSetFavor = 0;
             $localSetContra = 0;
 
-            $visitantePuntosFavor = $visitanteSet[0] + $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4];
-            $visitantePuntosContra = $localSet[0] + $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4];
+            // = $visitanteSet[0] + $visitanteSet[1] + $visitanteSet[2] + $visitanteSet[3] + $visitanteSet[4];
+            // = $localSet[0] + $localSet[1] + $localSet[2] + $localSet[3] + $localSet[4];
             $visitanteSetFavor = 0;
             $visitanteSetContra = 0;
 
 
-            if ($localPuntosFavor != 0 && $visitantePuntosFavor != 0) {
+            if ($localPuntosFavor >= 0 && $visitantePuntosFavor >= 0) {
                 for($i = 0; $i < 4; $i++){
-                    if ($localSet[$i] != 0 && $visitanteSet[$i] != 0) {
+                    if ($localSet[$i] != 0 || $visitanteSet[$i] != 0) {
                         if($localSet[$i] > $visitanteSet[$i]){
                             $localSetFavor++;
                             $visitanteSetContra++;
