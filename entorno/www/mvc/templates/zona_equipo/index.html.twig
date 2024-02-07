@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ZonaEquipo index{% endblock %}
+
+{% block body %}
+    <h1>ZonaEquipo index</h1>
+    <a href="{{ path('app_zona_equipo_new') }}">Crear Zona Equipo</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for zona_equipo in zona_equipos %}
+            <tr>
+                <td>{{ zona_equipo.id }}</td>
+                <td>
+                    <a href="{{ path('app_zona_equipo_show', {'id': zona_equipo.id}) }}">Consultar</a>
+                    <a href="{{ path('app_zona_equipo_edit', {'id': zona_equipo.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

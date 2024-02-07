@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Cancha{% endblock %}
+
+{% block body %}
+    <h1>Crear Cancha</h1>
+
+    {{ include('cancha/_form.html.twig') }}
+
+    <a href="{{ path('app_cancha_index') }}">Vovler</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modificar Genero-Categoria{% endblock %}
+
+{% block body %}
+    <h1>Modificar Genero-Categoria</h1>
+
+    {{ include('torneo_genero_categoria/_form.html.twig', {'button_label': 'Modificar'}) }}
+
+    <a href="{{ path('app_torneo_genero_categoria_index') }}">Volver</a>
+
+    {{ include('torneo_genero_categoria/_delete_form.html.twig') }}
+{% endblock %}

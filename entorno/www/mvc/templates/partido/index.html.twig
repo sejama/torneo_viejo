@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partidos index{% endblock %}
+
+{% block body %}
+    <h1>Partidos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Zona</th>
+                <th>Cancha</th>
+                <th>Equipo Local</th>
+                <th>Set 1</th>
+                <th>Set 2</th>
+                <th>Set 3</th>
+                <th>Set 4</th>
+                <th>Set 5</th>
+                <th>Equipo Visitante</th>
+                <th>Set 1</th>
+                <th>Set 2</th>
+                <th>Set 3</th>
+                <th>Set 4</th>
+                <th>Set 5</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partido in partidos %}
+            <tr>
+                <td>{{ partido.id }}</td>
+                <td>{{ partido.zona.id }}</td>
+                <td>{% if partido.cancha %}{{ partido.cancha.club.nombre }} - {{ partido.cancha.nombre }}{% else %} - {% endif %}</td>
+                <td>{{ partido.equipoLocal.nombre }}</td>
+                <td>{{ partido.localSet1 }}</td>
+                <td>{{ partido.localSet2 }}</td>
+                <td>{{ partido.localSet3 }}</td>
+                <td>{{ partido.localSet4 }}</td>
+                <td>{{ partido.localSet5 }}</td>
+                <td>{{ partido.equipoVisitante.nombre }}</td>
+                <td>{{ partido.visitanteSet1 }}</td>
+                <td>{{ partido.visitanteSet2 }}</td>
+                <td>{{ partido.visitanteSet3 }}</td>
+                <td>{{ partido.visitanteSet4 }}</td>
+                <td>{{ partido.visitanteSet5 }}</td>
+                <td>
+                    <a href="{{ path('app_partido_show', {'id': partido.id}) }}">Consultar</a>
+                    <a href="{{ path('app_partido_edit', {'id': partido.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_partido_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  webserver:
+    container_name: PHP-webserver
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:latest
+    environment:
+       MYSQL_ROOT_PASSWORD: 'password'
+       MYSQL_DATABASE: 'test_db'
+       MYSQL_USER: 'user'
+       MYSQL_PASSWORD: 'pass'
+    restart: 'always'
+    expose:
+      - '3307'
+    ports:
+      - "3307:3307"
+    volumes:
+      - mydatavolume:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql-db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql-db
+      MYSQL_ROOT_PASSWORD: 'pass'
+volumes:
+  mydatavolume:

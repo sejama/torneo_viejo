@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genero index{% endblock %}
+
+{% block body %}
+    <h1>Genero index</h1>
+    <a href="{{ path('app_genero_new') }}">Crear Genero</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for genero in generos %}
+            <tr>
+                <td>{{ genero.id }}</td>
+                <td>{{ genero.nombre }}</td>
+                <td>
+                    <a href="{{ path('app_genero_show', {'id': genero.id}) }}">Consultar</a>
+                    <a href="{{ path('app_genero_edit', {'id': genero.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

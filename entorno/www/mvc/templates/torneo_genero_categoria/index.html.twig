@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Configurar Genero Categoria{% endblock %}
+
+{% block body %}
+    <h1>Configurar Torneo Genero Categoria</h1>
+    <a href="{{ path('app_torneo_genero_categoria_new') }}">Crear Genero Categoría</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Genero</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for torneo_genero_categorium in torneo_genero_categorias %}
+            <tr>
+                <td>{{ torneo_genero_categorium.id }}</td>
+                <td>{{ torneo_genero_categorium.genero.nombre }}</td>
+                <td>{{ torneo_genero_categorium.categoria.nombre }}</td>
+                <td>
+                    <a href="{{ path('app_torneo_genero_categoria_show', {'id': torneo_genero_categorium.id}) }}">Consultar</a>
+                    <a href="{{ path('app_torneo_genero_categoria_edit', {'id': torneo_genero_categorium.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

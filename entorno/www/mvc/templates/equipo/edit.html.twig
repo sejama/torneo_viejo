@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modificar Equipo{% endblock %}
+
+{% block body %}
+    <h1>Modificar Equipo</h1>
+
+    {{ include('equipo/_form.html.twig', {'button_label': 'Modificar'}) }}
+
+    <a href="{{ path('app_equipo_index') }}">Volver</a>
+
+    {{ include('equipo/_delete_form.html.twig') }}
+{% endblock %}
