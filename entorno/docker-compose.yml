@@ -9,7 +9,7 @@ services:
       - ./www:/var/www/html
     ports:
       - 8080:80
-    depends_on:
+    links:
       - mysql-db
 
   mysql-db:

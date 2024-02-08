@@ -11,7 +11,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN apt-get update \
     # install GraphicsMagick
 	&& apt-get install -y \
-    git zip unzip 
+    git zip unzip libzip-dev zlib1g-dev
 # Set the working directory to /var/www/html
 WORKDIR /var/www/html
 # Copy the source code in /www into the container at /var/www/html
