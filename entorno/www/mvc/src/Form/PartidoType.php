@@ -106,6 +106,7 @@ class PartidoType extends AbstractType
                     'max' => 150,
                 ],
             ])
+            ->add('horario')
         ;
     }
 

@@ -57,6 +57,15 @@ class Partido
     #[ORM\Column(nullable: true)]
     private ?int $visitanteSet5 = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $horario = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -226,6 +235,45 @@ class Partido
     public function setLocalSet5(?int $localSet5): static
     {
         $this->localSet5 = $localSet5;
+
+        return $this;
+    }
+
+    public function getHorario(): ?\DateTimeImmutable
+    {
+        return $this->horario;
+    }
+
+    public function setHorario(?\DateTimeImmutable $horario): static
+    {
+        $this->horario = $horario;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
+    {
+        $this->createdAt = new \DateTimeImmutable('now');
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): static
+    {
+        $this->updatedAt = new \DateTimeImmutable('now');
 
         return $this;
     }

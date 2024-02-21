@@ -1,21 +1,35 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-    <h1>{% block title %}Zona {{ zona.id }}{% endblock %}</h1>
-    <table class="table table-striped">
+<div class="container-lg">
+    <h1 class="text-center" >{% block title %}Zona {{ zona.id }}{% endblock %}</h1>
+    <table class="table table-responsive align-middle text-center">
         <thead>
+            <tr>
+                <th scope="col" ></th>
+                <th scope="col"></th>
+                <th scope="col" class="table-active"></th>
+                <th scope="col" class="table-active">Partidos</th>
+                <th scope="col" class="table-active"></th>
+                <th scope="col"></th>
+                <th scope="col">Set</th>
+                <th scope="col"></th>
+                <th scope="col" class="table-active"></th>
+                <th scope="col" class="table-active">Puntos</th>
+                <th scope="col" class="table-active"></th>
+                <th scope="col"></th>
+            </tr>
             <tr>
                 <th scope="col">Posición</th>
                 <th scope="col">Equipo</th>
-                <th scope="col">Partidos Jugados</th>
-                <th scope="col">Partidos Ganados</th>
-                <th scope="col">Partidos Perdidos</th>
-                <th scope="col">Set Favor</th>
-                <th scope="col">Set Contra</th>
-                <th scope="col">Diferencia Set</th>
-                <th scope="col">Puntos Favor</th>
-                <th scope="col">Puntos Contra</th>
-                <th scope="col">Diferencia Puntos</th>
+                <th scope="col" class="table-active">Jugados</th>
+                <th scope="col" class="table-active">Ganados</th>
+                <th scope="col" class="table-active">Perdidos</th>
+                <th scope="col">Favor</th>
+                <th scope="col">Contra</th>
+                <th scope="col">Diferencia</th>
+                <th scope="col" class="table-active">Favor</th>
+                <th scope="col" class="table-active">Contra</th>
+                <th scope="col" class="table-active">Diferencia</th>
                 <th scope="col">Puntos</th>
             </tr>
             
@@ -25,138 +39,34 @@
             <tr>
                 <th scope="row">{{ i }}</th>
                 <td>{{ posicion.nombre }}</td>
-                <td>{{ posicion.partidosJugados }}</td>
-                <td>{{ posicion.partidosGanados }}</td>
-                <td>{{ posicion.partidosPerdidos }}</td>
+                <td class="table-active">{{ posicion.partidosJugados }}</td>
+                <td class="table-active">{{ posicion.partidosGanados }}</td>
+                <td class="table-active">{{ posicion.partidosPerdidos }}</td>
                 <td>{{ posicion.setsAFavor }}</td>
                 <td>{{ posicion.setsEnContra }}</td>
                 <td>{{ posicion.getDiferenciaSets }}</td>
-                <td>{{ posicion.puntosAFavor }}</td>
-                <td>{{ posicion.puntosEnContra }}</td>
-                <td>{{ posicion.getDiferenciaPuntos }}</td>
+                <td class="table-active">{{ posicion.puntosAFavor }}</td>
+                <td class="table-active">{{ posicion.puntosEnContra }}</td>
+                <td class="table-active">{{ posicion.getDiferenciaPuntos }}</td>
                 <td>{{ posicion.puntos }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    {% if zona.id == 18 %}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Posición</th>
-                <th scope="col">Equipo</th>
-                <th scope="col">Partidos Jugados</th>
-                <th scope="col">Partidos Ganados</th>
-                <th scope="col">Partidos Perdidos</th>
-                <th scope="col">Set Favor</th>
-                <th scope="col">Set Contra</th>
-                <th scope="col">Diferencia Set</th>
-                <th scope="col">Puntos Favor</th>
-                <th scope="col">Puntos Contra</th>
-                <th scope="col">Diferencia Puntos</th>
-                <th scope="col">Puntos</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>LA GARRA</td>
-                <td>5</td>
-                <td>5</td>
-                <td>0</td>
-                <td>10</td>
-                <td>1</td>
-                <td>9</td>
-                <td>266</td>
-                <td>185</td>
-                <td>81</td>
-                <td>10</td>
-            </tr>
-            <tr> 
-                <th scope="row">2</th>
-                <td>CLUB DE AMIGOS</td>
-                <td>5</td>
-                <td>4</td>
-                <td>1</td>
-                <td>8</td>
-                <td>2</td>
-                <td>6</td>
-                <td>232</td>
-                <td>171</td>
-                <td>61</td>
-                <td>9</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>DESPELOTE</td>
-                <td>5</td>
-                <td>3</td>
-                <td>2</td>
-                <td>6</td>
-                <td>4</td>
-                <td>2</td>
-                <td>227</td>
-                <td>199</td>
-                <td>28</td>
-                <td>8</td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>RACING RECONQUISTA</td>
-                <td>5</td>
-                <td>2</td>
-                <td>3</td>
-                <td>5</td>
-                <td>7</td>
-                <td>-2</td>
-                <td>242</td>
-                <td>238</td>
-                <td>4</td>
-                <td>7</td>
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>BOLA 8</td>
-                <td>5</td>
-                <td>1</td>
-                <td>4</td>
-                <td>3</td>
-                <td>9</td>
-                <td>-6</td>
-                <td>185</td>
-                <td>262</td>
-                <td>-77</td>
-                <td>6</td>
-            </tr>
-            <tr>
-                <th scope="row">6</th>
-                <td>ROMANG FUTBOL CLUB</td>
-                <td>5</td>
-                <td>0</td>
-                <td>5</td>
-                <td>1</td>
-                <td>10</td>
-                <td>-9</td>
-                <td>164</td>
-                <td>261</td>
-                <td>-97</td>
-                <td>5</td>
-            </tr>
-        </tbody>
-    </table>
-    {% endif %}
-
      {% if app.user %}
 
-    <a href="{{ path('app_zona_index') }}">Volver</a>
+    <a class="btn btn-primary" href="{{ path('app_zona_index') }}">Volver Zonas</a>
 
-    <a href="{{ path('app_zona_edit', {'id': zona.id}) }}">Editar</a>
+    <a class="btn btn-primary" href="{{ path('app_main') }}">Volver Inicio</a>
+
+    <a class="btn btn-primary" href="{{ path('app_zona_edit', {'id': zona.id}) }}">Editar</a>
 
     {{ include('zona/_delete_form.html.twig') }}
 
     {% else %}
 
-    <a href="{{ path('app_main') }}">Volver</a>
+    <a class="btn btn-primary" href="{{ path('app_main') }}">Volver</a>
 
     {% endif %}
+</div>
 {% endblock %}

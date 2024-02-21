@@ -12,6 +12,15 @@ class ZonaManager{
     ) {
     }
 
+    public function calcularPosicionesTodos(){
+        $zonas = $this->zonaRepository->findAll();
+        $posiciones = [];
+        foreach ($zonas as $zona) {
+            $posiciones[$zona->getId()] = $this->calcularPosiciones($zona->getId());
+        }
+        return $posiciones;
+    }
+
     public function calcularPosiciones(int $idZona){
         $zona = $this->zonaRepository->find($idZona);
         $partidos = $zona->getPartidos();

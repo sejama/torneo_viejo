@@ -80,6 +80,8 @@ class TorneoManager{
                     $partido->setZona($zona);
                     $partido->setEquipoLocal($equipos[$i]->getEquipo());
                     $partido->setEquipoVisitante($equipos[$j]->getEquipo());
+                    $partido->setCreatedAt();
+                    $partido->setUpdatedAt();
                     $this->partidoRepository->guardarPartido($partido);
                     
                 }
