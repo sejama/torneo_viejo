@@ -3,7 +3,6 @@
 {% block title %}Torneo{% endblock %}
 
 {% block body %}
-    <div class="container-lg">
     {% if torneo  %}
         <h1 class="text-center">{{ torneo.nombre }}</h1>
     {% if torneo.torneoGeneroCategorias.count() > 0 %}
@@ -27,108 +26,115 @@
                     <div class="accordion-body table-responsive">
                         <h2>Tabla de posiciones</h2>
                         <div class="table-responsive">
-                        <table class="table table-responsive align-middle text-center" style="border-collapse: collapse;">
-                        <thead>
-                            <tr>
-                                <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col"></th>
-                                <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col"></th>
-                                <th scope="col" class="table-active"></th>
-                                <th scope="col" class="table-active">Partidos</th>
-                                <th scope="col" class="table-active"></th>
-                                <th scope="col"></th>
-                                <th scope="col">Set</th>
-                                <th scope="col"></th>
-                                <th scope="col" class="table-active"></th>
-                                <th scope="col" class="table-active">Puntos</th>
-                                <th scope="col" class="table-active"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            <tr>
-                                <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col">Pos</th>
-                                <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col">Equipo</th>
-                                <th scope="col" class="table-active">Jug</th>
-                                <th scope="col" class="table-active">Gan</th>
-                                <th scope="col" class="table-active">Per</th>
-                                <th scope="col">Favor</th>
-                                <th scope="col">Contra</th>
-                                <th scope="col">Dif</th>
-                                <th scope="col" class="table-active">Fav</th>
-                                <th scope="col" class="table-active">Con</th>
-                                <th scope="col" class="table-active">Dif</th>
-                                <th scope="col">Ptos</th>
-                            </tr>
-                            
-                        </thead>
-                        <tbody>
-                            {% for i, posicion in posiciones[key] %}
-                            <tr>
-                                <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="row">{{ i+1 }}</th>
-                                <td style="position: -webkit-sticky; position: sticky; left: 0px; background: white;">{{ posicion.nombre }}</td>
-                                <td class="table-active">{{ posicion.partidosJugados }}</td>
-                                <td class="table-active">{{ posicion.partidosGanados }}</td>
-                                <td class="table-active">{{ posicion.partidosPerdidos }}</td>
-                                <td>{{ posicion.setsAFavor }}</td>
-                                <td>{{ posicion.setsEnContra }}</td>
-                                <td>{{ posicion.getDiferenciaSets }}</td>
-                                <td class="table-active">{{ posicion.puntosAFavor }}</td>
-                                <td class="table-active">{{ posicion.puntosEnContra }}</td>
-                                <td class="table-active">{{ posicion.getDiferenciaPuntos }}</td>
-                                <td>{{ posicion.puntos }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    </div>
+                            <table class="table table-responsive align-middle text-center" style="border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col"></th>
+                                        <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col"></th>
+                                        <th scope="col" class="table-active"></th>
+                                        <th scope="col" class="table-active">Partidos</th>
+                                        <th scope="col" class="table-active"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Set</th>
+                                        <th scope="col"></th>
+                                        <th scope="col" class="table-active"></th>
+                                        <th scope="col" class="table-active">Puntos</th>
+                                        <th scope="col" class="table-active"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col">Pos</th>
+                                        <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col">Equipo</th>
+                                        <th scope="col" class="table-active">Jug</th>
+                                        <th scope="col" class="table-active">Gan</th>
+                                        <th scope="col" class="table-active">Per</th>
+                                        <th scope="col">Favor</th>
+                                        <th scope="col">Contra</th>
+                                        <th scope="col">Dif</th>
+                                        <th scope="col" class="table-active">Fav</th>
+                                        <th scope="col" class="table-active">Con</th>
+                                        <th scope="col" class="table-active">Dif</th>
+                                        <th scope="col">Ptos</th>
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody>
+                                    {% for i, posicion in posiciones[key] %}
+                                    <tr>
+                                        <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="row">{{ i+1 }}</th>
+                                        <td style="position: -webkit-sticky; position: sticky; left: 0px; background: white;">{{ posicion.nombre }}</td>
+                                        <td class="table-active">{{ posicion.partidosJugados }}</td>
+                                        <td class="table-active">{{ posicion.partidosGanados }}</td>
+                                        <td class="table-active">{{ posicion.partidosPerdidos }}</td>
+                                        <td>{{ posicion.setsAFavor }}</td>
+                                        <td>{{ posicion.setsEnContra }}</td>
+                                        <td>{{ posicion.getDiferenciaSets }}</td>
+                                        <td class="table-active">{{ posicion.puntosAFavor }}</td>
+                                        <td class="table-active">{{ posicion.puntosEnContra }}</td>
+                                        <td class="table-active">{{ posicion.getDiferenciaPuntos }}</td>
+                                        <td>{{ posicion.puntos }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     <h2>Partidos</h2>
                     {% for partido in partidos %}
                         {% if partido.zona.id == key  %}
-                        <div class="card w-100" style="margin-top: 3px">
+                        <div class="card w-100" style="margin-top: 3px; background-color: #f8f9fa;">
                             <div class="card-body">
-                                <h5 class="card-title">Partido N° {{ partido.id }}</h5>
+                                {% if app.user %}
+                                    {% if partido.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': partido.id}) }}"><h5 class="card-title">Partido N° {{ partido.id }}</h5></a>
+                                    {% else %}
+                                        <h5 class="card-title">Partido N° {{ partido.id }}</h5>
+                                    {% endif %}
+                                {% else %}
+                                    <h5 class="card-title">Partido N° {{ partido.id }}</h5>
+                                {% endif %}
                                 <div class="d-flex justify-content-start">
                                     <h6 class="card-subtitle mb-2 text-muted">Club y Cancha: {{ partido.cancha ? partido.cancha.club.nombre }} {{  partido.cancha ? partido.cancha.nombre : "Sin asignar  / "}} Fecha y hora: {{ partido.horario ? partido.horario|date("d/m/Y H:i") : "Sin asignar" }} </h6>
                                 </div>
                                 <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Equipo</th>
-                                        <th scope="col">Set 1</th>
-                                        <th scope="col">Set 2</th>
-                                        <th scope="col">Set 3</th>
-                                        <th scope="col">Set 4</th>
-                                        <th scope="col">Set 5</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">{{ partido.equipoLocal.nombre }}</th>
-                                        <td>{% if partido.localSet1 %} {{ partido.localSet1 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.localSet2 %} {{ partido.localSet2 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.localSet3 %} {{ partido.localSet3 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.localSet4 %} {{ partido.localSet4 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.localSet5 %} {{ partido.localSet5 }} {% else %} - {% endif %}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">{{ partido.equipoVisitante.nombre }}</th>
-                                        <td>{% if partido.visitanteSet1 %} {{ partido.visitanteSet1 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.visitanteSet2 %} {{ partido.visitanteSet2 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.visitanteSet3 %} {{ partido.visitanteSet3 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.visitanteSet4 %} {{ partido.visitanteSet4 }} {% else %} - {% endif %}</td>
-                                        <td>{% if partido.visitanteSet5 %} {{ partido.visitanteSet5 }} {% else %} - {% endif %}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Equipo</th>
+                                                <th scope="col">Set 1</th>
+                                                <th scope="col">Set 2</th>
+                                                <th scope="col">Set 3</th>
+                                                <th scope="col">Set 4</th>
+                                                <th scope="col">Set 5</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">{{ partido.equipoLocal.nombre }}</th>
+                                                <td>{% if partido.localSet1 %} {{ partido.localSet1 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.localSet2 %} {{ partido.localSet2 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.localSet3 %} {{ partido.localSet3 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.localSet4 %} {{ partido.localSet4 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.localSet5 %} {{ partido.localSet5 }} {% else %} - {% endif %}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">{{ partido.equipoVisitante.nombre }}</th>
+                                                <td>{% if partido.visitanteSet1 %} {{ partido.visitanteSet1 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.visitanteSet2 %} {{ partido.visitanteSet2 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.visitanteSet3 %} {{ partido.visitanteSet3 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.visitanteSet4 %} {{ partido.visitanteSet4 }} {% else %} - {% endif %}</td>
+                                                <td>{% if partido.visitanteSet5 %} {{ partido.visitanteSet5 }} {% else %} - {% endif %}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        
                         {% endif %}
                     {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     {% endfor %}
-    </div>
 {% endblock %}

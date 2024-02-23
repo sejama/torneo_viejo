@@ -21,9 +21,17 @@ class PartidoRepository extends ServiceEntityRepository
         parent::__construct($registry, Partido::class);
     }
 
-    public function guardarPartido(Partido $partido): void
+    public function savePartido(Partido $partido): void
     {
+        $partido->setCreatedAt();
+        $partido->setUpdatedAt();
         $this->getEntityManager()->persist($partido);
+        $this->getEntityManager()->flush();
+    }
+
+    public function updatePartido(Partido $partido): void
+    {
+        $partido->setUpdatedAt();
         $this->getEntityManager()->flush();
     }
 
