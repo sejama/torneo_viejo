@@ -159,9 +159,6 @@
 
 <script>
     let inputs = document.querySelectorAll("input[type=number]")
-
-    let local = visitante = 0;
-    
     for (let i = 0; i < inputs.length; i+=2) {
         inputs[i].addEventListener("change",function() {
             inputs[i].required = true;
@@ -183,22 +180,41 @@
     const btnEditarPartido = document.getElementById('btnEditarPartido')
 
     btnEditarPartido.addEventListener('click', function(event) {
+        let local = visitante = 0;
         const form = document.querySelector('.needs-validation')
-        if (!form.checkValidity()) {
+        if (!form.checkValidity()) 
+        {
             event.preventDefault()
             event.stopPropagation()
         }else{
             validarSet(0, 1, 1, 25)
-            //validarSet(2, 3, 2, 25)
-            //validarSet(4, 5, 3, 15)
+            validarSet(2, 3, 2, 25)
+            validarSet(4, 5, 3, 15)
+            if ( inputs[0].value < inputs[1].value) {
+                visitante++
+            } else {
+                local++
+            }
+            if ( inputs[2].value < inputs[3].value ) {
+                visitante++
+            } else {
+                local++
+            }
+            
+            console.log(local, visitante)
+            if (local < 2 && visitante < 2) {
+                alert('El partido es el mejor a 3 sets!')
+                event.preventDefault()
+                event.stopPropagation()
+            }
         }
         
         form.classList.add('was-validated')
-        form.action="{{ path('app_partido_editar', {'id': partido.id}) }}"
-        form.method="POST"
-        form.submit()
+        //form.action="{{ path('app_partido_editar', {'id': partido.id}) }}"
+        //form.method="POST"
+        //form.submit()
     })
- 
+
 function validarSet(Poslocal, Posvisitante, set , puntos)
 {
     if (inputs[Poslocal].required && inputs[Posvisitante].required)

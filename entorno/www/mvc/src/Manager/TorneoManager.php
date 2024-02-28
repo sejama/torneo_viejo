@@ -2,37 +2,66 @@
 
 namespace App\Manager;
 
+use App\Entity\Categoria;
 use App\Entity\Partido;
 use App\Entity\Zona;
 use App\Entity\ZonaEquipo;
+use App\Repository\CategoriaRepository;
 use App\Repository\EquipoRepository;
+use App\Repository\GeneroRepository;
 use App\Repository\PartidoRepository;
 use App\Repository\TorneoGeneroCategoriaRepository;
+use App\Repository\TorneoRepository;
 use App\Repository\ZonaEquipoRepository;
 use App\Repository\ZonaRepository;
 
 class TorneoManager{
     public function __construct(
+        private TorneoRepository $torneoRepository,
         private EquipoRepository $equipoRepository,
         private ZonaRepository $zonaRepository,
         private ZonaEquipoRepository $zonaEquipoRepository,
         private TorneoGeneroCategoriaRepository $torneoGeneroCategoriaRepository,
-        private PartidoRepository $partidoRepository
+        private PartidoRepository $partidoRepository,
+        private GeneroRepository $generoRepository,
+        private CategoriaRepository $categoriaRepository
 
     ) {
         
     }
-    
-    public function armadoZona(): array
-    {   
+
+    public function getTorneos(): array
+    {
+        return $this->torneoRepository->findAll();
+    }
+
+    public function getGeneros(): array
+    {
+        return $this->generoRepository->findAll();
+    }
+
+    public function getCategorias(): array
+    {
+        return $this->categoriaRepository->findAll();
+    }
+
+    public function getZonas(?int $torneoId, ?int $generoId, ?int $categoriaId ): array
+    {
         $equipos = $this->equipoRepository->findAll();
         $categorias = [];
         foreach ($equipos as $equipo) {
             if ($equipo->getZonaEquipo())
             {
-                $categorias[$equipo->getZonaEquipo()->getZona()->getTorneoGeneroCategoria()->getGenero()->getNombre().''.$equipo->getZonaEquipo()->getZona()->getTorneoGeneroCategoria()->getCategoria()->getNombre()][$equipo->getZonaEquipo()->getZona()->getId()][] = $equipo;
+                if (
+                    $equipo->getZonaEquipo()->getZona()->getTorneoGeneroCategoria()->getTorneo()->getId() === $torneoId && 
+                    $equipo->getZonaEquipo()->getZona()->getTorneoGeneroCategoria()->getGenero()->getId() === $generoId && 
+                    $equipo->getZonaEquipo()->getZona()->getTorneoGeneroCategoria()->getCategoria()->getId() === $categoriaId)
+                {
+                    $categorias[$equipo->getZonaEquipo()->getZona()->getTorneoGeneroCategoria()->getGenero()->getNombre().''.$equipo->getZonaEquipo()->getZona()->getTorneoGeneroCategoria()->getCategoria()->getNombre()][$equipo->getZonaEquipo()->getZona()->getId()][] = $equipo;
+                }
             }
         }
+
         return $categorias;
     }
 
