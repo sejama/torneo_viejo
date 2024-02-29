@@ -3,19 +3,20 @@
 {% block title %}Torneo{% endblock %}
 
 {% block body %}
-    <form action="{{ path('app_main')}}" method="POST" >
+    <form id="formTorneoGenCat" action="{{ path('app_main')}}" method="POST" >
         <div class="row">
-            <div class="col form-floating mb-2">
-                <select class="form-select" id="selectTorneo" name="selectTorneo" aria-label="Floating label select example">
+            <div class="col-5 form-floating mb-1 d-none">
+                <select class="form-select " id="selectTorneo" name="selectTorneo" aria-label="Floating label select example">
+                    <option value="1">Por favor, seleccionar torneo</option>
                     {% for torneo in torneos %}
                         <option value="{{ torneo.id }}">{{ torneo.nombre }}</option>
                     {% endfor %}
                 </select>
                 <label for="selectTorneo">Torneos:</label>
             </div>
-            <div class="col form-floating mb-2">
+            <div class="col-6 form-floating mb-1">
                 <select class="form-select" id="selectGenero" name="selectGenero" aria-label="Floating label select example">
-                    <option value="">Por favor, seleccionar genero</option>
+                    <option value="">Seleccionar genero</option>
                     {% for genero in generos %}
                         {% if genero.id == generoID %}
                             <option value="{{ genero.id }}" selected>{{ genero.nombre }}</option>
@@ -26,21 +27,19 @@
                 </select>
                 <label for="selectGenero">Generos:</label>
             </div>
-            <div class="col form-floating mb-2">
+            <div class="col-6 form-floating mb-1">
                 <select class="form-select" id="selectCategoria" name="selectCategoria" aria-label="Floating label select example">
-                    <option value="">Por favor, seleccionar categoría</option>
-                    {% for categoria in categorias %}
-                        {% if categoria.id == categoriaID %}
-                            <option value="{{ categoria.id }}" selected>{{ categoria.nombre }}</option>
-                        {% else %}
-                            <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                    <option value="">Seleccionar categoría</option>
+                    {% for tgc in tgcs %}
+                        {% if tgc.genero.id == generoID and tgc.categoria.id == categoriaID %}
+                            <option value="{{ tgc.categoria.id }}" selected>{{ tgc.categoria.nombre }}</option>
+                        {% endif %}
+                        {% if tgc.genero.id == generoID and tgc.categoria.id != categoriaID %}
+                            <option value="{{ tgc.categoria.id }}">{{ tgc.categoria.nombre }}</option>
                         {% endif %}
                     {% endfor %}
                 </select>
                 <label for="selectCategoria">Categorias:</label>
-            </div>
-            <div class = "col">
-                <button type="submit" class="btn btn-primary mb-2" id="btnBuscar">Buscar</button>
             </div>
         </div>
     </form>
@@ -169,4 +168,59 @@
         </div>
         {% endfor %}
     {% endfor %}
+
+<script>
+    const selectTorneo = document.getElementById('selectTorneo');
+    const selectGenero = document.getElementById('selectGenero');
+    const selectCategoria = document.getElementById('selectCategoria');
+
+    selectTorneo.addEventListener('change', (event) => {
+        let generos = [];
+        const torneoID = event.target.value;
+        console.log(torneoID);
+        {% for tgc in tgcs %}
+            if ({{ tgc.torneo.id }} == torneoID) {
+                if ( !generos.find(genero => genero.id == {{ tgc.genero.id }}) ){
+                    generos.push({id: {{ tgc.genero.id }}, nombre: `{{ tgc.genero.nombre }}`});
+                    console.log( {{ tgc.genero.id }}, `{{ tgc.genero.nombre }}` );
+                }
+            }
+        {% endfor %}
+        
+        selectGenero.innerHTML = '<option value="">Seleccionar genero</option>';
+        selectCategoria.innerHTML = '<option value="">Seleccionar categoría</option>';
+        generos.forEach(genero => {
+            const option = document.createElement('option');
+            option.value = genero.id;
+            option.text = genero.nombre;
+            selectGenero.appendChild(option);
+        });
+    });
+
+    selectGenero.addEventListener('change', (event) => {
+        let categorias = [];
+        const generoID = event.target.value;
+        console.log(generoID);
+        {% for tgc in tgcs %}
+            if ({{ tgc.genero.id }} == generoID) {
+                if ( !categorias.find(categoria => categoria.id == {{ tgc.categoria.id }}) ){
+                    categorias.push({id: {{ tgc.categoria.id }}, nombre: `{{ tgc.categoria.nombre }}`});
+                    console.log( {{ tgc.categoria.id }}, `{{ tgc.categoria.nombre }}` );
+                }
+            }
+        {% endfor %}
+        selectCategoria.disabled = false;
+        selectCategoria.innerHTML = '<option value="">Seleccionar categoría</option>';
+        categorias.forEach(categoria => {
+            const option = document.createElement('option');
+            option.value = categoria.id;
+            option.text = categoria.nombre;
+            selectCategoria.appendChild(option);
+        });
+    });
+
+    selectCategoria.addEventListener('change', (event) => {
+        document.getElementById('formTorneoGenCat').submit();
+    });
+</script>
 {% endblock %}

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+
 use App\Manager\TorneoManager;
 use App\Manager\ZonaManager;
 use App\Repository\PartidoRepository;
+use App\Repository\TorneoGeneroCategoriaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +19,8 @@ class MainController extends AbstractController
         Request $request,
         TorneoManager $tm, 
         ZonaManager $zm,
-        PartidoRepository $pr
+        PartidoRepository $pr,
+        TorneoGeneroCategoriaRepository $tgcr
     ): Response
     {   
         $torneoID = null;
@@ -36,6 +39,7 @@ class MainController extends AbstractController
         $categorias = $tm->getCategorias();
         $posiciones = $zm->calcularPosicionesTodos();
         $partidos = $pr->findAll();
+        $tgcs = $tgcr->findAll();
         return $this->render('main/index.html.twig', [
             'torneos' => $torneos,
             'torneoID' => $torneoID,
@@ -45,7 +49,8 @@ class MainController extends AbstractController
             'categoriaID' => $categoriaID,
             'zonas' => $zonas,
             'posiciones' => $posiciones,
-            'partidos' => $partidos
+            'partidos' => $partidos,
+            'tgcs' => $tgcs
         ]);
     }
 }
