@@ -13,7 +13,7 @@ services:
       - mysql-db
 
   mysql-db:
-    image: mysql:latest
+    image: mysql:8.0.32
     environment:
        MYSQL_ROOT_PASSWORD: 'password'
        MYSQL_DATABASE: 'test_db'
@@ -34,6 +34,6 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: mysql-db
-      MYSQL_ROOT_PASSWORD: 'pass'
+      MYSQL_ROOT_PASSWORD: 'password'
 volumes:
   mydatavolume:
