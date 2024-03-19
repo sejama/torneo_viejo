@@ -9,6 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Zona</th>
+                <th>Equipo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -16,6 +18,8 @@
         {% for zona_equipo in zona_equipos %}
             <tr>
                 <td>{{ zona_equipo.id }}</td>
+                <td>{{ zona_equipo.zona.id }} - {{ zona_equipo.zona.torneoGeneroCategoria.genero.nombre }} {{ zona_equipo.zona.torneoGeneroCategoria.categoria.nombre }}</td>
+                <td>{{ zona_equipo.equipo.nombre }}</td>
                 <td>
                     <a href="{{ path('app_zona_equipo_show', {'id': zona_equipo.id}) }}">Consultar</a>
                     <a href="{{ path('app_zona_equipo_edit', {'id': zona_equipo.id}) }}">Editar</a>

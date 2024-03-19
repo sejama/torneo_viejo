@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">{% block title %}Nuevo Torneo{% endblock %}</h1>
+
+    <form action="{{ path('app_torneo_nuevo') }}" method="POST">
+        <div class="row g-2 mb-3">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Torneo" required>
+                    <label for="nombre">Nombre Torneo</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción Torneo">
+                    <label for="descripcion">Descripción Torneo</label>
+                </div>
+            </div>
+        </div>
+        <div class="row g-2 mb-3">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                    <label for="fechaInicio">Fecha Inicio Torneo</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="horaInicio" name="horaInicio" required>
+                    <label for="horaInicio">Hora Inicio Torneo</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
+                    <label for="fechaFin">Fecha Fin Torneo</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="horaFin" name="horaFin" required>
+                    <label for="horaFin">Hora Fin Torneo</label>
+                </div>
+            </div>
+        </div>
+        <div class="row g-2 mb-3">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaInicioInscripcion" name="fechaInicioInscripcion" required>
+                    <label for="fechaInicioInscripcion">Fecha Inicio Inscripción Torneo</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="horaInicioInscripcion" name="horaInicioInscripcion" required>
+                    <label for="horaInicioInscripcion">Hora Inicio Inscripción Torneo</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaFinInscripcion" name="fechaFinInscripcion" required>
+                    <label for="fechaFinInscripcion">Fecha Fin Inscripción Torneo</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="horaFinInscripcion" name="horaFinInscripcion" required>
+                    <label for="horaFinInscripcion">Hora Fin Inscripción Torneo</label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{{ path('app_torneo_index') }}"><button type="button" class="btn btn-danger">Volver</button></a>
+    </form>
+{% endblock %}

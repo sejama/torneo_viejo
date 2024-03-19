@@ -4,40 +4,37 @@
 
 {% block body %}
     <h1>Torneo index</h1>
-    <a href="{{ path('app_torneo_new') }}">Crear Torneo</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>FechaInicio</th>
-                <th>FechaFin</th>
-                <th>FechaInicioInscripcion</th>
-                <th>FechaFinInscripcion</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for torneo in torneos %}
-            <tr>
-                <td>{{ torneo.id }}</td>
-                <td>{{ torneo.nombre }}</td>
-                <td>{{ torneo.descripcion }}</td>
-                <td>{{ torneo.fechaInicio ? torneo.fechaInicio|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ torneo.fechaFin ? torneo.fechaFin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ torneo.fechaInicioInscripcion ? torneo.fechaInicioInscripcion|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ torneo.fechaFinInscripcion ? torneo.fechaFinInscripcion|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_torneo_show', {'id': torneo.id}) }}">Consultar</a>
-                    <a href="{{ path('app_torneo_edit', {'id': torneo.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <a href="{{ path('app_torneo_nuevo') }}">Crear Torneo</a>
+    {% for torneo in torneos %}
+    <div class="card mb-2">
+        <div class="card-header">
+            <h3>{{ torneo.nombre }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">Fecha y Hora de Inicio</h5> {{ torneo.fechaInicio|date('Y-m-d H:i') }}
+                </div>
+                <div class="col-6">
+                    <h5 class="card-title">Fecha y Hora de Finalizacion</h5> {{ torneo.fechaFin|date('Y-m-d H:i') }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">Fecha y Hora de Inicio de Inscripcion</h5> {{ torneo.fechaInicioInscripcion|date('Y-m-d H:i') }}
+                </div>
+                <div class="col-6">
+                    <h5 class="card-title">Fecha y Hora de Finalizacion de Inscripcion</h5> {{ torneo.fechaFinInscripcion|date('Y-m-d H:i') }}
+                </div>
+            </div>
+            
+            <a href="{{ path('app_torneo_show', {'id': torneo.id}) }}">Consultar</a>
+            <a href="{{ path('app_torneo_edit', {'id': torneo.id}) }}">Editar</a>
+            <form method="post" action="{{ path('app_torneo_delete', {'id': torneo.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ torneo.id) }}">
+                <button class="btn">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}

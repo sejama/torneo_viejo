@@ -32,6 +32,7 @@ class AppFixtures extends Fixture
                 $user, "admin"
             )
         );
+        $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
 
         $torneo = new Torneo();

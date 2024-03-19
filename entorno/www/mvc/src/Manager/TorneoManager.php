@@ -83,8 +83,11 @@ class TorneoManager{
         for ($i=0; $i < $cantidadZonas; $i++) { 
             $zona = new Zona();
             $zona->setTorneoGeneroCategoria($torneoGeneroCategoria);
+            $zona->setClasificanOro($array[$i]['cantidadOro'.$i]);
+            $zona->setClasificanPlata($array[$i]['cantidadPlata'.$i]);
+            $zona->setClasificanBronce($array[$i]['cantidadBronce'.$i]);
             $this->zonaRepository->guardarZona($zona);
-            for ($j=0; $j < $array[$i]; $j++) { 
+            for ($j=0; $j < $array[$i]['cantidadZona'.$i]; $j++) { 
                 $zonaEquipo = new ZonaEquipo();
                 $zonaEquipo->setZona($zona);
                 $zonaEquipo->setEquipo($equiposZona[$id++]);

@@ -25,6 +25,26 @@ class TorneoController extends AbstractController
         ]);
     }
 
+    #[Route('/nuevo', name: 'app_torneo_nuevo', methods: ['GET', 'POST'])]
+    public function nuevo(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if ( $request->isMethod('POST') ) {
+            $torneo = new Torneo();
+            $torneo->setNombre($request->request->get('nombre'));
+            $torneo->setDescripcion($request->request->get('descripcion'));
+            $torneo->setFechaInicio(new \DateTimeImmutable($request->request->get('fechaInicio') . ' ' . $request->request->get('horaInicio')));
+            $torneo->setFechaFin(new \DateTimeImmutable($request->request->get('fechaFin') . ' ' . $request->request->get('horaFin')));
+            $torneo->setFechaInicioInscripcion(new \DateTimeImmutable($request->request->get('fechaInicioInscripcion') . ' ' . $request->request->get('horaInicioInscripcion')));
+            $torneo->setFechaFinInscripcion(new \DateTimeImmutable($request->request->get('fechaFinInscripcion') . ' ' . $request->request->get('horaFinInscripcion')));
+            $torneo->setCreatedAt(new \DateTimeImmutable());
+            $torneo->setUpdatedAt(new \DateTimeImmutable());
+            $entityManager->persist($torneo);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_torneo_index', [], Response::HTTP_SEE_OTHER);
+        }else{
+            return $this->render('torneo/nuevo.html.twig');}
+    }
+
     #[Route('/new', name: 'app_torneo_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -89,10 +109,15 @@ class TorneoController extends AbstractController
     public function armarZona(Request $request, TorneoManager $tm): Response
     {
         $idTorneoGeneroCategoria = (int)$request->get('id');
-        $cantidadZonas = (int)$request->request->count();
+        $cantidadZonas = (int)$request->request->get('inputCantidad');
         $array = [];
         for ($i=0; $i < $cantidadZonas; $i++) { 
-            $array[] = (int)$request->request->get('inputCantidadEquiposZona'.$idTorneoGeneroCategoria.$i);
+            $array[] = [
+                'cantidadZona'.$i => (int)$request->request->get('inputCantidadEquiposZona'.$idTorneoGeneroCategoria.$i),
+                'cantidadOro'.$i => (int)$request->request->get('inputOro'.$idTorneoGeneroCategoria.$i),
+                'cantidadPlata'.$i => (int)$request->request->get('inputPlata'.$idTorneoGeneroCategoria.$i),
+                'cantidadBronce'.$i => (int)$request->request->get('inputBronce'.$idTorneoGeneroCategoria.$i),
+            ];
         }
         $tm->armadoFixture($idTorneoGeneroCategoria, $cantidadZonas, $array);
 

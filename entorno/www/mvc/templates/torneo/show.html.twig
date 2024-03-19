@@ -65,12 +65,13 @@
                 cantidadZona{{ inscriptos.id }}.disabled = true;
                 confirmar{{ inscriptos.id }}.disabled = true;
                 document.getElementById("limpiar{{ inscriptos.id }}").classList.remove("d-none");
-                for (let i = 0; i < cantidadZona{{ inscriptos.id }}.value; i++) {
+                const cantidad = cantidadZona{{ inscriptos.id }}.value
+                for (let i = 0; i < cantidad; i++) {
                     div = document.createElement("div");
                     div.id = "divCantidadEquiposZona" + {{ inscriptos.id }} + i;
                     label = document.createElement("label");
                     label.id = "labelCantidadEquiposZona" + {{ inscriptos.id }} + i;
-                    label.setAttribute("for", "cantidadEquiposZona" + {{ inscriptos.id }} + i);
+                    label.setAttribute("for", "inputCantidadEquiposZona" + {{ inscriptos.id }} + i);
                     label.innerHTML = "Cantidad de equipos en la zona " + (i + 1);
                     input = document.createElement("input");
                     input.type = "number";
@@ -84,8 +85,59 @@
                         input.value = input.max = Math.trunc(({{ inscriptos.equipos.count() }} / cantidadZona{{ inscriptos.id }}.value) + ({{ inscriptos.equipos.count() }} % cantidadZona{{ inscriptos.id }}.value) - 1);
                     }
                     input.placeholder = "Cantidad de equipos";
+
                     div.appendChild(label);
                     div.appendChild(input);
+                    
+                    labelOro = document.createElement("label");
+                    labelOro.id = "labelOro" + {{ inscriptos.id }} + i;
+                    labelOro.setAttribute("for", "inputOro" + {{ inscriptos.id }} + i);
+                    labelOro.innerHTML = "Cantidad de equipos Oro";
+                    inputOro = document.createElement("input");
+                    inputOro.type = "number";
+                    inputOro.name = "inputOro" + {{ inscriptos.id }} + i;
+                    inputOro.id = "inputOro" + {{ inscriptos.id }} + i;
+                    inputOro.min = "0";
+                    inputOro.max = input.max;
+
+                    div.appendChild(labelOro);
+                    div.appendChild(inputOro);
+
+                    labelPlata = document.createElement("label");
+                    labelPlata.id = "labelPlata" + {{ inscriptos.id }} + i;
+                    labelPlata.setAttribute("for", "inputPlata" + {{ inscriptos.id }} + i);
+                    labelPlata.innerHTML = "Cantidad de equipos Plata";
+                    inputPlata = document.createElement("input");
+                    inputPlata.type = "number";
+                    inputPlata.name = "inputPlata" + {{ inscriptos.id }} + i;
+                    inputPlata.id = "inputPlata" + {{ inscriptos.id }} + i;
+                    inputPlata.min = "0";
+                    inputPlata.max = input.max;
+
+                    div.appendChild(labelPlata);
+                    div.appendChild(inputPlata);
+
+                    labelBronce = document.createElement("label");
+                    labelBronce.id = "labelBronce" + {{ inscriptos.id }} + i;
+                    labelBronce.setAttribute("for", "inputBronce" + {{ inscriptos.id }} + i);
+                    labelBronce.innerHTML = "Cantidad de equipos Bronce";
+                    inputBronce = document.createElement("input");
+                    inputBronce.type = "number";
+                    inputBronce.name = "inputBronce" + {{ inscriptos.id }} + i;
+                    inputBronce.id = "inputBronce" + {{ inscriptos.id }} + i;
+                    inputBronce.min = "0";
+                    inputBronce.max = input.max;
+
+                    div.appendChild(labelBronce);
+                    div.appendChild(inputBronce);
+
+                    inputCantidad = document.createElement("input");
+                    inputCantidad.type = "hidden";
+                    inputCantidad.name = "inputCantidad";
+                    inputCantidad.value = cantidad;
+
+                    div.appendChild(inputCantidad);
+                    
                     document.getElementById("formCantidadZona{{ inscriptos.id }}").appendChild(div);
                     
                 }
@@ -128,6 +180,15 @@
                 for (let i = 0; i < cantidadZona{{ inscriptos.id }}.value; i++) {
                     document.getElementById("labelCantidadEquiposZona" + {{ inscriptos.id }} + i).remove();
                     document.getElementById("inputCantidadEquiposZona" + {{ inscriptos.id }} + i).remove();
+
+                    document.getElementById("labelOro" + {{ inscriptos.id }} + i).remove();
+                    document.getElementById("inputOro" + {{ inscriptos.id }} + i).remove();
+
+                    document.getElementById("labelPlata" + {{ inscriptos.id }} + i).remove();
+                    document.getElementById("inputPlata" + {{ inscriptos.id }} + i).remove();
+
+                    document.getElementById("labelBronce" + {{ inscriptos.id }} + i).remove();
+                    document.getElementById("inputBronce" + {{ inscriptos.id }} + i).remove();
                 }
                 document.getElementById("confirmarCantidadEquiposZona{{ inscriptos.id }}").remove();
                 document.getElementById("cantidadZona{{ inscriptos.id }}").value = 1;
@@ -141,18 +202,19 @@
     Total de equipos anotados: 
     {{ inscriptos.equipos.count() }}
     <div>
-    {% if inscriptos.creado == 0  %}
+    {% if inscriptos.cerrado == 1 and inscriptos.creado == 0  %}
     <form id="formArmarPartidos{{inscriptos.id}}" action="{{ path('app_torneo_armar_fixture', { 'id' : inscriptos.id }) }}" method="POST">
         Armar los partidos:
         <input id="armarPartido{{inscriptos.id}}"  type="button" value="Armar"></input>
     </form>
-    {% endif %}
+    
     <script>
         document.getElementById('armarPartido{{inscriptos.id}}').onclick = function(){
             alert("Se van a armar los partidos de {{ inscriptos.genero.nombre }} {{ inscriptos.categoria.nombre }}");
             document.getElementById('formArmarPartidos{{inscriptos.id}}').submit();
         }
     </script>
+    {% endif %}
     </div>
     </div>
     {% endif %}

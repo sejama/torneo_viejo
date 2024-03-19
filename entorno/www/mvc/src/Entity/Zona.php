@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ZonaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ZonaRepository::class)]
@@ -23,6 +24,15 @@ class Zona
 
     #[ORM\OneToMany(mappedBy: 'zona', targetEntity: Partido::class)]
     private Collection $partidos;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $clasificanOro = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $clasificanPlata = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $clasificanBronce = null;
 
     public function __construct()
     {
@@ -103,6 +113,42 @@ class Zona
                 $partido->setZona(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClasificanOro(): ?int
+    {
+        return $this->clasificanOro;
+    }
+
+    public function setClasificanOro(int $clasificanOro): static
+    {
+        $this->clasificanOro = $clasificanOro;
+
+        return $this;
+    }
+
+    public function getClasificanPlata(): ?int
+    {
+        return $this->clasificanPlata;
+    }
+
+    public function setClasificanPlata(int $clasificanPlata): static
+    {
+        $this->clasificanPlata = $clasificanPlata;
+
+        return $this;
+    }
+
+    public function getClasificanBronce(): ?int
+    {
+        return $this->clasificanBronce;
+    }
+
+    public function setClasificanBronce(?int $clasificanBronce): static
+    {
+        $this->clasificanBronce = $clasificanBronce;
 
         return $this;
     }
