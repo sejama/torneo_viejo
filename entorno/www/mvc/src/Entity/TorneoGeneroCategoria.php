@@ -44,10 +44,14 @@ class TorneoGeneroCategoria
     #[ORM\Column]
     private ?bool $creado = false;
 
+    #[ORM\OneToMany(mappedBy: 'torneoGeneroCategoria', targetEntity: PlayOff::class)]
+    private Collection $playOffs;
+
     public function __construct()
     {
         $this->equipos = new ArrayCollection();
         $this->zonas = new ArrayCollection();
+        $this->playOffs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,6 +202,36 @@ class TorneoGeneroCategoria
     public function setCreado(bool $creado): static
     {
         $this->creado = $creado;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlayOff>
+     */
+    public function getPlayOffs(): Collection
+    {
+        return $this->playOffs;
+    }
+
+    public function addPlayOff(PlayOff $playOff): static
+    {
+        if (!$this->playOffs->contains($playOff)) {
+            $this->playOffs->add($playOff);
+            $playOff->setTorneoGeneroCategoria($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayOff(PlayOff $playOff): static
+    {
+        if ($this->playOffs->removeElement($playOff)) {
+            // set the owning side to null (unless already changed)
+            if ($playOff->getTorneoGeneroCategoria() === $this) {
+                $playOff->setTorneoGeneroCategoria(null);
+            }
+        }
 
         return $this;
     }

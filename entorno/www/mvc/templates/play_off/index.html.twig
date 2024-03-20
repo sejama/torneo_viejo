@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PlayOff index{% endblock %}
+
+{% block body %}
+    <h1>PlayOff index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for play_off in play_offs %}
+            <tr>
+                <td>{{ play_off.id }}</td>
+                <td>
+                    <a href="{{ path('app_play_off_show', {'id': play_off.id}) }}">show</a>
+                    <a href="{{ path('app_play_off_edit', {'id': play_off.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_play_off_new') }}">Create new</a>
+{% endblock %}

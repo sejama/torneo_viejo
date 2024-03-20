@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Fin{% endblock %}
+
+{% block body %}
+    <h1>Create new Fin</h1>
+
+    {{ include('fin/_form.html.twig') }}
+
+    <a href="{{ path('app_fin_index') }}">back to list</a>
+{% endblock %}

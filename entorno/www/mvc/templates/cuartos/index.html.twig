@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuartos index{% endblock %}
+
+{% block body %}
+    <h1>Cuartos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cuarto in cuartos %}
+            <tr>
+                <td>{{ cuarto.id }}</td>
+                <td>
+                    <a href="{{ path('app_cuartos_show', {'id': cuarto.id}) }}">show</a>
+                    <a href="{{ path('app_cuartos_edit', {'id': cuarto.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cuartos_new') }}">Create new</a>
+{% endblock %}

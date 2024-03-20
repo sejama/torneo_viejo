@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit PlayOff{% endblock %}
+
+{% block body %}
+    <h1>Edit PlayOff</h1>
+
+    {{ include('play_off/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_play_off_index') }}">back to list</a>
+
+    {{ include('play_off/_delete_form.html.twig') }}
+{% endblock %}

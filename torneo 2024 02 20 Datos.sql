@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2024 a las 00:08:27
+-- Tiempo de generación: 19-03-2024 a las 23:17:23
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -21,40 +21,12 @@ SET time_zone = "+00:00";
 -- Base de datos: `torneo`
 --
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cancha`
---
-
-CREATE TABLE `cancha` (
-  `id` int(11) NOT NULL,
-  `club_id` int(11) DEFAULT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `cancha`
 --
 
 INSERT INTO `cancha` (`id`, `club_id`, `nombre`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Cancha 1', '2024-02-20 20:07:59', '2024-02-20 20:07:59');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(64) NOT NULL,
-  `descripcion` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -66,59 +38,12 @@ INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `created_at`, `updated_a
 (3, '+42', 'Categoría mayores de 42 años', '2024-02-20 13:58:07', '2024-02-20 13:58:07'),
 (4, '+50', 'Categoría mayores de 50 años', '2024-02-20 13:58:07', '2024-02-20 13:58:07');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `club`
---
-
-CREATE TABLE `club` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `direccion` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `club`
 --
 
 INSERT INTO `club` (`id`, `nombre`, `direccion`, `created_at`, `updated_at`) VALUES
 (1, 'Club 1', 'Direccion 1234', '2024-02-20 20:07:47', '2024-02-20 20:07:47');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `doctrine_migration_versions`
---
-
-CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `doctrine_migration_versions`
---
-
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20240220165348', '2024-02-20 13:54:29', 635);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `equipo`
---
-
-CREATE TABLE `equipo` (
-  `id` int(11) NOT NULL,
-  `torneo_genero_categoria_id` int(11) DEFAULT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `equipo`
@@ -200,19 +125,6 @@ INSERT INTO `equipo` (`id`, `torneo_genero_categoria_id`, `nombre`, `created_at`
 (73, 6, 'RIO CUARTO', '2024-02-20 13:58:07', '2024-02-20 13:58:07'),
 (74, 6, 'ALGO DISTINTO', '2024-02-20 13:58:07', '2024-02-20 13:58:07');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `genero`
---
-
-CREATE TABLE `genero` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(32) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `genero`
 --
@@ -220,49 +132,6 @@ CREATE TABLE `genero` (
 INSERT INTO `genero` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 (1, 'Femenino', '2024-02-20 13:58:07', '2024-02-20 13:58:07'),
 (2, 'Masculino', '2024-02-20 13:58:07', '2024-02-20 13:58:07');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `messenger_messages`
---
-
-CREATE TABLE `messenger_messages` (
-  `id` bigint(20) NOT NULL,
-  `body` longtext NOT NULL,
-  `headers` longtext NOT NULL,
-  `queue_name` varchar(190) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `available_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `delivered_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `partido`
---
-
-CREATE TABLE `partido` (
-  `id` int(11) NOT NULL,
-  `cancha_id` int(11) DEFAULT NULL,
-  `zona_id` int(11) NOT NULL,
-  `equipo_local_id` int(11) DEFAULT NULL,
-  `equipo_visitante_id` int(11) DEFAULT NULL,
-  `local_set1` int(11) DEFAULT NULL,
-  `local_set2` int(11) DEFAULT NULL,
-  `local_set3` int(11) DEFAULT NULL,
-  `local_set4` int(11) DEFAULT NULL,
-  `local_set5` int(11) DEFAULT NULL,
-  `visitante_set1` int(11) DEFAULT NULL,
-  `visitante_set2` int(11) DEFAULT NULL,
-  `visitante_set3` int(11) DEFAULT NULL,
-  `visitante_set4` int(11) DEFAULT NULL,
-  `visitante_set5` int(11) DEFAULT NULL,
-  `horario` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `partido`
@@ -397,23 +266,14 @@ INSERT INTO `partido` (`id`, `cancha_id`, `zona_id`, `equipo_local_id`, `equipo_
 (126, 1, 17, 72, 74, 25, 20, 15, NULL, NULL, 13, 25, 10, NULL, NULL, NULL, '2024-02-20 14:03:44', '2024-02-20 14:03:44'),
 (127, 1, 17, 73, 74, 20, 25, 15, NULL, NULL, 25, 12, 12, NULL, NULL, NULL, '2024-02-20 14:03:44', '2024-02-20 14:03:44');
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `torneo`
+-- Volcado de datos para la tabla `play_off`
 --
 
-CREATE TABLE `torneo` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `descripcion` varchar(255) DEFAULT NULL,
-  `fecha_inicio` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `fecha_fin` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `fecha_inicio_inscripcion` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `fecha_fin_inscripcion` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `play_off` (`id`, `torneo_genero_categoria_id`) VALUES
+(1, 1),
+(2, 1),
+(3, 1);
 
 --
 -- Volcado de datos para la tabla `torneo`
@@ -421,23 +281,6 @@ CREATE TABLE `torneo` (
 
 INSERT INTO `torneo` (`id`, `nombre`, `descripcion`, `fecha_inicio`, `fecha_fin`, `fecha_inicio_inscripcion`, `fecha_fin_inscripcion`, `created_at`, `updated_at`) VALUES
 (1, 'Torneo de prueba', 'Descripcion torneo de prueba', '2024-01-01 09:00:00', '2024-01-31 20:00:00', '2020-12-01 00:00:00', '2023-12-31 23:59:59', '2024-02-20 13:58:07', '2024-02-20 13:58:07');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `torneo_genero_categoria`
---
-
-CREATE TABLE `torneo_genero_categoria` (
-  `id` int(11) NOT NULL,
-  `torneo_id` int(11) DEFAULT NULL,
-  `genero_id` int(11) DEFAULT NULL,
-  `categoria_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `cerrado` tinyint(1) NOT NULL,
-  `creado` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `torneo_genero_categoria`
@@ -451,77 +294,35 @@ INSERT INTO `torneo_genero_categoria` (`id`, `torneo_id`, `genero_id`, `categori
 (5, 1, 2, 3, '2024-02-20 13:58:07', '2024-02-20 13:58:07', 0, 0),
 (6, 1, 2, 4, '2024-02-20 13:58:07', '2024-02-20 13:58:07', 0, 0);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `user`
---
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `username` varchar(180) NOT NULL,
-  `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`roles`)),
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
-(1, 'admin', '[]', '$2y$13$2rOsg1Sl21u/sCULfSueTeqSFaos0ZSnI1CaoJkjc0XtgZjbsTW2y');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `zona`
---
-
-CREATE TABLE `zona` (
-  `id` int(11) NOT NULL,
-  `torneo_genero_categoria_id` int(11) DEFAULT NULL,
-  `clasifican_oro` SMALLINT DEFAULT NULL,
-  `clasifican_plata` SMALLINT DEFAULT NULL,
-  `clasifican_bronce` SMALLINT DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-ALTER TABLE zona ADD , ADD , ADD ;
+(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$2rOsg1Sl21u/sCULfSueTeqSFaos0ZSnI1CaoJkjc0XtgZjbsTW2y');
 
 --
 -- Volcado de datos para la tabla `zona`
 --
 
 INSERT INTO `zona` (`id`, `torneo_genero_categoria_id`, `clasifican_oro`, `clasifican_plata`, `clasifican_bronce`) VALUES
-(1, 1, null, null, null),
-(2, 1, null, null, null),
-(3, 2, null, null, null),
-(4, 2, null, null, null),
-(5, 2, null, null, null),
-(6, 2, null, null, null),
-(7, 3, null, null, null),
-(8, 3, null, null, null),
-(9, 3, null, null, null),
-(10, 3, null, null, null),
-(11, 3, null, null, null),
-(12, 3, null, null, null),
-(13, 4, null, null, null),
-(14, 5, null, null, null),
-(15, 5, null, null, null),
-(16, 6, null, null, null),
-(17, 6, null, null, null);
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `zona_equipo`
---
-
-CREATE TABLE `zona_equipo` (
-  `id` int(11) NOT NULL,
-  `zona_id` int(11) DEFAULT NULL,
-  `equipo_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(1, 1, NULL, NULL, NULL),
+(2, 1, NULL, NULL, NULL),
+(3, 2, NULL, NULL, NULL),
+(4, 2, NULL, NULL, NULL),
+(5, 2, NULL, NULL, NULL),
+(6, 2, NULL, NULL, NULL),
+(7, 3, NULL, NULL, NULL),
+(8, 3, NULL, NULL, NULL),
+(9, 3, NULL, NULL, NULL),
+(10, 3, NULL, NULL, NULL),
+(11, 3, NULL, NULL, NULL),
+(12, 3, NULL, NULL, NULL),
+(13, 4, NULL, NULL, NULL),
+(14, 5, NULL, NULL, NULL),
+(15, 5, NULL, NULL, NULL),
+(16, 6, NULL, NULL, NULL),
+(17, 6, NULL, NULL, NULL);
 
 --
 -- Volcado de datos para la tabla `zona_equipo`
@@ -602,228 +403,6 @@ INSERT INTO `zona_equipo` (`id`, `zona_id`, `equipo_id`) VALUES
 (72, 17, 72),
 (73, 17, 73),
 (74, 17, 74);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `cancha`
---
-ALTER TABLE `cancha`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_9D09C78261190A32` (`club_id`);
-
---
--- Indices de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_4E10122D3A909126` (`nombre`);
-
---
--- Indices de la tabla `club`
---
-ALTER TABLE `club`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `doctrine_migration_versions`
---
-ALTER TABLE `doctrine_migration_versions`
-  ADD PRIMARY KEY (`version`);
-
---
--- Indices de la tabla `equipo`
---
-ALTER TABLE `equipo`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_C49C530BD7CF149E` (`torneo_genero_categoria_id`);
-
---
--- Indices de la tabla `genero`
---
-ALTER TABLE `genero`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_A000883A3A909126` (`nombre`);
-
---
--- Indices de la tabla `messenger_messages`
---
-ALTER TABLE `messenger_messages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
-  ADD KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
-  ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
-
---
--- Indices de la tabla `partido`
---
-ALTER TABLE `partido`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_4E79750B7997F36E` (`cancha_id`),
-  ADD KEY `IDX_4E79750B104EA8FC` (`zona_id`),
-  ADD KEY `IDX_4E79750B88774E73` (`equipo_local_id`),
-  ADD KEY `IDX_4E79750B8C243011` (`equipo_visitante_id`);
-
---
--- Indices de la tabla `torneo`
---
-ALTER TABLE `torneo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `torneo_genero_categoria`
---
-ALTER TABLE `torneo_genero_categoria`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_D2F850FAA0139802` (`torneo_id`),
-  ADD KEY `IDX_D2F850FABCE7B795` (`genero_id`),
-  ADD KEY `IDX_D2F850FA3397707A` (`categoria_id`);
-
---
--- Indices de la tabla `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`);
-
---
--- Indices de la tabla `zona`
---
-ALTER TABLE `zona`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_A786041ED7CF149E` (`torneo_genero_categoria_id`);
-
---
--- Indices de la tabla `zona_equipo`
---
-ALTER TABLE `zona_equipo`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_7FC5758323BFBED` (`equipo_id`),
-  ADD KEY `IDX_7FC57583104EA8FC` (`zona_id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `cancha`
---
-ALTER TABLE `cancha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `club`
---
-ALTER TABLE `club`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `equipo`
---
-ALTER TABLE `equipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
-
---
--- AUTO_INCREMENT de la tabla `genero`
---
-ALTER TABLE `genero`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `messenger_messages`
---
-ALTER TABLE `messenger_messages`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `partido`
---
-ALTER TABLE `partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
-
---
--- AUTO_INCREMENT de la tabla `torneo`
---
-ALTER TABLE `torneo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `torneo_genero_categoria`
---
-ALTER TABLE `torneo_genero_categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `zona`
---
-ALTER TABLE `zona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `zona_equipo`
---
-ALTER TABLE `zona_equipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `cancha`
---
-ALTER TABLE `cancha`
-  ADD CONSTRAINT `FK_9D09C78261190A32` FOREIGN KEY (`club_id`) REFERENCES `club` (`id`);
-
---
--- Filtros para la tabla `equipo`
---
-ALTER TABLE `equipo`
-  ADD CONSTRAINT `FK_C49C530BD7CF149E` FOREIGN KEY (`torneo_genero_categoria_id`) REFERENCES `torneo_genero_categoria` (`id`);
-
---
--- Filtros para la tabla `partido`
---
-ALTER TABLE `partido`
-  ADD CONSTRAINT `FK_4E79750B104EA8FC` FOREIGN KEY (`zona_id`) REFERENCES `zona` (`id`),
-  ADD CONSTRAINT `FK_4E79750B7997F36E` FOREIGN KEY (`cancha_id`) REFERENCES `cancha` (`id`),
-  ADD CONSTRAINT `FK_4E79750B88774E73` FOREIGN KEY (`equipo_local_id`) REFERENCES `equipo` (`id`),
-  ADD CONSTRAINT `FK_4E79750B8C243011` FOREIGN KEY (`equipo_visitante_id`) REFERENCES `equipo` (`id`);
-
---
--- Filtros para la tabla `torneo_genero_categoria`
---
-ALTER TABLE `torneo_genero_categoria`
-  ADD CONSTRAINT `FK_D2F850FA3397707A` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`),
-  ADD CONSTRAINT `FK_D2F850FAA0139802` FOREIGN KEY (`torneo_id`) REFERENCES `torneo` (`id`),
-  ADD CONSTRAINT `FK_D2F850FABCE7B795` FOREIGN KEY (`genero_id`) REFERENCES `genero` (`id`);
-
---
--- Filtros para la tabla `zona`
---
-ALTER TABLE `zona`
-  ADD CONSTRAINT `FK_A786041ED7CF149E` FOREIGN KEY (`torneo_genero_categoria_id`) REFERENCES `torneo_genero_categoria` (`id`);
-
---
--- Filtros para la tabla `zona_equipo`
---
-ALTER TABLE `zona_equipo`
-  ADD CONSTRAINT `FK_7FC57583104EA8FC` FOREIGN KEY (`zona_id`) REFERENCES `zona` (`id`),
-  ADD CONSTRAINT `FK_7FC5758323BFBED` FOREIGN KEY (`equipo_id`) REFERENCES `equipo` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

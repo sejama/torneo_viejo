@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PlayOff{% endblock %}
+
+{% block body %}
+    <h1>Create new PlayOff</h1>
+
+    {{ include('play_off/_form.html.twig') }}
+
+    <a href="{{ path('app_play_off_index') }}">back to list</a>
+{% endblock %}

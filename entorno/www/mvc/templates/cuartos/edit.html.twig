@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Cuartos{% endblock %}
+
+{% block body %}
+    <h1>Edit Cuartos</h1>
+
+    {{ include('cuartos/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_cuartos_index') }}">back to list</a>
+
+    {{ include('cuartos/_delete_form.html.twig') }}
+{% endblock %}
