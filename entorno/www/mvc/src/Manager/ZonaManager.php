@@ -2,8 +2,6 @@
 
 namespace App\Manager;
 
-use App\Entity\Equipo;
-use App\Entity\Zona;
 use App\Repository\ZonaRepository;
 
 class ZonaManager{

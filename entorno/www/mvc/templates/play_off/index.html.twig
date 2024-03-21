@@ -9,6 +9,9 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Oro</th>
+                <th>Plata</th>
+                <th>Bronce</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -16,6 +19,9 @@
         {% for play_off in play_offs %}
             <tr>
                 <td>{{ play_off.id }}</td>
+                <td>{{ play_off.oro ? 'Yes' : 'No' }}</td>
+                <td>{{ play_off.plata ? 'Yes' : 'No' }}</td>
+                <td>{{ play_off.bronce ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_play_off_show', {'id': play_off.id}) }}">show</a>
                     <a href="{{ path('app_play_off_edit', {'id': play_off.id}) }}">edit</a>
@@ -23,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -26,6 +26,15 @@ class PlayOff
     #[ORM\OneToOne(mappedBy: 'playOff', cascade: ['persist', 'remove'])]
     private ?Fin $fin = null;
 
+    #[ORM\Column]
+    private ?bool $oro = false;
+
+    #[ORM\Column]
+    private ?bool $plata = false;
+
+    #[ORM\Column]
+    private ?bool $bronce = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +114,42 @@ class PlayOff
         }
 
         $this->fin = $fin;
+
+        return $this;
+    }
+
+    public function isOro(): ?bool
+    {
+        return $this->oro;
+    }
+
+    public function setOro(bool $oro): static
+    {
+        $this->oro = $oro;
+
+        return $this;
+    }
+
+    public function isPlata(): ?bool
+    {
+        return $this->plata;
+    }
+
+    public function setPlata(bool $plata): static
+    {
+        $this->plata = $plata;
+
+        return $this;
+    }
+
+    public function isBronce(): ?bool
+    {
+        return $this->bronce;
+    }
+
+    public function setBronce(bool $bronce): static
+    {
+        $this->bronce = $bronce;
 
         return $this;
     }

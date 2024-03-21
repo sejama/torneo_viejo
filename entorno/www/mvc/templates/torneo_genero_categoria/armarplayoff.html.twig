@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Configurar Genero Categoria{% endblock %}
+
+{% block body %}
+    <h1>Configurar Genero: {{ torneo_genero_categorium.genero.nombre }} - Categoria: {{ torneo_genero_categorium.categoria.nombre }}</h1>
+    {% for zona in zonas %}
+        <h2 class="text-center">Tabla de posiciones</h2>
+            <div class="table-responsive">
+                <table class="table table-responsive align-middle text-center" style="border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col"></th>
+                            <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col"></th>
+                            <th scope="col" class="table-active"></th>
+                            <th scope="col" class="table-active">Partidos</th>
+                            <th scope="col" class="table-active"></th>
+                            <th scope="col"></th>
+                            <th scope="col">Set</th>
+                            <th scope="col"></th>
+                            <th scope="col" class="table-active"></th>
+                            <th scope="col" class="table-active">Puntos</th>
+                            <th scope="col" class="table-active"></th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col">Pos</th>
+                            <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="col">Equipo</th>
+                            <th scope="col" class="table-active">Jug</th>
+                            <th scope="col" class="table-active">Gan</th>
+                            <th scope="col" class="table-active">Per</th>
+                            <th scope="col">Favor</th>
+                            <th scope="col">Contra</th>
+                            <th scope="col">Dif</th>
+                            <th scope="col" class="table-active">Fav</th>
+                            <th scope="col" class="table-active">Con</th>
+                            <th scope="col" class="table-active">Dif</th>
+                            <th scope="col">Ptos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i, equipo in zona %}
+                            <tr>
+                                <th style="position: -webkit-sticky; position: sticky; left: 0px; background: white;" scope="row">{{ i+1 }}</th>
+                                <td style="position: -webkit-sticky; position: sticky; left: 0px; background: white;">{{ equipo.nombre }}</td>
+                                <td class="table-active">{{ equipo.partidosJugados }}</td>
+                                <td class="table-active">{{ equipo.partidosGanados }}</td>
+                                <td class="table-active">{{ equipo.partidosPerdidos }}</td>
+                                <td>{{ equipo.setsAFavor }}</td>
+                                <td>{{ equipo.setsEnContra }}</td>
+                                <td>{{ equipo.getDiferenciaSets }}</td>
+                                <td class="table-active">{{ equipo.puntosAFavor }}</td>
+                                <td class="table-active">{{ equipo.puntosEnContra }}</td>
+                                <td class="table-active">{{ equipo.getDiferenciaPuntos }}</td>
+                                <td>{{ equipo.puntos }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    {% endfor %}
+    <a href="{{ path('app_torneo_genero_categoria_index') }}">Volver</a>
+{% endblock %}

@@ -21,6 +21,7 @@
                 <td>{{ torneo_genero_categorium.genero.nombre }}</td>
                 <td>{{ torneo_genero_categorium.categoria.nombre }}</td>
                 <td>
+                    <a href="{{ path('app_torneo_genero_categoria_playoff', {'id': torneo_genero_categorium.id}) }}">Armar PLayOff</a>
                     <a href="{{ path('app_torneo_genero_categoria_show', {'id': torneo_genero_categorium.id}) }}">Consultar</a>
                     <a href="{{ path('app_torneo_genero_categoria_edit', {'id': torneo_genero_categorium.id}) }}">Editar</a>
                 </td>

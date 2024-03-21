@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\TorneoGeneroCategoria;
 use App\Form\TorneoGeneroCategoriaType;
+use App\Manager\ZonaManager;
 use App\Repository\TorneoGeneroCategoriaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,6 +44,23 @@ class TorneoGeneroCategoriaController extends AbstractController
         return $this->render('torneo_genero_categoria/new.html.twig', [
             'torneo_genero_categorium' => $torneoGeneroCategorium,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_torneo_genero_categoria_playoff', methods: ['GET'])]
+    public function armarplayoff(
+        TorneoGeneroCategoria $torneoGeneroCategorium,
+        ZonaManager $zonaManager
+    ): Response
+    {
+        $zonas = [];
+        foreach ($torneoGeneroCategorium->getZonas() as $zona) {
+            $zonas[] = $zonaManager->calcularPosiciones($zona->getId());
+        }
+        return $this->render('torneo_genero_categoria/armarplayoff.html.twig', [
+            'torneo_genero_categorium' => $torneoGeneroCategorium,
+            'zonas' => $zonas,
+
         ]);
     }
 

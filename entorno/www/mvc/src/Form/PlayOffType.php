@@ -17,6 +17,9 @@ class PlayOffType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('oro')
+            ->add('plata')
+            ->add('bronce')
             ->add('torneoGeneroCategoria', EntityType::class, [
                 'class' => TorneoGeneroCategoria::class,
 'choice_label' => 'id',
