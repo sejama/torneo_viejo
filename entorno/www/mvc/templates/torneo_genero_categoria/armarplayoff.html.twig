@@ -59,5 +59,322 @@
                 </table>
             </div>
     {% endfor %}
-    <a href="{{ path('app_torneo_genero_categoria_index') }}">Volver</a>
+    <div class="row">
+        <div class="col-4">
+            <div>ORO</div>
+            <button type="button" id="btnCuartosOro" class="btn btn-primary">Armar Cuartos</button>
+            <button type="button" id="btnSemisOro" class="btn btn-primary">Armar Semis</button>
+            <button type="button" id="btnFinalOro" class="btn btn-primary">Armar Final</button>
+        </div>
+        <div class="col-4">
+            <div>PLATA</div>
+            <button type="button" id="btnCuartosPlata" class="btn btn-primary">Armar Cuartos</button>
+            <button type="button" id="btnSemisPlata" class="btn btn-primary">Armar Semis</button>
+            <button type="button" id="btnFinalPlata" class="btn btn-primary">Armar Final</button>
+        </div>
+        <div class="col-4">
+            <div>BRONCE</div>
+            <button type="button" id="btnCuartosBronce" class="btn btn-primary">Armar Cuartos</button>
+            <button type="button" id="btnSemisBronce" class="btn btn-primary">Armar Semis</button>
+            <button type="button" id="btnFinalBronce" class="btn btn-primary">Armar Final</button>
+        </div>
+    </div>
+    <form id="formCuartos" class="d-none">
+    Cuartos
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Partido 1
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 1</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 2</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Partido 2
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 1</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 2</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Partido 3
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 1</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 2</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Partido 4
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 1</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 2</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form id="formSemis" class="d-none">
+    Semis
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Partido 1
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 1</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 2</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Partido 2
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 1</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 2</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form id="formFinal" class="d-none">
+        Final
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Partido 1
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 1</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelectGrid">
+                                        <option selected>Seleccionar Equipo 2</option>
+                                        <option value="1">Equipo 1</option>
+                                        <option value="2">Equipo 2</option>
+                                        <option value="3">Equipo 3</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="mt-2">
+        <a class="btn btn-outline-primary" href="{{ path('app_torneo_genero_categoria_index') }}">Volver</a>
+    </div>
+<script>
+    document.getElementById('btnCuartosOro').addEventListener('click', function() {
+        document.getElementById('formCuartos').classList.remove('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+    });
+    document.getElementById('btnSemisOro').addEventListener('click', function() {
+        document.getElementById('formSemis').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+    });
+    document.getElementById('btnFinalOro').addEventListener('click', function() {
+        document.getElementById('formFinal').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+    });
+    document.getElementById('btnCuartosPlata').addEventListener('click', function() {
+        document.getElementById('formCuartos').classList.remove('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+    });
+    document.getElementById('btnSemisPlata').addEventListener('click', function() {
+        document.getElementById('formSemis').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+    });
+    document.getElementById('btnFinalPlata').addEventListener('click', function() {
+        document.getElementById('formFinal').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+    });
+    document.getElementById('btnCuartosBronce').addEventListener('click', function() {
+        document.getElementById('formCuartos').classList.remove('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+    });
+    document.getElementById('btnSemisBronce').addEventListener('click', function() {
+        document.getElementById('formSemis').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+    });
+    document.getElementById('btnFinalBronce').addEventListener('click', function() {
+        document.getElementById('formFinal').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+    });
+</script>
 {% endblock %}

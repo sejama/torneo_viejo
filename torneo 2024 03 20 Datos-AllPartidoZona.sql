@@ -22,11 +22,11 @@ SET time_zone = "+00:00";
 --
 
 --
--- Volcado de datos para la tabla `cancha`
+-- Volcado de datos para la tabla `torneo`
 --
 
-INSERT INTO `cancha` (`id`, `club_id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Cancha 1', '2024-02-20 20:07:59', '2024-02-20 20:07:59');
+INSERT INTO `torneo` (`id`, `nombre`, `descripcion`, `fecha_inicio`, `fecha_fin`, `fecha_inicio_inscripcion`, `fecha_fin_inscripcion`, `created_at`, `updated_at`) VALUES
+(1, 'Torneo de prueba', 'Descripcion torneo de prueba', '2024-01-01 09:00:00', '2024-01-31 20:00:00', '2020-12-01 00:00:00', '2023-12-31 23:59:59', '2024-03-20 08:30:32', '2024-03-20 08:30:32');
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -46,11 +46,64 @@ INSERT INTO `club` (`id`, `nombre`, `direccion`, `created_at`, `updated_at`) VAL
 (1, 'Club 1', 'Direccion 1234', '2024-02-20 20:07:47', '2024-02-20 20:07:47');
 
 --
--- Volcado de datos para la tabla `doctrine_migration_versions`
+-- Volcado de datos para la tabla `cancha`
 --
 
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20240319222916', '2024-03-20 08:24:13', 188196);
+INSERT INTO `cancha` (`id`, `club_id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Cancha 1', '2024-02-20 20:07:59', '2024-02-20 20:07:59');
+
+
+
+--
+-- Volcado de datos para la tabla `genero`
+--
+
+INSERT INTO `genero` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'Femenino', '2024-03-20 08:30:32', '2024-03-20 08:30:32'),
+(2, 'Masculino', '2024-03-20 08:30:32', '2024-03-20 08:30:32');
+
+
+--
+-- Volcado de datos para la tabla `torneo_genero_categoria`
+--
+
+INSERT INTO `torneo_genero_categoria` (`id`, `torneo_id`, `genero_id`, `categoria_id`, `created_at`, `updated_at`, `cerrado`, `creado`) VALUES
+(1, 1, 1, 1, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
+(2, 1, 1, 2, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
+(3, 1, 1, 3, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
+(4, 1, 2, 2, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
+(5, 1, 2, 3, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
+(6, 1, 2, 4, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1);
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
+(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$A6OB8TzpxgekoChlMNUVnOBO64rWEqKi0cZxY2mWAAlhXfHOn9LyG');
+
+--
+-- Volcado de datos para la tabla `zona`
+--
+
+INSERT INTO `zona` (`id`, `torneo_genero_categoria_id`, `clasifican_oro`, `clasifican_plata`, `clasifican_bronce`) VALUES
+(1, 1, NULL, NULL, NULL),
+(2, 1, NULL, NULL, NULL),
+(3, 2, NULL, NULL, NULL),
+(4, 2, NULL, NULL, NULL),
+(5, 2, NULL, NULL, NULL),
+(6, 2, NULL, NULL, NULL),
+(7, 3, NULL, NULL, NULL),
+(8, 3, NULL, NULL, NULL),
+(9, 3, NULL, NULL, NULL),
+(10, 3, NULL, NULL, NULL),
+(11, 3, NULL, NULL, NULL),
+(12, 3, NULL, NULL, NULL),
+(13, 4, NULL, NULL, NULL),
+(14, 5, NULL, NULL, NULL),
+(15, 5, NULL, NULL, NULL),
+(16, 6, NULL, NULL, NULL),
+(17, 6, NULL, NULL, NULL);
 
 --
 -- Volcado de datos para la tabla `equipo`
@@ -133,12 +186,84 @@ INSERT INTO `equipo` (`id`, `torneo_genero_categoria_id`, `nombre`, `created_at`
 (74, 6, 'ALGO DISTINTO', '2024-03-20 08:30:32', '2024-03-20 08:30:32');
 
 --
--- Volcado de datos para la tabla `genero`
+-- Volcado de datos para la tabla `zona_equipo`
 --
 
-INSERT INTO `genero` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, 'Femenino', '2024-03-20 08:30:32', '2024-03-20 08:30:32'),
-(2, 'Masculino', '2024-03-20 08:30:32', '2024-03-20 08:30:32');
+INSERT INTO `zona_equipo` (`id`, `zona_id`, `equipo_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 2, 5),
+(6, 2, 6),
+(7, 2, 7),
+(8, 2, 8),
+(9, 3, 9),
+(10, 3, 10),
+(11, 3, 11),
+(12, 3, 12),
+(13, 3, 13),
+(14, 4, 14),
+(15, 4, 15),
+(16, 4, 16),
+(17, 4, 17),
+(18, 4, 18),
+(19, 5, 19),
+(20, 5, 20),
+(21, 5, 21),
+(22, 5, 22),
+(23, 6, 23),
+(24, 6, 24),
+(25, 6, 25),
+(26, 6, 26),
+(27, 7, 27),
+(28, 7, 28),
+(29, 7, 29),
+(30, 7, 30),
+(31, 8, 31),
+(32, 8, 32),
+(33, 8, 33),
+(34, 8, 34),
+(35, 9, 35),
+(36, 9, 36),
+(37, 9, 37),
+(38, 9, 38),
+(39, 10, 39),
+(40, 10, 40),
+(41, 10, 41),
+(42, 10, 42),
+(43, 11, 43),
+(44, 11, 44),
+(45, 11, 45),
+(46, 11, 46),
+(47, 12, 47),
+(48, 12, 48),
+(49, 12, 49),
+(50, 12, 50),
+(51, 13, 51),
+(52, 13, 52),
+(53, 13, 53),
+(54, 13, 54),
+(55, 13, 55),
+(56, 13, 56),
+(57, 14, 57),
+(58, 14, 58),
+(59, 14, 59),
+(60, 14, 60),
+(61, 15, 61),
+(62, 15, 62),
+(63, 15, 63),
+(64, 15, 64),
+(65, 16, 65),
+(66, 16, 66),
+(67, 16, 67),
+(68, 16, 68),
+(69, 16, 69),
+(70, 17, 70),
+(71, 17, 71),
+(72, 17, 72),
+(73, 17, 73),
+(74, 17, 74);
 
 --
 -- Volcado de datos para la tabla `partido`
@@ -272,135 +397,6 @@ INSERT INTO `partido` (`id`, `cancha_id`, `zona_id`, `equipo_local_id`, `equipo_
 (125, 1, 17, 72, 73, 7, 0, NULL, NULL, NULL, 25, 25, NULL, NULL, NULL, NULL, '2024-02-20 14:03:44', '2024-02-20 14:03:44'),
 (126, 1, 17, 72, 74, 25, 20, 15, NULL, NULL, 13, 25, 10, NULL, NULL, NULL, '2024-02-20 14:03:44', '2024-02-20 14:03:44'),
 (127, 1, 17, 73, 74, 20, 25, 15, NULL, NULL, 25, 12, 12, NULL, NULL, NULL, '2024-02-20 14:03:44', '2024-02-20 14:03:44');
-
---
--- Volcado de datos para la tabla `torneo`
---
-
-INSERT INTO `torneo` (`id`, `nombre`, `descripcion`, `fecha_inicio`, `fecha_fin`, `fecha_inicio_inscripcion`, `fecha_fin_inscripcion`, `created_at`, `updated_at`) VALUES
-(1, 'Torneo de prueba', 'Descripcion torneo de prueba', '2024-01-01 09:00:00', '2024-01-31 20:00:00', '2020-12-01 00:00:00', '2023-12-31 23:59:59', '2024-03-20 08:30:32', '2024-03-20 08:30:32');
-
---
--- Volcado de datos para la tabla `torneo_genero_categoria`
---
-
-INSERT INTO `torneo_genero_categoria` (`id`, `torneo_id`, `genero_id`, `categoria_id`, `created_at`, `updated_at`, `cerrado`, `creado`) VALUES
-(1, 1, 1, 1, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
-(2, 1, 1, 2, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
-(3, 1, 1, 3, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
-(4, 1, 2, 2, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
-(5, 1, 2, 3, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1),
-(6, 1, 2, 4, '2024-03-20 08:30:32', '2024-03-20 08:30:32', 1, 1);
-
---
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
-(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$A6OB8TzpxgekoChlMNUVnOBO64rWEqKi0cZxY2mWAAlhXfHOn9LyG');
-
---
--- Volcado de datos para la tabla `zona`
---
-
-INSERT INTO `zona` (`id`, `torneo_genero_categoria_id`, `clasifican_oro`, `clasifican_plata`, `clasifican_bronce`) VALUES
-(1, 1, NULL, NULL, NULL),
-(2, 1, NULL, NULL, NULL),
-(3, 2, NULL, NULL, NULL),
-(4, 2, NULL, NULL, NULL),
-(5, 2, NULL, NULL, NULL),
-(6, 2, NULL, NULL, NULL),
-(7, 3, NULL, NULL, NULL),
-(8, 3, NULL, NULL, NULL),
-(9, 3, NULL, NULL, NULL),
-(10, 3, NULL, NULL, NULL),
-(11, 3, NULL, NULL, NULL),
-(12, 3, NULL, NULL, NULL),
-(13, 4, NULL, NULL, NULL),
-(14, 5, NULL, NULL, NULL),
-(15, 5, NULL, NULL, NULL),
-(16, 6, NULL, NULL, NULL),
-(17, 6, NULL, NULL, NULL);
-
---
--- Volcado de datos para la tabla `zona_equipo`
---
-
-INSERT INTO `zona_equipo` (`id`, `zona_id`, `equipo_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 2, 5),
-(6, 2, 6),
-(7, 2, 7),
-(8, 2, 8),
-(9, 3, 9),
-(10, 3, 10),
-(11, 3, 11),
-(12, 3, 12),
-(13, 3, 13),
-(14, 4, 14),
-(15, 4, 15),
-(16, 4, 16),
-(17, 4, 17),
-(18, 4, 18),
-(19, 5, 19),
-(20, 5, 20),
-(21, 5, 21),
-(22, 5, 22),
-(23, 6, 23),
-(24, 6, 24),
-(25, 6, 25),
-(26, 6, 26),
-(27, 7, 27),
-(28, 7, 28),
-(29, 7, 29),
-(30, 7, 30),
-(31, 8, 31),
-(32, 8, 32),
-(33, 8, 33),
-(34, 8, 34),
-(35, 9, 35),
-(36, 9, 36),
-(37, 9, 37),
-(38, 9, 38),
-(39, 10, 39),
-(40, 10, 40),
-(41, 10, 41),
-(42, 10, 42),
-(43, 11, 43),
-(44, 11, 44),
-(45, 11, 45),
-(46, 11, 46),
-(47, 12, 47),
-(48, 12, 48),
-(49, 12, 49),
-(50, 12, 50),
-(51, 13, 51),
-(52, 13, 52),
-(53, 13, 53),
-(54, 13, 54),
-(55, 13, 55),
-(56, 13, 56),
-(57, 14, 57),
-(58, 14, 58),
-(59, 14, 59),
-(60, 14, 60),
-(61, 15, 61),
-(62, 15, 62),
-(63, 15, 63),
-(64, 15, 64),
-(65, 16, 65),
-(66, 16, 66),
-(67, 16, 67),
-(68, 16, 68),
-(69, 16, 69),
-(70, 17, 70),
-(71, 17, 71),
-(72, 17, 72),
-(73, 17, 73),
-(74, 17, 74);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

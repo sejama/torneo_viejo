@@ -27,11 +27,13 @@ class AppFixtures extends Fixture
     {   
         $user = new User();
         $user->setUsername('admin');
-        $user->setPassword(
-            $this->userPasswordHasherInterface->hashPassword(
-                $user, "admin"
-            )
-        );
+        $user->setPassword('$2y$13$A6OB8TzpxgekoChlMNUVnOBO64rWEqKi0cZxY2mWAAlhXfHOn9LyG');
+        $user->setRoles(['ROLE_ADMIN']);
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setUsername('sejama');
+        $user->setPassword('$2y$13$n3NEgi98AUlL8u1C3J48l.WXpaZejOC/6xh61MrpfiSrcCsptCEHG.');
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
 
