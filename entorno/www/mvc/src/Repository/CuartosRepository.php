@@ -21,6 +21,14 @@ class CuartosRepository extends ServiceEntityRepository
         parent::__construct($registry, Cuartos::class);
     }
 
+    public function saveCartos(Cuartos $cuartos): Cuartos
+    {
+        $this->_em->persist($cuartos);
+        $this->_em->flush();
+
+        return $cuartos;
+    }
+
 //    /**
 //     * @return Cuartos[] Returns an array of Cuartos objects
 //     */

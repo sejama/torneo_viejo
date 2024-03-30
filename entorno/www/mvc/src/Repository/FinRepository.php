@@ -21,6 +21,14 @@ class FinRepository extends ServiceEntityRepository
         parent::__construct($registry, Fin::class);
     }
 
+    public function saveFin(Fin $fin): Fin
+    {
+        $this->_em->persist($fin);
+        $this->_em->flush();
+
+        return $fin;
+    }
+
 //    /**
 //     * @return Fin[] Returns an array of Fin objects
 //     */

@@ -21,6 +21,14 @@ class PlayOffRepository extends ServiceEntityRepository
         parent::__construct($registry, PlayOff::class);
     }
 
+    public function savePlayOff(PlayOff $playOff): PlayOff
+    {
+        $this->_em->persist($playOff);
+        $this->_em->flush();
+
+        return $playOff;
+    }
+
 //    /**
 //     * @return PlayOff[] Returns an array of PlayOff objects
 //     */

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\TorneoGeneroCategoria;
 use App\Form\TorneoGeneroCategoriaType;
+use App\Manager\PlayOffManager;
 use App\Manager\ZonaManager;
 use App\Repository\TorneoGeneroCategoriaRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -55,13 +56,62 @@ class TorneoGeneroCategoriaController extends AbstractController
     {
         $zonas = [];
         foreach ($torneoGeneroCategorium->getZonas() as $zona) {
-            $zonas[] = $zonaManager->calcularPosiciones($zona->getId());
+            $zonas[$zona->getId()] = $zonaManager->calcularPosiciones($zona->getId());
         }
         return $this->render('torneo_genero_categoria/armarplayoff.html.twig', [
             'torneo_genero_categorium' => $torneoGeneroCategorium,
             'zonas' => $zonas,
-
         ]);
+    }
+
+    #[Route('/{id}', name: 'app_torneo_genero_categoria_playoff_crear', methods: ['POST'])]
+    public function createPlayOff(
+        Request $request,
+        TorneoGeneroCategoria $torneoGeneroCategorium,
+        PlayOffManager $playOffManager
+    ): Response
+    {   
+        $equipos = [];
+        $oro = $plata = $bronce = false;
+
+        $inputCopaCuartos = $request->request->get("inputCopaCuartos");
+        $inputCopaSemis = $request->request->get("inputCopaSemis");
+        $inputCopaFinal = $request->request->get("inputCopaFinal");
+
+        if( $inputCopaCuartos !== null){
+            str_contains($inputCopaCuartos, "oro") ? $oro = true : $oro = false;
+            str_contains($inputCopaCuartos, "plata") ? $plata = true : $plata = false;
+            str_contains($inputCopaCuartos, "bronce") ? $bronce = true : $bronce = false;
+
+            $equipos[] = $request->request->get("cuartosPartido1Equipo1"); 
+            $equipos[] = $request->request->get("cuartosPartido1Equipo2"); 
+            $equipos[] = $request->request->get("cuartosPartido2Equipo1"); 
+            $equipos[] = $request->request->get("cuartosPartido2Equipo2");
+            $equipos[] = $request->request->get("cuartosPartido3Equipo1"); 
+            $equipos[] = $request->request->get("cuartosPartido3Equipo2"); 
+            $equipos[] = $request->request->get("cuartosPartido4Equipo1"); 
+            $equipos[] = $request->request->get("cuartosPartido4Equipo2");
+        }
+        if( $inputCopaSemis !== null){
+            str_contains($inputCopaSemis, "oro") ? $oro = true : $oro = false;
+            str_contains($inputCopaSemis, "plata") ? $plata = true : $plata = false;
+            str_contains($inputCopaSemis, "bronce") ? $bronce = true : $bronce = false;
+
+            $equipos[] = $request->request->get("semisPartido1Equipo1"); 
+            $equipos[] = $request->request->get("semisPartido1Equipo2"); 
+            $equipos[] = $request->request->get("semisPartido2Equipo1"); 
+            $equipos[] = $request->request->get("semisPartido2Equipo2");
+        }
+        if( $inputCopaFinal !== null){
+            str_contains($inputCopaFinal, "oro") ? $oro = true : $oro = false;
+            str_contains($inputCopaFinal, "plata") ? $plata = true : $plata = false;
+            str_contains($inputCopaFinal, "bronce") ? $bronce = true : $bronce = false;
+            
+            $equipos[] = $request->request->get("finalPartido1Equipo1"); 
+            $equipos[] = $request->request->get("finalPartido1Equipo2"); 
+        }
+        $playOffManager->armarPlayOff($torneoGeneroCategorium, $oro, $plata, $bronce, $equipos);
+        return $this->redirectToRoute('app_torneo_genero_categoria_index', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/{id}', name: 'app_torneo_genero_categoria_show', methods: ['GET'])]

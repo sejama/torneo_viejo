@@ -111,7 +111,7 @@
                         </div>
                     <h2>Partidos</h2>
                     {% for partido in partidos %}
-                        {% if partido.zona.id == key  %}
+                        {% if partido.zona != null and partido.zona.id == key  %}
                         <div class="card w-100" style="margin-top: 3px; background-color: #f8f9fa;">
                             <div class="card-body">
                                 {% if app.user %}

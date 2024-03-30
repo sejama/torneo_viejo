@@ -21,6 +21,14 @@ class SemisRepository extends ServiceEntityRepository
         parent::__construct($registry, Semis::class);
     }
 
+    public function saveSemis(Semis $semis): Semis
+    {
+        $this->_em->persist($semis);
+        $this->_em->flush();
+
+        return $semis;
+    }
+
 //    /**
 //     * @return Semis[] Returns an array of Semis objects
 //     */

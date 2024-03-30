@@ -18,7 +18,7 @@ class Partido
     private ?Cancha $cancha = null;
 
     #[ORM\ManyToOne(inversedBy: 'partidos')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Zona $zona = null;
 
     #[ORM\ManyToOne]

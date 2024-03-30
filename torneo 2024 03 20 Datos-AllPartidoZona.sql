@@ -81,6 +81,7 @@ INSERT INTO `torneo_genero_categoria` (`id`, `torneo_id`, `genero_id`, `categori
 
 INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
 (1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$A6OB8TzpxgekoChlMNUVnOBO64rWEqKi0cZxY2mWAAlhXfHOn9LyG');
+(2, 'sejama', '[\"ROLE_ADMIN\"]', '$2y$13$Y2u7otUCpBE.TCoJ32OqTOngMylR3hgbDZQmrmYPOMsAoZa8SiFdm');
 
 --
 -- Volcado de datos para la tabla `zona`
