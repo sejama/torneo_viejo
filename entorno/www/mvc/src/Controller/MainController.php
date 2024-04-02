@@ -40,6 +40,7 @@ class MainController extends AbstractController
         $posiciones = $zm->calcularPosicionesTodos();
         $partidos = $pr->findAll();
         $tgcs = $tgcr->findAll();
+        $playOffs = $tm->getPlayOffAll();
         return $this->render('main/index.html.twig', [
             'torneos' => $torneos,
             'torneoID' => $torneoID,
@@ -50,7 +51,8 @@ class MainController extends AbstractController
             'zonas' => $zonas,
             'posiciones' => $posiciones,
             'partidos' => $partidos,
-            'tgcs' => $tgcs
+            'tgcs' => $tgcs,
+            'playOffs' => $playOffs
         ]);
     }
 }

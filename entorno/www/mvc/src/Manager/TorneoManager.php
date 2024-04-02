@@ -2,7 +2,6 @@
 
 namespace App\Manager;
 
-use App\Entity\Categoria;
 use App\Entity\Partido;
 use App\Entity\Zona;
 use App\Entity\ZonaEquipo;
@@ -118,6 +117,31 @@ class TorneoManager{
             }
         }
         $this->torneoGeneroCategoriaRepository->actualizarTGC($torneoGeneroCategoria->setCreado(true));
+    }
+
+    public function getPlayOffAll(): array
+    {
+        $playOffs = [];
         
+        $tgcs = $this->torneoGeneroCategoriaRepository->findAll();
+
+        foreach ($tgcs as $tgc) {
+            $playOffsAll = $tgc->getPlayOffs();
+            foreach ($playOffsAll as $playOff) {
+                $playOffs[] = [
+                    'torneo' => $playOff->getTorneoGeneroCategoria()->getTorneo()->getId(),
+                    'genero' => $playOff->getTorneoGeneroCategoria()->getGenero()->getId(),
+                    'categoria' => $playOff->getTorneoGeneroCategoria()->getCategoria()->getId(),
+                    'oro' => $playOff->isOro(),
+                    'plata' => $playOff->isPlata(),
+                    'bronce' => $playOff->isBronce(),
+                    'cuartos' => $playOff->getCuartos(),
+                    'semis' => $playOff->getSemis(),
+                    'final' => $playOff->getFin()
+                ];
+            }
+        }
+
+        return $playOffs;
     }
 }
