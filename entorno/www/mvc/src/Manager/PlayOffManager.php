@@ -59,8 +59,8 @@ class PlayOffManager{
 
             for($i = 0; $i < 8; $i++){
                 $partido = new Partido();
-                $partido->setEquipoLocal($this->equipoRepository->find((int)$equipos[$i]));
-                $partido->setEquipoVisitante($this->equipoRepository->find((int)$equipos[$i++]));
+                $partido->setEquipoLocal($this->equipoRepository->find((int)$equipos[$i++]));
+                $partido->setEquipoVisitante($this->equipoRepository->find((int)$equipos[$i]));
 
                 $partidos[] = $partido;
                 
@@ -80,8 +80,8 @@ class PlayOffManager{
 
             for($i = 0; $i < 4; $i++){
                 $partido = new Partido();
-                $partido->setEquipoLocal($this->equipoRepository->find((int)$equipos[$i]));
-                $partido->setEquipoVisitante($this->equipoRepository->find((int)$equipos[$i++]));
+                $partido->setEquipoLocal($this->equipoRepository->find((int)$equipos[$i++]));
+                $partido->setEquipoVisitante($this->equipoRepository->find((int)$equipos[$i]));
 
                 $partidos[] = $partido;
 
