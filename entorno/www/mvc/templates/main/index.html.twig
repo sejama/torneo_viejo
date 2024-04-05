@@ -171,260 +171,854 @@
     {% if playOffs|length > 0 %}
     {% for playOff in playOffs %}
         {% if playOff.genero == generoID and playOff.categoria == categoriaID %}
+<!-- ORO -->
             {% if playOff.oro %}
                 <h2 class="text-center"> Play Offs - Oro </h2>
+<!-- ORO - Cuartos -->
                 {% if playOff.cuartos != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Cuartos de Final</h5>
-                        <div class="row">
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido1.equipoLocal.nombre }} vs {{ playOff.cuartos.partido1.equipoVisitante.nombre }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido2.equipoLocal.nombre }} vs {{ playOff.cuartos.partido2.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido2.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido2.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido3.equipoLocal.nombre }} vs {{ playOff.cuartos.partido3.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido3.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido3.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido3.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido3.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido4.equipoLocal.nombre }} vs {{ playOff.cuartos.partido4.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido4.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido4.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido4.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido4.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
+                    {% if playOff.semis == null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Semis de Final</h5>
-                        <div class="row">
-                            <div class="col-sm text-center">
-                                Ganador Partido N° {{ playOff.cuartos.partido1.id }} vs  Ganador Partido N° {{ playOff.cuartos.partido2.id }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Semis de Final 1</div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm text-center">
-                                Gandor {{ playOff.cuartos.partido3.id }} vs Gandor {{ playOff.cuartos.partido4.id }}
+                            <div class="row border"> 
+                                <div> Semis de Final 2</div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 3</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 4</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Final</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
+                {% endif %}
+<!-- ORO - Semis -->
                 {% if playOff.semis != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Semis de Final</h5>
-                        <div class="row">
-                            <div class="col-sm text-center">
-                                <div class="container text-center border">
-                                    <div class="row">
-                                        <div class="col-sm-12">Partido N° {{ playOff.semis.partido1.id }}</div>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet5 ?? 0 }}
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-5">{{ playOff.semis.partido1.equipoLocal.nombre }}</div>
-                                        <div class="col-sm-2">vs</div>
-                                        <div class="col-sm-5">{{ playOff.semis.partido1.equipoVisitante.nombre }}</div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet5 ?? 0 }}
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet5 ?? 0 }}</div>
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet5 ?? 0 }}</div>
-                                    </div>
-                                </div> 
+                                </div>
                             </div>
-                            <div class="col-md text-center">
-                                <div class="container text-center border">
-                                    <div class="row">
-                                        <div class="col-sm-12">Partido N° {{ playOff.semis.partido2.id }}</div>
+                            <div class="row border"> 
+                                <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido2.localSet1 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet2 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet3 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet4 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet5 ?? 0 }}
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-5">{{ playOff.semis.partido2.equipoLocal.nombre }}</div>
-                                        <div class="col-sm-2">vs</div>
-                                        <div class="col-sm-5">{{ playOff.semis.partido2.equipoVisitante.nombre }}</div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido2.visitanteSet1 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet2 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet3 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet4 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet5 ?? 0 }}
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet5 ?? 0 }}</div>
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet5 ?? 0 }}</div>
-                                    </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
-
+                    {% if playOff.final == null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Final</h5>
-                        <div class="row text-center">
-                            <div class="col-sm">
-                                Ganador Partido N° {{ playOff.semis.partido1.id }}  vs Ganador Partido N° {{ playOff.semis.partido2.id }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
+                {% endif %}
+<!-- ORO - Final -->
                 {% if playOff.final != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Final</h5>
-                        <div class="row text-center">
-                            <div class="col-sm">
-                                {{ playOff.final.partido.equipoLocal.nombre }} vs {{ playOff.final.partido.equipoVisitante.nombre }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.final.partido.equipoLocal.nombre }}</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.final.partido.equipoVisitante.nombre }}</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
             {% endif %}
+<!-- PLATA -->
             {% if playOff.plata %}
                 <h2 class="text-center"> Play Offs - Plata </h2>
+<!-- PLATA - Cuartos-->
                 {% if playOff.cuartos != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Cuartos de Final</h5>
-                        <div class="row">
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido1.equipoLocal.nombre }} vs {{ playOff.cuartos.partido1.equipoVisitante.nombre }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido2.equipoLocal.nombre }} vs {{ playOff.cuartos.partido2.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido2.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido2.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido3.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido3.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido3.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido3.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido4.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido4.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido4.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido4.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido3.equipoLocal.nombre }} vs {{ playOff.cuartos.partido3.equipoVisitante.nombre }}
+                    </div>
+                    {% if playOff.semis == null %}
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Semis de Final</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Semis de Final 1</div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm text-center">
-                                {{ playOff.cuartos.partido4.equipoLocal.nombre }} vs {{ playOff.cuartos.partido4.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Semis de Final 2</div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 3</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 4</div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Final</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
+                {% endif %}
+
+<!-- PLATA - Semis -->
                 {% if playOff.semis != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Semis de Final</h5>
-                        <div class="row">
-                            <div class="col text-center">
-                                <div class="container text-center border">
-                                    <div class="row">
-                                        <div class="col-sm-12">Partido N° {{ playOff.semis.partido1.id }}</div>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet5 ?? 0 }}
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-5">{{ playOff.semis.partido1.equipoLocal.nombre }}</div>
-                                        <div class="col-sm-2">vs</div>
-                                        <div class="col-sm-5">{{ playOff.semis.partido1.equipoVisitante.nombre }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.localSet5 ?? 0 }}</div>
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido1.visitanteSet5 ?? 0 }}</div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet5 ?? 0 }}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col text-center">
-                                <div class="container text-center border">
-                                    <div class="row">
-                                        <div class="col-sm-12">Partido N° {{ playOff.semis.partido2.id }}</div>
+                            <div class="row border"> 
+                                <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido2.localSet1 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet2 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet3 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet4 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet5 ?? 0 }}
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-5">{{ playOff.semis.partido2.equipoLocal.nombre }}</div>
-                                        <div class="col-sm-2">vs</div>
-                                        <div class="col-sm-5">{{ playOff.semis.partido2.equipoVisitante.nombre }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.localSet5 ?? 0 }}</div>
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet1 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet2 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet3 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet4 ?? 0 }}</div>
-                                        <div class="col-sm-1">{{ playOff.semis.partido2.visitanteSet5 ?? 0 }}</div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido2.visitanteSet1 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet2 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet3 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet4 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet5 ?? 0 }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% if playOff.final == null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Final</h5>
-                        <div class="row text-center">
-                            <div class="col">
-                                Ganador Partido N° {{ playOff.semis.partido1.id }}  vs Ganador Partido N° {{ playOff.semis.partido2.id }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
+                {% endif %}
+
+<!-- PLATA - Final -->
                 {% if playOff.final != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Final</h5>
-                        <div class="row text-center">
-                            <div class="col">
-                                {{ playOff.final.partido.equipoLocal.nombre }} vs {{ playOff.final.partido.equipoVisitante.nombre }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.final.partido.equipoLocal.nombre }}</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.final.partido.equipoVisitante.nombre }}</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
             {% endif %}
+<!-- BRONCE -->
             {% if playOff.bronce %}
                 <h2 class="text-center"> Play Offs - Bronce </h2>
+<!-- BRONCE - Cuartos -->
                 {% if playOff.cuartos != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Cuartos de Final</h5>
-                        <div class="row">
-                            <div class="col text-center">
-                                {{ playOff.cuartos.partido1.equipoLocal.nombre }} vs {{ playOff.cuartos.partido1.equipoVisitante.nombre }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido1.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col text-center">
-                                {{ playOff.cuartos.partido2.equipoLocal.nombre }} vs {{ playOff.cuartos.partido2.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido2.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido2.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido2.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido3.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido3.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido3.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido3.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido3.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido4.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido4.localSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.cuartos.partido4.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.cuartos.partido4.visitanteSet1 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet2 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet3 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet4 ?? 0 }}
+                                        {{ playOff.cuartos.partido4.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col text-center">
-                                {{ playOff.cuartos.partido3.equipoLocal.nombre }} vs {{ playOff.cuartos.partido3.equipoVisitante.nombre }}
+                    </div>
+                    {% if playOff.semis == null %}
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Semis de Final</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Semis de Final 1</div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col text-center">
-                                {{ playOff.cuartos.partido4.equipoLocal.nombre }} vs {{ playOff.cuartos.partido4.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Semis de Final 2</div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 3</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Cuartos de Final 4</div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Final</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
+                {% endif %}
+<!-- BRONCE - Semis -->
                 {% if playOff.semis != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Semis de Final</h5>
-                        <div class="row">
-                            <div class="col text-center">
-                                {{ playOff.semis.partido1.equipoLocal.nombre }} vs {{ playOff.semis.partido1.equipoVisitante.nombre }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.semis.partido1.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.semis.partido1.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col text-center">
-                                {{ playOff.semis.partido2.equipoLocal.nombre }} vs {{ playOff.semis.partido2.equipoVisitante.nombre }}
+                            <div class="row border"> 
+                                <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido2.localSet1 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet2 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet3 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet4 ?? 0 }}
+                                        {{ playOff.semis.partido2.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.semis.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.semis.partido2.visitanteSet1 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet2 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet3 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet4 ?? 0 }}
+                                        {{ playOff.semis.partido2.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if playOff.final == null %}
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Final</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 1</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>Ganador de Semi de Final 2</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
+                {% endif %}
+<!-- BRONCE - Final -->
                 {% if playOff.final != null %}
                     <div class="card mb-2">
                         <h5 class="card-header text-center">Final</h5>
-                        <div class="row text-center">
-                            <div class="col">
-                                {{ playOff.final.partido.equipoLocal.nombre }} vs {{ playOff.final.partido.equipoVisitante.nombre }}
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                <div> Final</div>
+                                <div class="col-5">
+                                    <div>{{ playOff.final.partido.equipoLocal.nombre }}</div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.final.partido.equipoVisitante.nombre }}</div>
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
