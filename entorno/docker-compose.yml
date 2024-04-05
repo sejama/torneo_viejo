@@ -1,7 +1,7 @@
 version: "3.9"
 services:
-  webserver:
-    container_name: PHP-webserver
+  sejama-webserver:
+    container_name: sejama-webserver
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,9 +10,12 @@ services:
     ports:
       - 8080:80
     links:
-      - mysql-db
+      - sejama-mysql-db
+    networks:
+      - sejama-network
 
-  mysql-db:
+  sejama-mysql-db:
+    container_name: sejama-mysql-db
     image: mysql:8.0.32
     environment:
        MYSQL_ROOT_PASSWORD: 'password'
@@ -26,14 +29,23 @@ services:
       - "3307:3307"
     volumes:
       - mydatavolume:/var/lib/mysql
-  phpmyadmin:
+    networks:
+      - sejama-network
+
+  sejama-phpmyadmin:
+    container_name: sejama-phpmyadmin
     image: phpmyadmin/phpmyadmin
     links:
-      - mysql-db
+      - sejama-mysql-db
     ports:
       - "8081:80"
     environment:
-      PMA_HOST: mysql-db
+      PMA_HOST: sejama-mysql-db
       MYSQL_ROOT_PASSWORD: 'password'
+    networks:
+      - sejama-network
+
 volumes:
   mydatavolume:
+networks:
+  sejama-network: {}

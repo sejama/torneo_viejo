@@ -1,2 +1,2 @@
 echo "accediendo al webserver"
-docker exec -it PHP-webserver /bin/bash
+docker exec -it sejama-webserver /bin/bash
