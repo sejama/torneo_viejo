@@ -21,10 +21,13 @@
             <div class="form-floating mb-1">
                 <select class="form-select" id="floatingSelectZona" name="zona" aria-label="Floating label select example" 
                     {% if app.user and app.user.roles[0] == 'ROLE_USER' %} disabled {% endif %}>
-                    <option value="{{partido.zona.id}}" selected>{{ partido.zona.id }}</option>
+                    {% if partido.zona != null %}
+                        <option value="{{partido.zona.id}}" selected>{{ partido.zona.id }}</option>
+                    {% endif %}
                 </select>
                 <label class="form-label" for="floatingSelectZona" name="zona">Zona:</label>
             </div>
+            
             <div class="row g-2">
                 <div class="col">
                     <div class="form-floating mb-1">
@@ -210,9 +213,9 @@
         }
         
         form.classList.add('was-validated')
-        //form.action="{{ path('app_partido_editar', {'id': partido.id}) }}"
-        //form.method="POST"
-        //form.submit()
+        form.action="{{ path('app_partido_editar', {'id': partido.id}) }}"
+        form.method="POST"
+        form.submit()
     })
 
 function validarSet(Poslocal, Posvisitante, set , puntos)

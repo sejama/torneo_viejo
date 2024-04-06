@@ -46,12 +46,17 @@ class PlayOffManager{
         bool $bronce = false,
         $equipos = []
         ){
+
+        $playOff = $this->playOffRepository->findOneBy(['torneoGeneroCategoria' => $torneoGeneroCategoria]);
+        if($playOff == null){
+            $playOff = new PlayOff();
+            $playOff->setTorneoGeneroCategoria($torneoGeneroCategoria);
+            $playOff->setOro($oro);
+            $playOff->setPlata($plata);
+            $playOff->setBronce($bronce); 
+        }
+
         
-        $playOff = new PlayOff();
-        $playOff->setTorneoGeneroCategoria($torneoGeneroCategoria);
-        $playOff->setOro($oro);
-        $playOff->setPlata($plata);
-        $playOff->setBronce($bronce);
         $partidos = [];
         if(count($equipos) === 8){
             $cuartos = new Cuartos();
