@@ -47,7 +47,7 @@ class PlayOffManager{
         $equipos = []
         ){
 
-        $playOff = $this->playOffRepository->findOneBy(['torneoGeneroCategoria' => $torneoGeneroCategoria]);
+        $playOff = $this->playOffRepository->findOneBy(['torneoGeneroCategoria' => $torneoGeneroCategoria, 'oro' => $oro, 'plata' => $plata, 'bronce' => $bronce]);
         if($playOff == null){
             $playOff = new PlayOff();
             $playOff->setTorneoGeneroCategoria($torneoGeneroCategoria);

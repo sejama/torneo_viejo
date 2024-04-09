@@ -60,24 +60,81 @@
                 </table>
             </div>
     {% endfor %}
+    {% set oroCuartos = false %}
+    {% set plataCuartos = false %}
+    {% set bronceCuartos  = false %}
+
+    {% set oroSemis = false %}
+    {% set plataSemis = false %}
+    {% set bronceSemis  = false %}
+
+    {% set oroFin = false %}
+    {% set plataFin = false %}
+    {% set bronceFin  = false %}
+
+    {% for playOff in torneo_genero_categorium.playOffs %}
+        {% if playOff.cuartos %}
+            {% if playOff.oro %}
+                {% set oroCuartos = true %}
+            {% endif %}
+            {% if playOff.plata %}
+                {% set plataCuartos = true %}
+            {% endif %}
+            {% if playOff.bronce %}
+                {% set bronceCuartos = true %}
+            {% endif %}
+        {% endif %}
+        {% if playOff.semis %}
+            {% if playOff.oro %}
+                {% set oroCuartos = true %}
+                {% set oroSemis = true %}
+            {% endif %}
+            {% if playOff.plata %}
+                {% set plataCuartos = true %}
+                {% set plataSemis = true %}
+            {% endif %}
+            {% if playOff.bronce %}
+                {% set bronceCuartos = true %}
+                {% set bronceSemis = true %}
+            {% endif %}
+        {% endif %}
+        {% if playOff.fin %}
+            {% if playOff.oro %}
+                {% set oroCuartos = true %}
+                {% set oroSemis = true %}
+                {% set oroFin = true %}
+            {% endif %}
+            {% if playOff.plata %}
+                {% set plataCuartos = true %}
+                {% set plataSemis = true %}
+                {% set plataFin = true %}
+            {% endif %}
+            {% if playOff.bronce %}
+                {% set bronceCuartos = true %}
+                {% set bronceSemis = true %}
+                {% set bronceFin = true %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    
     <div class="row">
         <div class="col-ms-4">
             <div>ORO</div>
-            <button type="button" id="btnCuartosOro" class="btn btn-primary">Armar Cuartos</button>
-            <button type="button" id="btnSemisOro" class="btn btn-primary">Armar Semis</button>
-            <button type="button" id="btnFinalOro" class="btn btn-primary">Armar Final</button>
+            <button type="button" id="btnCuartosOro" class="btn btn-primary" {% if oroCuartos %} disabled {% endif %} >Armar Cuartos</button>
+            <button type="button" id="btnSemisOro" class="btn btn-primary" {% if oroSemis %} disabled {% endif %}>Armar Semis</button>
+            <button type="button" id="btnFinalOro" class="btn btn-primary" {% if oroFin %} disabled {% endif %}>Armar Final</button>
         </div>
         <div class="col-ms-4">
             <div>PLATA</div>
-            <button type="button" id="btnCuartosPlata" class="btn btn-primary">Armar Cuartos</button>
-            <button type="button" id="btnSemisPlata" class="btn btn-primary">Armar Semis</button>
-            <button type="button" id="btnFinalPlata" class="btn btn-primary">Armar Final</button>
+            <button type="button" id="btnCuartosPlata" class="btn btn-primary" {% if plataCuartos %} disabled {% endif %}>Armar Cuartos</button>
+            <button type="button" id="btnSemisPlata" class="btn btn-primary" {% if plataSemis %} disabled {% endif %}>Armar Semis</button>
+            <button type="button" id="btnFinalPlata" class="btn btn-primary" {% if plataFin %} disabled {% endif %}>Armar Final</button>
         </div>
         <div class="col-ms-4">
             <div>BRONCE</div>
-            <button type="button" id="btnCuartosBronce" class="btn btn-primary">Armar Cuartos</button>
-            <button type="button" id="btnSemisBronce" class="btn btn-primary">Armar Semis</button>
-            <button type="button" id="btnFinalBronce" class="btn btn-primary">Armar Final</button>
+            <button type="button" id="btnCuartosBronce" class="btn btn-primary" {% if bronceCuartos %} disabled {% endif %}>Armar Cuartos</button>
+            <button type="button" id="btnSemisBronce" class="btn btn-primary" {% if bronceSemis %} disabled {% endif %}>Armar Semis</button>
+            <button type="button" id="btnFinalBronce" class="btn btn-primary" {% if bronceFin %} disabled {% endif %}>Armar Final</button>
         </div>
     </div>
     <form id="formCuartos" class="d-none needs-validation" novalidate action="{{ path('app_torneo_genero_categoria_playoff_crear', {'id': torneo_genero_categorium.id}) }}" method="POST">

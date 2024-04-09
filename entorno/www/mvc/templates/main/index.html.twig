@@ -529,7 +529,15 @@
                         <h5 class="card-header text-center">Cuartos de Final</h5>
                         <div class="container text-center">
                             <div class="row border"> 
-                                <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido1.id}) }}"><div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido1.equipoLocal.nombre }}</div>
                                     <div>
@@ -555,7 +563,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido2.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido2.id}) }}"><div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido2.equipoLocal.nombre }}</div>
                                     <div>
@@ -581,7 +597,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido3.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido3.id}) }}"><div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido3.equipoLocal.nombre }}</div>
                                     <div>
@@ -607,7 +631,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido4.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido4.id}) }}"><div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido4.equipoLocal.nombre }}</div>
                                     <div>
@@ -703,7 +735,15 @@
                         <h5 class="card-header text-center">Semis de Final</h5>
                         <div class="container text-center">
                             <div class="row border"> 
-                                <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.semis.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.semis.partido1.id}) }}"><div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.semis.partido1.equipoLocal.nombre }}</div>
                                     <div>
@@ -729,7 +769,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.semis.partido2.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.semis.partido2.id}) }}"><div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div></a>
+                                    {% else %}
+                                        <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.semis.partido2.equipoLocal.nombre }}</div>
                                     <div>
@@ -787,7 +835,15 @@
                         <h5 class="card-header text-center">Final</h5>
                         <div class="container text-center">
                             <div class="row border"> 
-                                <div> Final</div>
+                                {% if app.user %}
+                                    {% if playOff.final.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.final.partido1.id}) }}"><div> Final - Partido N° {{ playOff.final.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div> Final - Partido N° {{ playOff.final.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Final - Partido N° {{ playOff.final.partido1.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.final.partido.equipoLocal.nombre }}</div>
                                     <div>
@@ -815,7 +871,15 @@
                         <h5 class="card-header text-center">Cuartos de Final</h5>
                         <div class="container text-center">
                             <div class="row border"> 
-                                <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido1.id}) }}"><div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 1 - Partido N° {{ playOff.cuartos.partido1.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido1.equipoLocal.nombre }}</div>
                                     <div>
@@ -841,7 +905,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido2.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido2.id}) }}"><div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 2 - Partido N° {{ playOff.cuartos.partido2.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido2.equipoLocal.nombre }}</div>
                                     <div>
@@ -867,7 +939,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido3.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido3.id}) }}"><div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 3 - Partido N° {{ playOff.cuartos.partido3.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido3.equipoLocal.nombre }}</div>
                                     <div>
@@ -893,7 +973,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.cuartos.partido4.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.cuartos.partido4.id}) }}"><div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div></a>
+                                    {% else %}
+                                        <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Cuartos de Final 4 - Partido N° {{ playOff.cuartos.partido4.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.cuartos.partido4.equipoLocal.nombre }}</div>
                                     <div>
@@ -988,7 +1076,15 @@
                         <h5 class="card-header text-center">Semis de Final</h5>
                         <div class="container text-center">
                             <div class="row border"> 
-                                <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.semis.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.semis.partido1.id}) }}"><div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Semis de Final 1 - Partido N° {{ playOff.semis.partido1.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.semis.partido1.equipoLocal.nombre }}</div>
                                     <div>
@@ -1014,7 +1110,15 @@
                                 </div>
                             </div>
                             <div class="row border"> 
-                                <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                {% if app.user %}
+                                    {% if playOff.semis.partido2.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.semis.partido2.id}) }}"><div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div></a>
+                                    {% else %}
+                                        <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Semis de Final 2 - Partido N° {{ playOff.semis.partido2.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.semis.partido2.equipoLocal.nombre }}</div>
                                     <div>
@@ -1071,7 +1175,15 @@
                         <h5 class="card-header text-center">Final</h5>
                         <div class="container text-center">
                             <div class="row border"> 
-                                <div> Final</div>
+                                {% if app.user %}
+                                    {% if playOff.final.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.final.partido1.id}) }}"><div> Final - Partido N° {{ playOff.final.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div> Final - Partido N° {{ playOff.final.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Final - Partido N° {{ playOff.final.partido1.id }}</div>
+                                {% endif %}
                                 <div class="col-5">
                                     <div>{{ playOff.final.partido.equipoLocal.nombre }}</div>
                                     <div>

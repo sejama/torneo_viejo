@@ -25,17 +25,23 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {   
-        $user = new User();
-        $user->setUsername('admin');
-        $user->setPassword('$2y$13$A6OB8TzpxgekoChlMNUVnOBO64rWEqKi0cZxY2mWAAlhXfHOn9LyG');
-        $user->setRoles(['ROLE_ADMIN']);
-        $manager->persist($user);
+        $admin = new User();
+        $admin->setUsername('admin');
+        $admin->setPassword('$2y$13$A6OB8TzpxgekoChlMNUVnOBO64rWEqKi0cZxY2mWAAlhXfHOn9LyG');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $manager->persist($admin);
 
-        $user = new User();
-        $user->setUsername('sejama');
-        $user->setPassword('$2y$13$n3NEgi98AUlL8u1C3J48l.WXpaZejOC/6xh61MrpfiSrcCsptCEHG.');
-        $user->setRoles(['ROLE_ADMIN']);
-        $manager->persist($user);
+        $sejama = new User();
+        $sejama->setUsername('sejama');
+        $sejama->setPassword('$2y$13$n3NEgi98AUlL8u1C3J48l.WXpaZejOC/6xh61MrpfiSrcCsptCEHG.');
+        $sejama->setRoles(['ROLE_ADMIN']);
+        $manager->persist($sejama);
+
+        $planillero = new User();
+        $planillero->setUsername('planillero');
+        $planillero->setPassword('$2y$13$VX8lT3XP5RfdCpM7/WAO..li/mznaOSH/glfbf3mZVdi26SsZz86m');
+        $planillero->setRoles([]);
+        $manager->persist($planillero);
 
         $torneo = new Torneo();
         $torneo->setNombre('Torneo de prueba');

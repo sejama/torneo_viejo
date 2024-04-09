@@ -128,17 +128,49 @@ class TorneoManager{
         foreach ($tgcs as $tgc) {
             $playOffsAll = $tgc->getPlayOffs();
             foreach ($playOffsAll as $playOff) {
-                $playOffs[] = [
-                    'torneo' => $playOff->getTorneoGeneroCategoria()->getTorneo()->getId(),
-                    'genero' => $playOff->getTorneoGeneroCategoria()->getGenero()->getId(),
-                    'categoria' => $playOff->getTorneoGeneroCategoria()->getCategoria()->getId(),
-                    'oro' => $playOff->isOro(),
-                    'plata' => $playOff->isPlata(),
-                    'bronce' => $playOff->isBronce(),
-                    'cuartos' => $playOff->getCuartos(),
-                    'semis' => $playOff->getSemis(),
-                    'final' => $playOff->getFin()
-                ];
+                if($playOff->isOro()){
+                    $playOffs[] = [
+                        'torneo' => $playOff->getTorneoGeneroCategoria()->getTorneo()->getId(),
+                        'genero' => $playOff->getTorneoGeneroCategoria()->getGenero()->getId(),
+                        'categoria' => $playOff->getTorneoGeneroCategoria()->getCategoria()->getId(),
+                        'oro' => $playOff->isOro(),
+                        'plata' => $playOff->isPlata(),
+                        'bronce' => $playOff->isBronce(),
+                        'cuartos' => $playOff->getCuartos(),
+                        'semis' => $playOff->getSemis(),
+                        'final' => $playOff->getFin()
+                    ];
+                }
+            }
+            foreach ($playOffsAll as $playOff) {
+                if($playOff->isPlata()){
+                    $playOffs[] = [
+                        'torneo' => $playOff->getTorneoGeneroCategoria()->getTorneo()->getId(),
+                        'genero' => $playOff->getTorneoGeneroCategoria()->getGenero()->getId(),
+                        'categoria' => $playOff->getTorneoGeneroCategoria()->getCategoria()->getId(),
+                        'oro' => $playOff->isOro(),
+                        'plata' => $playOff->isPlata(),
+                        'bronce' => $playOff->isBronce(),
+                        'cuartos' => $playOff->getCuartos(),
+                        'semis' => $playOff->getSemis(),
+                        'final' => $playOff->getFin()
+                    ];
+                }
+            }
+            foreach ($playOffsAll as $playOff) {
+                if($playOff->isBronce()){
+                    $playOffs[] = [
+                        'torneo' => $playOff->getTorneoGeneroCategoria()->getTorneo()->getId(),
+                        'genero' => $playOff->getTorneoGeneroCategoria()->getGenero()->getId(),
+                        'categoria' => $playOff->getTorneoGeneroCategoria()->getCategoria()->getId(),
+                        'oro' => $playOff->isOro(),
+                        'plata' => $playOff->isPlata(),
+                        'bronce' => $playOff->isBronce(),
+                        'cuartos' => $playOff->getCuartos(),
+                        'semis' => $playOff->getSemis(),
+                        'final' => $playOff->getFin()
+                    ];
+                }
             }
         }
 
