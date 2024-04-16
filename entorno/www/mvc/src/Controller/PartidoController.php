@@ -94,6 +94,8 @@ class PartidoController extends AbstractController
             $partido->setVisitanteSet4($request->request->get('visitanteSet4') ? (int)$request->request->get('visitanteSet4') : null);
             $partido->setLocalSet5($request->request->get('localSet5') ? (int)$request->request->get('localSet5') : null);
             $partido->setVisitanteSet5($request->request->get('visitanteSet5') ? (int)$request->request->get('visitanteSet5') : null);
+            $partido->setHorario(new \DateTimeImmutable($request->request->get('horarioFecha') . ' ' . $request->request->get('horarioHora')));
+
             //$partido->setUpdated($this->getUser());
             $pr->updatePartido($partido);
             return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
