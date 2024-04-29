@@ -7,15 +7,17 @@ use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\Label\Font\NotoSans;
+use Endroid\QrCode\Label\Font\OpenSans;
 use Endroid\QrCode\Label\LabelAlignment;
 use Endroid\QrCode\RoundBlockSizeMode;
+use Endroid\QrCode\Writer\PdfWriter;
 use Endroid\QrCode\Writer\PngWriter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
+use TCPDF;
 
 #[AsCommand(
     name: 'app:crear-planillas',
@@ -37,28 +39,97 @@ class PlanillasCommand extends Command
 
         foreach ($partidos as $partido) {
             $output->writeln($partido->getId() . ' - ' . $partido->getEquipoLocal()->getNombre() . ' vs ' . $partido->getEquipoVisitante()->getNombre());
-
-
             $result = Builder::create()
-            ->writer(new PngWriter())
-            ->writerOptions([])
-            ->data('https://torneo.sejama.com.ar/partido/'. $partido->getId() .'/editar')
-            ->encoding(new Encoding('UTF-8'))
-            ->errorCorrectionLevel(ErrorCorrectionLevel::High)
-            ->size(300)
-            ->margin(10)
-            ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
-            ->logoPath(__DIR__.'/assets/nuevo.png')
-            ->logoResizeToWidth(75)
-            ->logoPunchoutBackground(true)
-            ->labelText('Partido '. $partido->getId(). ' - ' .$partido->getEquipoLocal()->getNombre() . ' vs ' . $partido->getEquipoVisitante()->getNombre())
-            ->labelFont(new NotoSans(10))
-            ->labelAlignment(LabelAlignment::Center)
-            ->validateResult(false)
-            ->build();
+                ->writer(new PngWriter())
+                ->writerOptions([])
+                ->data('https://torneo.sejama.com.ar/partido/'. $partido->getId() .'/editar')
+                ->encoding(new Encoding('UTF-8'))
+                ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+                ->size(300)
+                ->margin(10)
+                ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+                ->logoPath(__DIR__.'/assets/nuevo.png')
+                ->logoResizeToWidth(75)
+                ->logoPunchoutBackground(true)
+                ->labelText('Partido '. $partido->getId())
+                ->labelFont(new OpenSans(30))
+                ->labelAlignment(LabelAlignment::Center)
+                ->validateResult(false)
+                ->build();
 
             // Save it to a file
             $result->saveToFile(__DIR__.'/assets/qr/partido-'. $partido->getId() .'.png');
+
+            // Generate PDF
+            $pdf = new TCPDF('L', 'mm', 'A4', true, 'UTF-8', false);
+            
+            $pdf->AddPage();
+            $pdf->SetMargins(0, 0, 0, true);
+            $pdf->SetAutoPageBreak(false, 0);
+            
+            $pdf->Image(__DIR__.'/assets/qr/planilla.png', 0, 0, 310 , 215 , '', '', '', true, 300, '', false, false, 0);
+            $pdf->Image(__DIR__.'/assets/qr/partido-'. $partido->getId() .'.png', 260, 5, 30 , 30 , '', '', '', true, 300, '', false, false, 0);
+
+            $pdf->SetFont('helvetica', 'B', 10);
+            //Sede
+            $pdf->SetXY(30.5, 32);
+            if($partido->getCancha() != null){
+                $pdf->Write(0, strtoupper($partido->getCancha()->getClub()->getNombre()));
+            }else{
+                $pdf->Write(0, 'SIN SEDE');
+            }
+            //Cancha
+            $pdf->SetXY(98, 32);
+            if($partido->getCancha() != null){
+                $pdf->Write(0, strtoupper($partido->getCancha()->getNombre()));
+            }else{
+                $pdf->Write(0, 'SIN CANCHA');
+            }
+
+            //Categoria
+            $pdf->SetXY(147, 32);
+            $pdf->Write(0, strtoupper($partido->getEquipoLocal()->getTorneoGeneroCategoria()->getCategoria()->getNombre()));
+
+            //Rama
+            $pdf->SetXY(176, 32);
+            $pdf->Write(0, strtoupper($partido->getEquipoLocal()->getTorneoGeneroCategoria()->getGenero()->getNombre()));
+
+            //Fecha y Hora
+            $pdf->SetXY(236, 32);
+            if($partido->getHorario() != null){
+                $pdf->Write(0, $partido->getHorario()->format('d/m/Y H:i'));
+            }else{
+                $pdf->Write(0, 'SIN HORARIO');
+            }
+
+            //Set 1
+            // Ubicacion Local Set 1
+            $pdf->SetXY(36, 45.8);
+            $pdf->Write(0, $partido->getEquipoLocal()->getNombre());
+            // Ubicacion Visitante Set 1
+            $pdf->SetXY(101, 45.8);
+            $pdf->Write(0, $partido->getEquipoVisitante()->getNombre());
+            
+            //Set 2
+             // Ubicacion Local Set 2
+             $pdf->SetXY(174, 45.8);
+             $pdf->Write(0, $partido->getEquipoLocal()->getNombre());
+             // Ubicacion Visitante Set 2
+             $pdf->SetXY(236, 45.8);
+             $pdf->Write(0, $partido->getEquipoVisitante()->getNombre());
+            
+            //Set 3
+            //Ubicacion Local Set 3
+            $pdf->SetXY(36, 104.5);
+            $pdf->Write(0, $partido->getEquipoLocal()->getNombre());
+            // Ubicacion Visitante Set 3
+            $pdf->SetXY(101, 104.5);
+            $pdf->Write(0, $partido->getEquipoVisitante()->getNombre());         
+            
+            $pdf->Output(__DIR__.'/assets/pdf/partido-'. $partido->getId() .'.pdf', 'F');
+
+            
+            
         }
         return Command::SUCCESS;
 

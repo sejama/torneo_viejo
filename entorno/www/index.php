@@ -1,7 +1,7 @@
 <?php
 echo "Testing a PHP Apache Docker Container";
 
-$host = 'mysql-db';
+$host = 'sejama-mysql-db';
 $user = 'user';
 $pass = 'pass';
 $db = 'test_db';
