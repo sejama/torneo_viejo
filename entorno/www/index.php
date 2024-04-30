@@ -14,6 +14,8 @@ if ($conn->connect_error) {
 echo "<br>";
 echo "Connected to MySQL successfully";
 
+echo phpinfo();
+
 $conn->close();
 
 ?>

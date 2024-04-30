@@ -51,9 +51,9 @@ class PlanillasCommand extends Command
                 ->logoPath(__DIR__.'/assets/nuevo.png')
                 ->logoResizeToWidth(75)
                 ->logoPunchoutBackground(true)
-                ->labelText('Partido '. $partido->getId())
-                ->labelFont(new OpenSans(30))
-                ->labelAlignment(LabelAlignment::Center)
+                //->labelText('Partido '. $partido->getId())
+                //->labelFont(new OpenSans(30))
+                //->labelAlignment(LabelAlignment::Center)
                 ->validateResult(false)
                 ->build();
 
@@ -68,7 +68,7 @@ class PlanillasCommand extends Command
             $pdf->SetAutoPageBreak(false, 0);
             
             $pdf->Image(__DIR__.'/assets/qr/planilla.png', 0, 0, 310 , 215 , '', '', '', true, 300, '', false, false, 0);
-            $pdf->Image(__DIR__.'/assets/qr/partido-'. $partido->getId() .'.png', 260, 5, 30 , 30 , '', '', '', true, 300, '', false, false, 0);
+            $pdf->Image(__DIR__.'/assets/qr/partido-'. $partido->getId() .'.png', 260, 4, 29 , 29 , '', '', '', true, 300, '', false, false, 0);
 
             $pdf->SetFont('helvetica', 'B', 10);
             //Sede
@@ -102,6 +102,10 @@ class PlanillasCommand extends Command
                 $pdf->Write(0, 'SIN HORARIO');
             }
 
+            // Partido N° XX
+            $pdf->setXY(262,35);
+            $pdf->Write(0, 'PARTIDO N° '. $partido->getId());
+
             //Set 1
             // Ubicacion Local Set 1
             $pdf->SetXY(36, 45.8);
@@ -128,8 +132,6 @@ class PlanillasCommand extends Command
             
             $pdf->Output(__DIR__.'/assets/pdf/partido-'. $partido->getId() .'.pdf', 'F');
 
-            
-            
         }
         return Command::SUCCESS;
 
@@ -147,7 +149,7 @@ class PlanillasCommand extends Command
             ->setDescription('Creador de planillas')
             // the command help shown when running the command with the "--help" option
             ->setHelp('Este comando permite crear planillas de partidos.')
-            ->addArgument('csv', InputArgument::REQUIRED, 'Ruta donde se encuentra el archivo CSV con los partidos a crear.')
+            //->addArgument('csv', InputArgument::REQUIRED, 'Ruta donde se encuentra el archivo CSV con los partidos a crear.')
         ;
     }
 }
