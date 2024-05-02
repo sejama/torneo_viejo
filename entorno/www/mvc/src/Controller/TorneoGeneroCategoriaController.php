@@ -7,6 +7,7 @@ use App\Form\TorneoGeneroCategoriaType;
 use App\Manager\PlayOffManager;
 use App\Manager\ZonaManager;
 use App\Repository\TorneoGeneroCategoriaRepository;
+use App\Repository\ZonaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,16 +52,19 @@ class TorneoGeneroCategoriaController extends AbstractController
     #[Route('/{id}', name: 'app_torneo_genero_categoria_playoff', methods: ['GET'])]
     public function armarplayoff(
         TorneoGeneroCategoria $torneoGeneroCategorium,
-        ZonaManager $zonaManager
+        ZonaManager $zonaManager,
+        ZonaRepository $zonaRepository
     ): Response
     {
         $zonas = [];
+        $zonasNombre = $zonaRepository->findAll();
         foreach ($torneoGeneroCategorium->getZonas() as $zona) {
             $zonas[$zona->getId()] = $zonaManager->calcularPosiciones($zona->getId());
         }
         return $this->render('torneo_genero_categoria/armarplayoff.html.twig', [
             'torneo_genero_categorium' => $torneoGeneroCategorium,
             'zonas' => $zonas,
+            'zonasNombre' => $zonasNombre
         ]);
     }
 

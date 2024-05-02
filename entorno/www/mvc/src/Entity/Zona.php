@@ -34,6 +34,9 @@ class Zona
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $clasificanBronce = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nombre = null;
+
     public function __construct()
     {
         $this->zonaEquipos = new ArrayCollection();
@@ -149,6 +152,18 @@ class Zona
     public function setClasificanBronce(?int $clasificanBronce): static
     {
         $this->clasificanBronce = $clasificanBronce;
+
+        return $this;
+    }
+
+    public function getNombre(): ?string
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre(string $nombre): static
+    {
+        $this->nombre = $nombre;
 
         return $this;
     }

@@ -1,0 +1,223 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Torneo - Reglamento{% endblock %}
+
+{% block body %}
+<div class="container-md">
+    <div class="row">
+        <div class="col">
+            <h1>FORMA DE DISPUTA</h1>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <h2>FEMENINO +35 (F35)</h2>
+                    </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p>
+                            LA CATEGORIA +35 FEMENINA LA VAN A DISPUTAR 16 EQUIPOS REPARTIDOS EN 4 ZONAS DE 4. 
+                        </p>
+                        <p>
+                            LOS DOS PRIMEROS DE CADA ZONA PASAN A CUARTOS DE FINALES DE COPA DE ORO, LOS 3ROS Y 4TOS PASAN A LA COPA DE PLATA DISPUTANDO 4TOS CON CRUCES DE ZONA.
+                        </p>
+                        <h3>COPA DE ORO</h3>
+                        <h4><li>Cuartos de final</li></h4>
+                        <ol>
+                            <li>1RO ZONA A VS 2DO ZONA D</li>
+                            <li>1RO ZONA B VS 2DO ZONA C</li>
+                            <li>1RO ZONA C VS 2DO ZONA B</li>
+                            <li>1RO ZONA D VS 2DO ZONA A</li>
+                        </ol>
+                        <h4><li>Semis de final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Cuarto VS Ganador 3er Cuarto</li>
+                            <li>Ganador 2do Cuarto VS Ganador 4to Cuarto</li>
+                        </ol>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Semi VS Ganador 2da Semi</li>
+                        </ol>
+                        <h4><li>3er y 4to Puesto</li></h4>
+                        <ol>
+                            <li>Perdedor 1er Semi VS Perdedor 2da Semi</li>
+                        </ol>
+                        <h3>COPA DE PLATA</h3>
+                        <h4><li>Cuartos de final</li></h4>
+                        <ol>
+                            <li>3RO ZONA A VS 4TO ZONA C</li>
+                            <li>3RO ZONA B VS 4TO ZONA D</li>
+                            <li>3RO ZONA C VS 4TO ZONA A</li>
+                            <li>3RO ZONA D VS 4TO ZONA B</li>
+                        </ol>
+                        <h4><li>Semis de final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Cuarto VS Ganador 3er Cuarto</li>
+                            <li>Ganador 2do Cuarto VS Ganador 4to Cuarto</li>
+                        </ol>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Semi VS Ganador 2da Semi</li>
+                        </ol>
+                        <h4><li>3er y 4to Puesto</li></h4>
+                        <ol>
+                            <li>Perdedor 1er Semi VS Perdedor 2da Semi</li>
+                        </ol>
+                    </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <h2>FEMENINO +40 (F40)</h2>
+                    </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p>
+                            LA CATEGORIA +40 LA VAN A DISPUTAR 12 EQUIPOS DISTRIBUIDOS EN 3 ZONAS DE 4 EQ CADA UNA.
+                        </p>
+                        <p>
+                            LOS 2 PRIMEROS DE CADA ZONA CONFORMARAN 2 TRIANGULARES DE ORO, LOS 3ERO Y 4TOS CONFORMARAN LOS TRIANGULARES DE PLATA.
+                        </p>
+                        <h3>COPA DE ORO</h3>
+                        <h4><li>TRIANGULAR DE ORO</li></h4>
+                        <ol>TRIANGULAR 1
+                            <li>1RO ZONA E</li>
+                            <li>2DO ZONA F</li>
+                            <li>2DO ZONA G</li>
+                        </ol>
+                        <ol>TRIANGULAR 2
+                            <li>1RO ZONA F</li>
+                            <li>1RO ZONA G</li>
+                            <li>2DO ZONA E</li>
+                        </ol>
+                        <p>EL GANADORA DEL TRIANGULAR 1 Y TRIANGULAR 2, DISPUTARAN LA FINAL, Y LOS QUE QUEDARON SEGUNDOS DE CADA TRIANGULAR DISPUTARAN 3ER Y 4TO PUESTO DE LA COPA.</p>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>1ro TRIANGULAR 1 VS 1ro TRIANGULAR 2</li>
+                        </ol>
+                        <h4><li>3er y 4to Puesto</li></h4>
+                        <ol>
+                            <li>2do TRIANGULAR 1 VS 2do TRIANGULAR 2</li>
+                        </ol>
+                        <h3>COPA DE PLATA</h3>
+                        <h4><li>TRIANGULAR DE PLATA</li></h4>
+                        <ol>TRIANGULAR 1
+                            <li>3RO ZONA E</li>
+                            <li>4TO ZONA F</li>
+                            <li>4TO ZONA G</li>
+                        </ol>
+                        <ol>TRIANGULAR 2
+                            <li>3RO ZONA F</li>
+                            <li>3RO ZONA G</li>
+                            <li>4TO ZONA E</li>
+                        </ol>
+                        <p>EL GANADORA DEL TRIANGULAR 1 Y TRIANGULAR 2, DISUTARAN LA FINAL, Y LOS QUE QUEDARON SEGUNDOS DE CADA TRIANGULAR DISPUTARAN 3ER Y 4TO PUESTO DE LA COPA.</p>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>1ro TRIANGULAR 1 VS 1ro TRIANGULAR 2</li>
+                        </ol>
+                        <h4><li>3er y 4to Puesto</li></h4>
+                        <ol>
+                            <li>2do TRIANGULAR 1 VS 2do TRIANGULAR 2</li>
+                        </ol>
+                    </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <h2>FEMENINO +45 (F45)</h2>
+                    </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p>
+                            LA CATEGORIA +45 DISPUTARA UNA ZONA UNICA DE 7 EQ. JUGARAN TODOS CONTRA TODOS.
+                        </p>
+                        <p>
+                            LOS 2 PRIMEROS EQ MEJOR CLASIFICADOS, DISPUTARAN UNA FINAL UNICA, LOS 3ER Y 4TO PUESTOS DEFINIRAR 3Y4 COPA DE ORO.
+                        </p>
+                        <p>
+                            LOS QUE QUEDEN 5TO Y 6TO DEFINIRAN LA COPA DE PLATA, Y EL EQUIPO QUE QUEDE 7MO, RECIBIRA EL TROFEO DE 3ER PUESTO COPA PLATA.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        <h2>MASCULINO +42 (M42)</h2>
+                    </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p>
+                            LA CATEGORIA +42 LA VAN A DISPUTAR 8 EQUIPOS EN 2 ZONAS DE 4 EQUIPOS, JUGARAN TODOS CONTRA TODOS EN LA ZONA Y PASARAN A SEMIFINALES LOS 2 PRIMEROS DE CADA ZONA, 
+                            CON CRUCES DE LLAVE. 
+                            LOS 3ROS Y 4TOS, JUGARAN LA COPA DE PLATA, CON CRUCES DE LLAVE.
+                        </p>
+                        <h3>COPA DE ORO</h3>
+                        <h4><li>Semis de final</li></h4>
+                        <ol>
+                            <li>1RO ZONA 1 VS 2DO ZONA 2</li>
+                            <li>1RO ZONA 2 VS 2DO ZONA 1</li>
+                        </ol>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Semi VS Ganador 2da Semi</li>
+                        </ol>
+                        <h3>COPA DE PLATA</h3>
+                        <h4><li>Semis de final</li></h4>
+                        <ol>
+                            <li>3RO ZONA 1 VS 4TO ZONA 2</li>
+                            <li>3RO ZONA 2 VS 4TO ZONA 1</li>
+                        </ol>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Semi VS Ganador 2da Semi</li>
+                        </ol>
+                    </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        <h2>MASCULINO +50 (M50)</h2>
+                    </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p>
+                            LA CATEGORIA +50 LA VAN A DISPUTAR 8 EQUIPOS EN 2 ZONAS DE 4 EQUIPOS, JUGARAN TODOS CONTRA TODOS EN LA ZONA Y PASARAN A SEMIFINALES LOS 2 PRIMEROS DE CADA ZONA, 
+                            CON CRUCES DE LLAVE. LOS 3ROS Y 4TOS, JUGARAN LA COPA DE PLATA, CON CRUCES DE LLAVE.
+                        </p>
+                        <h3>COPA DE ORO</h3>
+                        <h4><li>Semis de final</li></h4>
+                        <ol>
+                            <li>1RO ZONA 3 VS 2DO ZONA 4</li>
+                            <li>1RO ZONA 4 VS 2DO ZONA 3</li>
+                        </ol>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Semi VS Ganador 2da Semi</li>
+                        </ol>
+                        <h3>COPA DE PLATA</h3>
+                        <h4><li>Semis de final</li></h4>
+                        <ol>
+                            <li>3RO ZONA 3 VS 4TO ZONA 4</li>
+                            <li>3RO ZONA 4 VS 4TO ZONA 3</li>
+                        </ol>
+                        <h4><li>Final</li></h4>
+                        <ol>
+                            <li>Ganador 1er Semi VS Ganador 2da Semi</li>
+                        </ol>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

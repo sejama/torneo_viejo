@@ -103,6 +103,7 @@
                     </div>
                 </div>
             </div>
+            <!--
             <div class="row g-2 mb-1">
                 <div class="col">
                     <div class="form-floating">
@@ -121,6 +122,8 @@
                     </div>
                 </div>
             </div>
+            -->
+            <!--
             <div class="row g-2 mb-1">
                 <div class="col">
                     <div class="form-floating">
@@ -139,6 +142,7 @@
                     </div>
                 </div>
             </div>
+            -->
             <div class="row g-2 mb-1">
                 <div class="col">
                     <div class="form-floating">
@@ -185,14 +189,13 @@
     btnEditarPartido.addEventListener('click', function(event) {
         let local = visitante = 0;
         const form = document.querySelector('.needs-validation')
-        if (!form.checkValidity()) 
-        {
+        const validadorSet1 = validarSet(0, 1, 1, 25)
+        const validadorSet2 = validarSet(2, 3, 2, 25)
+        const validadorSet3 = validarSet(4, 5, 3, 15)
+        if (!form.checkValidity() || !validadorSet1 || !validadorSet2 || !validadorSet3){
             event.preventDefault()
             event.stopPropagation()
         }else{
-            validarSet(0, 1, 1, 25)
-            validarSet(2, 3, 2, 25)
-            validarSet(4, 5, 3, 15)
             if (inputs[0].value > 0 || inputs[1].value > 0) {
                 if ( inputs[0].value < inputs[1].value) {
                     visitante++
@@ -220,11 +223,12 @@
                 event.preventDefault()
                 event.stopPropagation()
             }
+            form.classList.add('was-validated')
+            form.action="{{ path('app_partido_editar', {'id': partido.id}) }}"
+            form.method="POST"
+            form.submit()
         }
-        form.classList.add('was-validated')
-        form.action="{{ path('app_partido_editar', {'id': partido.id}) }}"
-        form.method="POST"
-        form.submit()
+        
     })
 
 function validarSet(Poslocal, Posvisitante, set , puntos)
@@ -236,8 +240,7 @@ function validarSet(Poslocal, Posvisitante, set , puntos)
             if (inputs[Poslocal].value - inputs[Posvisitante].value > 2 || inputs[Poslocal].value - inputs[Posvisitante].value < -2)
             {
                 alert('La diferencia de puntos entre los equipos debe ser de 2 en set '+set+'!')
-                    event.preventDefault()
-                    event.stopPropagation()
+                return false
             }
         }
         if (inputs[Poslocal].value >= puntos || inputs[Posvisitante].value >= puntos)
@@ -245,15 +248,14 @@ function validarSet(Poslocal, Posvisitante, set , puntos)
             if (inputs[Poslocal].value - inputs[Posvisitante].value > -2 && inputs[Poslocal].value - inputs[Posvisitante].value < 2)
             {
                 alert('La diferencia de puntos entre los equipos debe ser mayor o igual a 2 en set '+set+'!')
-                    event.preventDefault()
-                    event.stopPropagation()
+                return false
             }
         } else {
             alert('Los puntos de un set deben ser mayor o igual a '+puntos+' en set '+set+'!')
-            event.preventDefault()
-            event.stopPropagation()
+            return false
         }
     }
+    return true
 }
 </script>
 

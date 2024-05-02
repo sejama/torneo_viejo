@@ -11,18 +11,23 @@
                 <th>Id</th>
                 <th>Zona</th>
                 <th>Cancha</th>
+                <th>dd/mm/aaaa hh:mm</th>
                 <th>Equipo Local</th>
                 <th>Set 1</th>
                 <th>Set 2</th>
                 <th>Set 3</th>
+                <!--
                 <th>Set 4</th>
                 <th>Set 5</th>
+                -->
                 <th>Equipo Visitante</th>
                 <th>Set 1</th>
                 <th>Set 2</th>
                 <th>Set 3</th>
+                <!--
                 <th>Set 4</th>
                 <th>Set 5</th>
+                -->
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -32,18 +37,23 @@
                 <td>{{ partido.id }}</td>
                 <td>{{ partido.zona.id }}</td>
                 <td>{% if partido.cancha %}{{ partido.cancha.club.nombre }} - {{ partido.cancha.nombre }}{% else %} - {% endif %}</td>
+                <td>{% if partido.horario %}{{ partido.horario|date('d/m/Y H:i') }}{% endif %}</td>
                 <td>{{ partido.equipoLocal.nombre }}</td>
                 <td>{{ partido.localSet1 }}</td>
                 <td>{{ partido.localSet2 }}</td>
                 <td>{{ partido.localSet3 }}</td>
+                <!--
                 <td>{{ partido.localSet4 }}</td>
                 <td>{{ partido.localSet5 }}</td>
+                -->
                 <td>{{ partido.equipoVisitante.nombre }}</td>
                 <td>{{ partido.visitanteSet1 }}</td>
                 <td>{{ partido.visitanteSet2 }}</td>
                 <td>{{ partido.visitanteSet3 }}</td>
+                <!--
                 <td>{{ partido.visitanteSet4 }}</td>
                 <td>{{ partido.visitanteSet5 }}</td>
+                -->
                 <td>
                     <a href="{{ path('app_partido_show', {'id': partido.id}) }}">Consultar</a>
                     <a href="{{ path('app_partido_edit', {'id': partido.id}) }}">Editar</a>

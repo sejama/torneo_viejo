@@ -6,7 +6,7 @@
     <h1>Configurar Genero: {{ torneo_genero_categorium.genero.nombre }} - Categoria: {{ torneo_genero_categorium.categoria.nombre }}</h1>
     {% for key, zona in zonas %}
     
-        <h2 class="text-center">Tabla de posiciones - Zona {{ key }}</h2>
+        <h2 class="text-center">Tabla de posiciones - Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}</h2>
             <div class="table-responsive">
                 <table class="table table-responsive align-middle text-center" style="border-collapse: collapse;">
                     <thead>

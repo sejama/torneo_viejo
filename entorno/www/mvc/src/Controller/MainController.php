@@ -7,6 +7,7 @@ use App\Manager\TorneoManager;
 use App\Manager\ZonaManager;
 use App\Repository\PartidoRepository;
 use App\Repository\TorneoGeneroCategoriaRepository;
+use App\Repository\ZonaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,8 @@ class MainController extends AbstractController
         TorneoManager $tm, 
         ZonaManager $zm,
         PartidoRepository $pr,
-        TorneoGeneroCategoriaRepository $tgcr
+        TorneoGeneroCategoriaRepository $tgcr,
+        ZonaRepository $zr
     ): Response
     {   
         $torneoID = null;
@@ -38,9 +40,10 @@ class MainController extends AbstractController
         $generos = $tm->getGeneros();
         $categorias = $tm->getCategorias();
         $posiciones = $zm->calcularPosicionesTodos();
-        $partidos = $pr->findAll();
+        $partidos = $pr->findBy([], ['horario' => 'ASC']);
         $tgcs = $tgcr->findAll();
         $playOffs = $tm->getPlayOffAll();
+        $zonaNombre = $zr->findAll();
         return $this->render('main/index.html.twig', [
             'torneos' => $torneos,
             'torneoID' => $torneoID,
@@ -49,10 +52,17 @@ class MainController extends AbstractController
             'categorias' => $categorias,
             'categoriaID' => $categoriaID,
             'zonas' => $zonas,
+            'zonaNombre' => $zonaNombre,
             'posiciones' => $posiciones,
             'partidos' => $partidos,
             'tgcs' => $tgcs,
             'playOffs' => $playOffs
         ]);
+    }
+
+    #[Route('/reglamento', name: 'app_main_reglamento', methods: ['GET'])]
+    public function reglamento(): Response
+    {
+        return $this->render('main/reglamento.html.twig');
     }
 }
