@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlayOffRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlayOffRepository::class)]
@@ -34,6 +36,17 @@ class PlayOff
 
     #[ORM\Column]
     private ?bool $bronce = false;
+
+    #[ORM\OneToMany(mappedBy: 'playOff', targetEntity: Triangular::class)]
+    private Collection $triangulars;
+
+    #[ORM\OneToOne(mappedBy: 'playOff', cascade: ['persist', 'remove'])]
+    private ?TerceroCuarto $terceroCuarto = null;
+
+    public function __construct()
+    {
+        $this->triangulars = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +163,53 @@ class PlayOff
     public function setBronce(bool $bronce): static
     {
         $this->bronce = $bronce;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Triangular>
+     */
+    public function getTriangulars(): Collection
+    {
+        return $this->triangulars;
+    }
+
+    public function addTriangular(Triangular $triangular): static
+    {
+        if (!$this->triangulars->contains($triangular)) {
+            $this->triangulars->add($triangular);
+            $triangular->setPlayOff($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTriangular(Triangular $triangular): static
+    {
+        if ($this->triangulars->removeElement($triangular)) {
+            // set the owning side to null (unless already changed)
+            if ($triangular->getPlayOff() === $this) {
+                $triangular->setPlayOff(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTerceroCuarto(): ?TerceroCuarto
+    {
+        return $this->terceroCuarto;
+    }
+
+    public function setTerceroCuarto(TerceroCuarto $terceroCuarto): static
+    {
+        // set the owning side of the relation if necessary
+        if ($terceroCuarto->getPlayOff() !== $this) {
+            $terceroCuarto->setPlayOff($this);
+        }
+
+        $this->terceroCuarto = $terceroCuarto;
 
         return $this;
     }

@@ -120,23 +120,101 @@
     <div class="row">
         <div class="col-ms-4">
             <div>ORO</div>
+            <button type="button" id="btnTriangularOro" class="btn btn-primary" {% if oroCuartos %} disabled {% endif %} >Armar Triangular</button>
             <button type="button" id="btnCuartosOro" class="btn btn-primary" {% if oroCuartos %} disabled {% endif %} >Armar Cuartos</button>
             <button type="button" id="btnSemisOro" class="btn btn-primary" {% if oroSemis %} disabled {% endif %}>Armar Semis</button>
+            <button type="button" id="btn3roy4toOro" class="btn btn-primary" {% if oroFin %} disabled {% endif %}>Armar 3ro y 4to</button>
             <button type="button" id="btnFinalOro" class="btn btn-primary" {% if oroFin %} disabled {% endif %}>Armar Final</button>
         </div>
         <div class="col-ms-4">
             <div>PLATA</div>
+            <button type="button" id="btnTriangularPlata" class="btn btn-primary" {% if plataCuartos %} disabled {% endif %} >Armar Triangular</button>
             <button type="button" id="btnCuartosPlata" class="btn btn-primary" {% if plataCuartos %} disabled {% endif %}>Armar Cuartos</button>
             <button type="button" id="btnSemisPlata" class="btn btn-primary" {% if plataSemis %} disabled {% endif %}>Armar Semis</button>
+            <button type="button" id="btn3roy4toPlata" class="btn btn-primary" {% if plataFin %} disabled {% endif %}>Armar 3ro y 4to</button>
             <button type="button" id="btnFinalPlata" class="btn btn-primary" {% if plataFin %} disabled {% endif %}>Armar Final</button>
         </div>
         <div class="col-ms-4">
             <div>BRONCE</div>
+            <button type="button" id="btnTriangularBronce" class="btn btn-primary" {% if bronceCuartos %} disabled {% endif %} >Armar Triangular</button>
             <button type="button" id="btnCuartosBronce" class="btn btn-primary" {% if bronceCuartos %} disabled {% endif %}>Armar Cuartos</button>
             <button type="button" id="btnSemisBronce" class="btn btn-primary" {% if bronceSemis %} disabled {% endif %}>Armar Semis</button>
+            <button type="button" id="btn3roy4toBronce" class="btn btn-primary" {% if bronceFin %} disabled {% endif %}>Armar 3ro y 4to</button>
             <button type="button" id="btnFinalBronce" class="btn btn-primary" {% if bronceFin %} disabled {% endif %}>Armar Final</button>
         </div>
     </div>
+    <form id="formTriangular" class="d-none needs-validation" novalidate action="{{ path('app_torneo_genero_categoria_playoff_crear', {'id': torneo_genero_categorium.id}) }}" method="POST">
+        <h2 id="formTituloTriangular">Triangular</h2>
+        <input type="hidden" name="inputTorneoGeneroCategoria" value="{{ torneo_genero_categorium.id }}">
+        <input type="hidden" id="inputCopaTriangular" name="inputCopaTriangular" value="">
+        <div class="row">
+            <div class="col-ms-6">
+                <div class="card mt-1 mb-1">
+                    <div class="card-header">
+                        Equipos del Triangular
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-sm">
+                                <div class="form-floating">
+                                    <select class="form-select" id="triangularEquipo1" name="triangularEquipo1" required>
+                                        <option value="">Seleccionar Equipo 1</option>
+                                        {% for key, zona in zonas %}
+                                            <optgroup label="Zona {{ key }}">
+                                            {% for i, equipo in zona %}
+                                                <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, debe seleccionar un equipo.
+                                    </div>
+                                    <label for="triangularEquipo1">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-floating">
+                                    <select class="form-select" id="triangularEquipo2" name="triangularEquipo2" required>
+                                        <option value="">Seleccionar Equipo 2</option>
+                                        {% for key, zona in zonas %}
+                                            <optgroup label="Zona {{ key }}">
+                                            {% for i, equipo in zona %}
+                                                <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, debe seleccionar un equipo.
+                                    </div>
+                                    <label for="triangularEquipo2">Equipo 2</label>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-floating">
+                                    <select class="form-select" id="triangularEquipo3" name="triangularEquipo3" required>
+                                        <option value="">Seleccionar Equipo 3</option>
+                                        {% for key, zona in zonas %}
+                                            <optgroup label="Zona {{ key }}">
+                                            {% for i, equipo in zona %}
+                                                <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, debe seleccionar un equipo.
+                                    </div>
+                                    <label for="triangularEquipo3">Equipo 3</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </div>
+    </form>
     <form id="formCuartos" class="d-none needs-validation" novalidate action="{{ path('app_torneo_genero_categoria_playoff_crear', {'id': torneo_genero_categorium.id}) }}" method="POST">
         <h2 id="formTituloCuartos">Cuartos</h2>
         <input type="hidden" name="inputTorneoGeneroCategoria" value="{{ torneo_genero_categorium.id }}">
@@ -429,6 +507,61 @@
             <button type="submit" class="btn btn-primary">Crear</button>
         </div>
     </form>
+    <form id="form3roy4to" class="d-none needs-validation" novalidate action="{{ path('app_torneo_genero_categoria_playoff_crear', {'id': torneo_genero_categorium.id}) }}" method="POST">
+        <h2 id="formTitulo3roy4to">3ro y 4to</h2>
+        <input type="hidden" name="inputTorneoGeneroCategoria" value="{{ torneo_genero_categorium.id }}">
+        <input type="hidden" id="inputCopa3roy4to" name="inputCopa3roy4to" value="">
+        <div class="row">
+            <div class="col">
+                <div class="card mt-1 mb-1">
+                    <div class="card-header">
+                        Partido 1
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-sm">
+                                <div class="form-floating">
+                                    <select class="form-select" id="3roy4toPartido1Equipo1" name="3roy4toPartido1Equipo1" required>
+                                        <option value="">Seleccionar Equipo 1</option>
+                                        {% for key, zona in zonas %}
+                                            <optgroup label="Zona {{ key }}">
+                                            {% for i, equipo in zona %}
+                                                <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, debe seleccionar un equipo.
+                                    </div>
+                                    <label for="3roy4toPartido1Equipo1">Equipo 1</label>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-floating">
+                                    <select class="form-select" id="3roy4toPartido1Equipo2" name="3roy4toPartido1Equipo2" required>
+                                        <option value="">Seleccionar Equipo 2</option>
+                                        {% for key, zona in zonas %}
+                                            <optgroup label="Zona {{ key }}">
+                                            {% for i, equipo in zona %}
+                                                <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, debe seleccionar un equipo.
+                                    </div>
+                                    <label for="3roy4toPartido1Equipo2">Equipo 2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </div>
+    </form>
     <form id="formFinal" class="d-none needs-validation" novalidate action="{{ path('app_torneo_genero_categoria_playoff_crear', {'id': torneo_genero_categorium.id}) }}" method="POST">
         <h2 id="formTituloFinal">Final</h2>
         <input type="hidden" name="inputTorneoGeneroCategoria" value="{{ torneo_genero_categorium.id }}">
@@ -507,9 +640,20 @@
             }, false)
         })
     })()
+    document.getElementById('btnTriangularOro').addEventListener('click', function() {
+        document.getElementById('formTriangular').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+        document.getElementById('formTituloTriangular').innerText = 'Triangular Oro';
+        document.getElementById('inputCopaTriangular').value = 'triangular oro';
+    });
     document.getElementById('btnCuartosOro').addEventListener('click', function() {
         document.getElementById('formCuartos').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formFinal').classList.add('d-none');
         document.getElementById('formTituloCuartos').innerText = 'Cuartos de Final Oro';
         document.getElementById('inputCopaCuartos').value = 'cuartos oro';
@@ -517,59 +661,120 @@
     });
     document.getElementById('btnSemisOro').addEventListener('click', function() {
         document.getElementById('formSemis').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formFinal').classList.add('d-none');
         document.getElementById('formTituloSemis').innerText = 'Semis de Finales Oro';
         document.getElementById('inputCopaSemis').value = 'semis oro';
         
     });
-    document.getElementById('btnFinalOro').addEventListener('click', function() {
-        document.getElementById('formFinal').classList.remove('d-none');
+    document.getElementById('btn3roy4toOro').addEventListener('click', function() {
+        document.getElementById('form3roy4to').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formCuartos').classList.add('d-none');
         document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+        document.getElementById('formTitulo3roy4to').innerText = '3ro y 4to Oro';
+        document.getElementById('inputCopa3roy4to').value = '3roy4to oro'; 
+    });
+    document.getElementById('btnFinalOro').addEventListener('click', function() {
+        document.getElementById('formFinal').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formTituloFinal').innerText = 'Final Oro';
         document.getElementById('inputCopaFinal').value = 'final oro';
         
     });
+    document.getElementById('btnTriangularPlata').addEventListener('click', function() {
+        document.getElementById('formTriangular').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+        document.getElementById('formTituloTriangular').innerText = 'Triangular Plata';
+        document.getElementById('inputCopaTriangular').value = 'triangular plata';
+    });
     document.getElementById('btnCuartosPlata').addEventListener('click', function() {
         document.getElementById('formCuartos').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formFinal').classList.add('d-none');
         document.getElementById('formTituloCuartos').innerText = 'Cuartos de Final Plata';
         document.getElementById('inputCopaCuartos').value = 'cuartos plata';
     });
     document.getElementById('btnSemisPlata').addEventListener('click', function() {
         document.getElementById('formSemis').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formFinal').classList.add('d-none');
         document.getElementById('formTituloSemis').innerText = 'Semis de Finales Plata';
         document.getElementById('inputCopaSemis').value = 'semis plata';
     });
-    document.getElementById('btnFinalPlata').addEventListener('click', function() {
-        document.getElementById('formFinal').classList.remove('d-none');
+    document.getElementById('btn3roy4toPlata').addEventListener('click', function() {
+        document.getElementById('form3roy4to').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formCuartos').classList.add('d-none');
         document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+        document.getElementById('formTitulo3roy4to').innerText = '3ro y 4to Plata';
+        document.getElementById('inputCopa3roy4to').value = '3roy4to plata';
+    });
+    document.getElementById('btnFinalPlata').addEventListener('click', function() {
+        document.getElementById('formFinal').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formTituloFinal').innerText = 'Final Plata';
         document.getElementById('inputCopaFinal').value = 'final plata';
     });
+    document.getElementById('btnTriangularBronce').addEventListener('click', function() {
+        document.getElementById('formTriangular').classList.remove('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+        document.getElementById('formTituloTriangular').innerText = 'Triangular Bronce';
+        document.getElementById('inputCopaTriangular').value = 'triangular bronce';
+    });
     document.getElementById('btnCuartosBronce').addEventListener('click', function() {
         document.getElementById('formCuartos').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formFinal').classList.add('d-none');
         document.getElementById('formTituloCuartos').innerText = 'Cuartos de Final Bronce';
         document.getElementById('inputCopaCuartos').value = 'cuartos bronce';
     });
     document.getElementById('btnSemisBronce').addEventListener('click', function() {
         document.getElementById('formSemis').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formFinal').classList.add('d-none');
         document.getElementById('formTituloSemis').innerText = 'Semis de Finales Bronce';
         document.getElementById('inputCopaSemis').value = 'semis bronce';
     });
-    document.getElementById('btnFinalBronce').addEventListener('click', function() {
-        document.getElementById('formFinal').classList.remove('d-none');
+    document.getElementById('btn3roy4toBronce').addEventListener('click', function() {
+        document.getElementById('form3roy4to').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
         document.getElementById('formCuartos').classList.add('d-none');
         document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('formFinal').classList.add('d-none');
+        document.getElementById('formTitulo3roy4to').innerText = '3ro y 4to Bronce';
+        document.getElementById('inputCopa3roy4to').value = '3roy4to bronce';
+    });
+    document.getElementById('btnFinalBronce').addEventListener('click', function() {
+        document.getElementById('formFinal').classList.remove('d-none');
+        document.getElementById('formTriangular').classList.add('d-none');
+        document.getElementById('formCuartos').classList.add('d-none');
+        document.getElementById('formSemis').classList.add('d-none');
+        document.getElementById('form3roy4to').classList.add('d-none');
         document.getElementById('formTituloFinal').innerText = 'Final Bronce';
         document.getElementById('inputCopaFinal').value = 'final bronce';
     });
