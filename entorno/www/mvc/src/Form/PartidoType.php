@@ -20,10 +20,6 @@ class PartidoType extends AbstractType
         $builder
             ->add('cancha', EntityType::class, [
                 'class' => Cancha::class,
-                'choice_label' => 'nombre',
-            ])
-            ->add('cancha', EntityType::class, [
-                'class' => Cancha::class,
                 'choice_label' => function (Cancha $cancha) {
                     return $cancha->getClub()->getNombre() . ' - ' . $cancha->getNombre();
                 },
@@ -32,6 +28,7 @@ class PartidoType extends AbstractType
                         ->orderBy('c.club', 'ASC')
                         ->addOrderBy('c.nombre', 'ASC');
                 },
+                'required' => false,
                 'placeholder' => 'Seleccione una cancha',
             ])
             ->add('zona', EntityType::class, [

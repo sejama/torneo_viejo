@@ -111,6 +111,7 @@
                         </div>
                     <h2>Partidos</h2>
                     {% for partido in partidos %}
+                        {% if partido.id != 25 and partido.id != 26 and partido.id != 27 %}
                         {% if partido.zona != null and partido.zona.id == key  %}
                         <div class="card w-100" style="margin-top: 3px; background-color: #f8f9fa;">
                             <div class="card-body">
@@ -166,6 +167,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                         {% endif %}
                     {% endfor %}
                     </div>
