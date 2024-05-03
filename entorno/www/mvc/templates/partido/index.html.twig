@@ -35,7 +35,7 @@
         {% for partido in partidos %}
             <tr>
                 <td>{{ partido.id }}</td>
-                <td>{{ partido.zona.id }}</td>
+                <td>{% if partido.zona %}{{ partido.zona.nombre}}{% else %}Play Off{% endif %}</td>
                 <td>{% if partido.cancha %}{{ partido.cancha.club.nombre }} - {{ partido.cancha.nombre }}{% else %} - {% endif %}</td>
                 <td>{% if partido.horario %}{{ partido.horario|date('d/m/Y H:i') }}{% endif %}</td>
                 <td>{{ partido.equipoLocal.nombre }}</td>

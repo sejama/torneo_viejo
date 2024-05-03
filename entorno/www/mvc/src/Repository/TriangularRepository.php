@@ -21,6 +21,14 @@ class TriangularRepository extends ServiceEntityRepository
         parent::__construct($registry, Triangular::class);
     }
 
+    public function saveTriangular(Triangular $triangular): Triangular
+    {
+        $this->_em->persist($triangular);
+        $this->_em->flush();
+
+        return $triangular;
+    }
+
     //    /**
     //     * @return Triangular[] Returns an array of Triangular objects
     //     */

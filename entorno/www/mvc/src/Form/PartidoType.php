@@ -37,6 +37,8 @@ class PartidoType extends AbstractType
             ->add('zona', EntityType::class, [
                 'class' => Zona::class,
                 'choice_label' => 'id',
+                'placeholder' => 'Seleccione una zona',
+                'required' => false,
             ])
             ->add('equipoLocal', EntityType::class, [
                 'class' => Equipo::class,

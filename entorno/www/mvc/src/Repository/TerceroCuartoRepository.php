@@ -21,6 +21,14 @@ class TerceroCuartoRepository extends ServiceEntityRepository
         parent::__construct($registry, TerceroCuarto::class);
     }
 
+    public function saveTerceroCuarto(TerceroCuarto $terceroCuarto): TerceroCuarto
+    {
+        $this->_em->persist($terceroCuarto);
+        $this->_em->flush();
+
+        return $terceroCuarto;
+    }
+
     //    /**
     //     * @return TerceroCuarto[] Returns an array of TerceroCuarto objects
     //     */

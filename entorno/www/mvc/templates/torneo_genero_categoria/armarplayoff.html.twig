@@ -160,7 +160,7 @@
                                     <select class="form-select" id="triangularEquipo1" name="triangularEquipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -177,7 +177,7 @@
                                     <select class="form-select" id="triangularEquipo2" name="triangularEquipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -194,7 +194,7 @@
                                     <select class="form-select" id="triangularEquipo3" name="triangularEquipo3" required>
                                         <option value="">Seleccionar Equipo 3</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -232,7 +232,7 @@
                                     <select class="form-select" id="cuartosPartido1Equipo1" name="cuartosPartido1Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -249,7 +249,7 @@
                                     <select class="form-select" id="cuartosPartido1Equipo2" name="cuartosPartido1Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -277,7 +277,7 @@
                                     <select class="form-select" id="cuartosPartido2Equipo1" name="cuartosPartido2Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -294,7 +294,7 @@
                                     <select class="form-select" id="cuartosPartido2Equipo2" name="cuartosPartido2Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -324,7 +324,7 @@
                                     <select class="form-select" id="cuartosPartido3Equipo1" name="cuartosPartido3Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -341,7 +341,7 @@
                                     <select class="form-select" id="cuartosPartido3Equipo2" name="cuartosPartido3Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -369,7 +369,7 @@
                                     <select class="form-select" id="cuartosPartido4Equipo1" name="cuartosPartido4Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -386,7 +386,7 @@
                                     <select class="form-select" id="cuartosPartido4Equipo2" name="cuartosPartido4Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -424,7 +424,7 @@
                                     <select class="form-select" id="semisPartido1Equipo1" name="semisPartido1Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -441,7 +441,7 @@
                                     <select class="form-select" id="semisPartido1Equipo2" name="semisPartido1Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -469,7 +469,7 @@
                                     <select class="form-select" id="semisPartido2Equipo1" name="semisPartido2Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -486,7 +486,7 @@
                                     <select class="form-select" id="semisPartido2Equipo2" name="semisPartido2Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -524,7 +524,7 @@
                                     <select class="form-select" id="3roy4toPartido1Equipo1" name="3roy4toPartido1Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -541,7 +541,7 @@
                                     <select class="form-select" id="3roy4toPartido1Equipo2" name="3roy4toPartido1Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -579,7 +579,7 @@
                                     <select class="form-select" id="finalPartido1Equipo1" name="finalPartido1Equipo1" required>
                                         <option value="">Seleccionar Equipo 1</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}
@@ -596,7 +596,7 @@
                                     <select class="form-select" id="finalPartido1Equipo2" name="finalPartido1Equipo2" required>
                                         <option value="">Seleccionar Equipo 2</option>
                                         {% for key, zona in zonas %}
-                                            <optgroup label="Zona {{ key }}">
+                                            <optgroup label="Zona {{ key }} {{ zonasNombre[(key-1)].nombre }}">
                                             {% for i, equipo in zona %}
                                                 <option value={{ equipo.id }}>{{ equipo.nombre }}</option>
                                             {% endfor %}

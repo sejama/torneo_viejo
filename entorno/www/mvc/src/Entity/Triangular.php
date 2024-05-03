@@ -25,7 +25,7 @@ class Triangular
     #[ORM\JoinColumn(nullable: false)]
     private ?Partido $partido3 = null;
 
-    #[ORM\ManyToOne(inversedBy: 'triangulars')]
+    #[ORM\ManyToOne(inversedBy: 'triangulars', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?PlayOff $playOff = null;
 

@@ -136,8 +136,10 @@ class TorneoManager{
                         'oro' => $playOff->isOro(),
                         'plata' => $playOff->isPlata(),
                         'bronce' => $playOff->isBronce(),
+                        'triangular' => $playOff->getTriangulars(),
                         'cuartos' => $playOff->getCuartos(),
                         'semis' => $playOff->getSemis(),
+                        'terceroCuarto' => $playOff->getTerceroCuarto(),
                         'final' => $playOff->getFin()
                     ];
                 }
@@ -151,8 +153,10 @@ class TorneoManager{
                         'oro' => $playOff->isOro(),
                         'plata' => $playOff->isPlata(),
                         'bronce' => $playOff->isBronce(),
+                        'triangular' => $playOff->getTriangulars(),
                         'cuartos' => $playOff->getCuartos(),
                         'semis' => $playOff->getSemis(),
+                        'terceroCuarto' => $playOff->getTerceroCuarto(),
                         'final' => $playOff->getFin()
                     ];
                 }
@@ -166,8 +170,10 @@ class TorneoManager{
                         'oro' => $playOff->isOro(),
                         'plata' => $playOff->isPlata(),
                         'bronce' => $playOff->isBronce(),
+                        'triangular' => $playOff->getTriangulars(),
                         'cuartos' => $playOff->getCuartos(),
                         'semis' => $playOff->getSemis(),
+                        'terceroCuarto' => $playOff->getTerceroCuarto(),
                         'final' => $playOff->getFin()
                     ];
                 }

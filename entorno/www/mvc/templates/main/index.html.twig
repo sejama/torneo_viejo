@@ -180,6 +180,115 @@
 <!-- ORO -->
             {% if playOff.oro %}
                 <h2 class="text-center"> Play Offs - Oro </h2>
+<!-- ORO - Triangular -->
+                {% if playOff.triangular != null and playOff.categoria == 6 %}
+                    {% for i, triangular in playOff.triangular %}
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Triangular {{i+1}}</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if triangular.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': triangular.partido1.id}) }}"><div>Partido N° {{ triangular.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div>Partido N° {{ triangular.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div>Partido N° {{ triangular.partido1.id }}</div>
+                                {% endif %}
+                                    <div>
+                                        <b>Club y Cancha:</b> {{ triangular.partido1.cancha ? triangular.partido1.cancha.club.nombre }} - {{  triangular.partido1.cancha ? triangular.partido1.cancha.nombre : "Sin asignar  / "}} <b>Fecha y hora:</b> {{ triangular.partido1.horario ? triangular.partido1.horario|date("d/m/Y H:i") : "Sin asignar" }}
+                                    </div>
+                                <div class="col-5">
+                                <div>{{ triangular.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido1.localSet1 ?? 0 }}
+                                        {{ triangular.partido1.localSet2 ?? 0 }}
+                                        {{ triangular.partido1.localSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido1.visitanteSet1 ?? 0 }}
+                                        {{ triangular.partido1.visitanteSet2 ?? 0 }}
+                                        {{ triangular.partido1.visitanteSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if triangular.partido2.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': triangular.partido2.id}) }}"><div>Partido N° {{ triangular.partido2.id }}</div></a>
+                                    {% else %}
+                                        <div>Partido N° {{ triangular.partido2.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div>Partido N° {{ triangular.partido2.id }}</div>
+                                {% endif %}
+                                    <div>
+                                        <b>Club y Cancha:</b> {{ triangular.partido2.cancha ? triangular.partido2.cancha.club.nombre }} - {{  triangular.partido2.cancha ? triangular.partido2.cancha.nombre : "Sin asignar  / "}} <b>Fecha y hora:</b> {{ triangular.partido2.horario ? triangular.partido2.horario|date("d/m/Y H:i") : "Sin asignar" }}
+                                    </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido2.localSet1 ?? 0 }}
+                                        {{ triangular.partido2.localSet2 ?? 0 }}
+                                        {{ triangular.partido2.localSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido2.visitanteSet1 ?? 0 }}
+                                        {{ triangular.partido2.visitanteSet2 ?? 0 }}
+                                        {{ triangular.partido2.visitanteSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if triangular.partido3.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': triangular.partido3.id}) }}"><div>Partido N° {{ triangular.partido3.id }}</div></a>
+                                    {% else %}
+                                        <div>Partido N° {{ triangular.partido3.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div>Partido N° {{ triangular.partido3.id }}</div>
+                                {% endif %}
+                                    <div>
+                                        <b>Club y Cancha:</b> {{ triangular.partido3.cancha ? triangular.partido3.cancha.club.nombre }} - {{  triangular.partido3.cancha ? triangular.partido3.cancha.nombre : "Sin asignar  / "}} <b>Fecha y hora:</b> {{ triangular.partido3.horario ? triangular.partido3.horario|date("d/m/Y H:i") : "Sin asignar" }}
+                                    </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido3.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido3.localSet1 ?? 0 }}
+                                        {{ triangular.partido3.localSet2 ?? 0 }}
+                                        {{ triangular.partido3.localSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido3.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido3.visitanteSet1 ?? 0 }}
+                                        {{ triangular.partido3.visitanteSet2 ?? 0 }}
+                                        {{ triangular.partido3.visitanteSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
 <!-- ORO - Cuartos -->
                 {% if playOff.cuartos != null %}
                     <div class="card mb-2">
@@ -483,6 +592,48 @@
                     </div>
                 {% endif %}
                 {% endif %}
+<!-- ORO - 3ro y 4to -->
+                {% if playOff.terceroCuarto != null %}
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">3ro y 4to</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if playOff.terceroCuarto.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.terceroCuarto.partido1.id}) }}"><div>Partido N° {{ playOff.terceroCuarto.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div>Partido N° {{ playOff.terceroCuarto.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div>Partido N° {{ playOff.terceroCuarto.partido1.id }}</div>
+                                {% endif %}
+                                <div class="col-5">
+                                    <div>{{ playOff.terceroCuarto.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.terceroCuarto.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.terceroCuarto.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
 <!-- ORO - Final -->
                 {% if playOff.final != null %}
                     <div class="card mb-2">
@@ -529,6 +680,106 @@
 <!-- PLATA -->
             {% if playOff.plata %}
                 <h2 class="text-center"> Play Offs - Plata </h2>
+<!-- PLATA - Triangular -->
+                {% if playOff.triangular != null and playOff.categoria == 6 %}
+                    {% for i, triangular in playOff.triangular %}
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">Triangular {{i+1}}</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if triangular.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': triangular.partido1.id}) }}"><div>Partido N° {{ triangular.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div>Partido N° {{ triangular.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div>Partido N° {{ triangular.partido1.id }}</div>
+                                {% endif %}
+                                <div class="col-5">
+                                    <div>{{ triangular.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido1.localSet1 ?? 0 }}
+                                        {{ triangular.partido1.localSet2 ?? 0 }}
+                                        {{ triangular.partido1.localSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido1.visitanteSet1 ?? 0 }}
+                                        {{ triangular.partido1.visitanteSet2 ?? 0 }}
+                                        {{ triangular.partido1.visitanteSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if triangular.partido2.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': triangular.partido2.id}) }}"><div> Partido N° {{ triangular.partido2.id }}</div></a>
+                                    {% else %}
+                                        <div> Partido N° {{ triangular.partido2.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Partido N° {{ triangular.partido2.id }}</div>
+                                {% endif %}
+                                <div class="col-5">
+                                    <div>{{ triangular.partido2.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido2.localSet1 ?? 0 }}
+                                        {{ triangular.partido2.localSet2 ?? 0 }}
+                                        {{ triangular.partido2.localSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido2.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido2.visitanteSet1 ?? 0 }}
+                                        {{ triangular.partido2.visitanteSet2 ?? 0 }}
+                                        {{ triangular.partido2.visitanteSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if triangular.partido3.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': triangular.partido3.id}) }}"><div> Partido N° {{ triangular.partido3.id }}</div></a>
+                                    {% else %}
+                                        <div>Partido N° {{ triangular.partido3.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div>Partido N° {{ triangular.partido3.id }}</div>
+                                {% endif %}
+                                <div class="col-5">
+                                    <div>{{ triangular.partido3.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido3.localSet1 ?? 0 }}
+                                        {{ triangular.partido3.localSet2 ?? 0 }}
+                                        {{ triangular.partido3.localSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ triangular.partido3.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ triangular.partido3.visitanteSet1 ?? 0 }}
+                                        {{ triangular.partido3.visitanteSet2 ?? 0 }}
+                                        {{ triangular.partido3.visitanteSet3 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
 <!-- PLATA - Cuartos-->
                 {% if playOff.cuartos != null %}
                     <div class="card mb-2">
@@ -834,7 +1085,48 @@
                     </div>
                 {% endif %}
                 {% endif %}
-
+<!-- ORO - 3ro y 4to -->
+                {% if playOff.terceroCuarto != null %}
+                    <div class="card mb-2">
+                        <h5 class="card-header text-center">3ro y 4to</h5>
+                        <div class="container text-center">
+                            <div class="row border"> 
+                                {% if app.user %}
+                                    {% if playOff.terceroCuarto.partido1.localSet1 == null %}
+                                        <a href="{{ path('app_partido_editar', {'id': playOff.terceroCuarto.partido1.id}) }}"><div>Partido N° {{ playOff.terceroCuarto.partido1.id }}</div></a>
+                                    {% else %}
+                                        <div>Partido N° {{ playOff.terceroCuarto.partido1.id }}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div>Partido N° {{ playOff.terceroCuarto.partido1.id }}</div>
+                                {% endif %}
+                                <div class="col-5">
+                                    <div>{{ playOff.terceroCuarto.partido1.equipoLocal.nombre }}</div>
+                                    <div>
+                                        {{ playOff.terceroCuarto.partido1.localSet1 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet2 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet3 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet4 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.localSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    vs
+                                </div>
+                                <div class="col-5">
+                                    <div>{{ playOff.terceroCuarto.partido1.equipoVisitante.nombre }}</div>
+                                    <div>
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet1 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet2 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet3 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet4 ?? 0 }}
+                                        {{ playOff.terceroCuarto.partido1.visitanteSet5 ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
 <!-- PLATA - Final -->
                 {% if playOff.final != null %}
                     <div class="card mb-2">
@@ -1245,8 +1537,6 @@
         </ul>
     </div>
 -->
-
-
 <script>
     const selectTorneo = document.getElementById('selectTorneo');
     const selectGenero = document.getElementById('selectGenero');

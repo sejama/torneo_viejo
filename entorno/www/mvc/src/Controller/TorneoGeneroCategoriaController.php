@@ -76,11 +76,23 @@ class TorneoGeneroCategoriaController extends AbstractController
     ): Response
     {   
         $equipos = [];
-        $oro = $plata = $bronce = false;
+        $oro = $plata = $bronce = $tercero = false;
 
+        $inputCopaTriangular = $request->request->get("inputCopaTriangular");
         $inputCopaCuartos = $request->request->get("inputCopaCuartos");
         $inputCopaSemis = $request->request->get("inputCopaSemis");
+        $inputCopa3roy4to = $request->request->get("inputCopa3roy4to");
         $inputCopaFinal = $request->request->get("inputCopaFinal");
+
+        if ($inputCopaTriangular !== null){
+            str_contains($inputCopaTriangular, "oro") ? $oro = true : $oro = false;
+            str_contains($inputCopaTriangular, "plata") ? $plata = true : $plata = false;
+            str_contains($inputCopaTriangular, "bronce") ? $bronce = true : $bronce = false;
+
+            $equipos[] = $request->request->get("triangularEquipo1"); 
+            $equipos[] = $request->request->get("triangularEquipo2"); 
+            $equipos[] = $request->request->get("triangularEquipo3"); 
+        }
 
         if( $inputCopaCuartos !== null){
             str_contains($inputCopaCuartos, "oro") ? $oro = true : $oro = false;
@@ -106,6 +118,14 @@ class TorneoGeneroCategoriaController extends AbstractController
             $equipos[] = $request->request->get("semisPartido2Equipo1"); 
             $equipos[] = $request->request->get("semisPartido2Equipo2");
         }
+        if( $inputCopa3roy4to !== null){
+            str_contains($inputCopa3roy4to, "oro") ? $oro = true : $oro = false;
+            str_contains($inputCopa3roy4to, "plata") ? $plata = true : $plata = false;
+            str_contains($inputCopa3roy4to, "bronce") ? $bronce = true : $bronce = false;
+            $tercero = true;
+            $equipos[] = $request->request->get("3roy4toPartido1Equipo1"); 
+            $equipos[] = $request->request->get("3roy4toPartido1Equipo2"); 
+        }
         if( $inputCopaFinal !== null){
             str_contains($inputCopaFinal, "oro") ? $oro = true : $oro = false;
             str_contains($inputCopaFinal, "plata") ? $plata = true : $plata = false;
@@ -114,7 +134,7 @@ class TorneoGeneroCategoriaController extends AbstractController
             $equipos[] = $request->request->get("finalPartido1Equipo1"); 
             $equipos[] = $request->request->get("finalPartido1Equipo2"); 
         }
-        $playOffManager->armarPlayOff($torneoGeneroCategorium, $oro, $plata, $bronce, $equipos);
+        $playOffManager->armarPlayOff($torneoGeneroCategorium, $oro, $plata, $bronce, $equipos, $tercero);
         return $this->redirectToRoute('app_torneo_genero_categoria_index', [], Response::HTTP_SEE_OTHER);
     }
 
