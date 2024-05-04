@@ -192,7 +192,7 @@
         const validadorSet1 = validarSet(0, 1, 1, 25)
         const validadorSet2 = validarSet(2, 3, 2, 25)
         const validadorSet3 = validarSet(4, 5, 3, 15)
-        const validador = true
+        //const validador = true
         if (inputs[0].value > 0 || inputs[1].value > 0) {
                 if ( inputs[0].value < inputs[1].value) {
                     visitante++
@@ -214,11 +214,11 @@
                     local++
                 }
             }
-            if (local < 2 && visitante < 2) {
+            /*if (local < 2 && visitante < 2) {
                 alert('El partido es el mejor a 3 sets!')
                 validador = false
-            }
-        if (!form.checkValidity() || !validadorSet1 || !validadorSet2 || !validadorSet3 || !validador){
+            }*/
+        if (!form.checkValidity() || !validadorSet1 || !validadorSet2 || !validadorSet3 /*|| !validador*/){
             event.preventDefault()
             event.stopPropagation()
         }else{
