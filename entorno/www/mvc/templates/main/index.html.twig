@@ -111,7 +111,6 @@
                         </div>
                     <h2>Partidos</h2>
                     {% for partido in partidos %}
-                        {% if partido.id != 25 and partido.id != 26 and partido.id != 27 %}
                         {% if partido.zona != null and partido.zona.id == key  %}
                         <div class="card w-100" style="margin-top: 3px; background-color: #f8f9fa;">
                             <div class="card-body">
@@ -167,7 +166,6 @@
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
                         {% endif %}
                     {% endfor %}
                     </div>
@@ -1617,40 +1615,36 @@
         {% endif %}
     {% endfor %}
     {% endif %}
-<!--
-    <div class="card">
-        <div class="card-header text-center">
-            <h5 class="card-title">Partido N° xx</h5>
-            <div class="row">
-                <div class="col">
-                    <h6 class="card-subtitle mb-2 text-muted">Club Atlético Villa Dora</h6>
-                </div>
-                <div class="col">
-                    <h6 class="card-subtitle mb-2 text-muted">Cancha: 01</h6>
-                </div>
-                <div class="col">
-                    <h6 class="card-subtitle mb-2 text-muted">05/05/2024 15:00 hs</h6>
-                </div>
-            </div>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col">
-                            <div>
-                                Equipo 1: 0 0 0 0 0
-                            </div>
-                            <div>
-                                Equipo 2: 0 0 0 0 0
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
--->
+
+<!--Sede Fecha Cancha N° -->
+{{ dump(partidos) }}
+{% for partido in partidos %}
+    {{ partido.horario }}
+{% endfor %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Hora</th>
+            <th scope="col">Rama</th>
+            <th scope="col"></th>
+            <th scope="col">Partido</th>
+            <th scope="col"></th>
+            <th scope="col">Zona</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">09:00</th>
+            <td>F45</td>
+            <td>Equipo 1</td>
+            <td>vs</td>
+            <td>Equipo 2</td>
+            <td>A</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <script>
     const selectTorneo = document.getElementById('selectTorneo');
     const selectGenero = document.getElementById('selectGenero');
