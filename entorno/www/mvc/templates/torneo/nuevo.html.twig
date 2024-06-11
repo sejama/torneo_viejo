@@ -70,7 +70,64 @@
                 </div>
             </div>
         </div>
+        <button id="btnAgregarGenCat" type="button" class="btn btn-primary">Agregar Categoria</button>
         <button type="submit" class="btn btn-success">Guardar</button>
         <a href="{{ path('app_torneo_index') }}"><button type="button" class="btn btn-danger">Volver</button></a>
     </form>
+<script>
+
+const btnAbtnAgregarGenCat = document.getElementById('btnAgregarGenCat')
+let cantidad = 0;
+btnAgregarGenCat.addEventListener('click', () => {
+    //btnAbtnAgregarGenCat.setAttribute('disabled', 'disabled')
+    divRow = document.createElement('div')
+    divRow.classList.add('row', 'g-2', 'mb-3')
+    divCol1 = document.createElement('div')
+    divCol1.classList.add('col-md', 'form-floating')
+    selectGenero = document.createElement('select')
+    selectGenero.classList.add('form-select')
+    selectGenero.id = 'floatingSelectGenero' + cantidad
+    selectGenero.name = 'categorias[' + cantidad + '][genero]'
+    selectGenero.setAttribute('aria-label', 'Floating label select example')
+    option = document.createElement('option')
+    option.value = ''
+    selectGenero.appendChild(option)
+    {% for genero in generos %}
+        option = document.createElement('option')
+        option.value = '{{ genero.id }}'
+        option.textContent = '{{ genero.nombre }}'
+        selectGenero.appendChild(option)
+    {% endfor %}
+    label = document.createElement('label')
+    label.setAttribute('for', 'floatingSelectGenero' + cantidad)
+    label.textContent = 'Seleccione Genero'
+    divCol1.appendChild(selectGenero)
+    divCol1.appendChild(label)
+    divCol2 = document.createElement('div')
+    divCol2.classList.add('col-md', 'form-floating')
+    selectCategoria = document.createElement('select')
+    selectCategoria.classList.add('form-select')
+    selectCategoria.id = 'floatingSelectCategoria' + cantidad
+    selectCategoria.name = 'categorias[' + cantidad + '][categoria]'
+    selectCategoria.setAttribute('aria-label', 'Floating label select example')
+    option = document.createElement('option')
+    option.value = ''
+    selectCategoria.appendChild(option)
+    {% for categoria in categorias %}
+        option = document.createElement('option')
+        option.value = '{{ categoria.id }}'
+        option.textContent = '{{ categoria.nombre }}'
+        selectCategoria.appendChild(option)
+    {% endfor %}
+    label = document.createElement('label')
+    label.setAttribute('for', 'floatingSelectCategoria' + cantidad)
+    label.textContent = 'Seleccione Categoria'
+    divCol2.appendChild(selectCategoria)
+    divCol2.appendChild(label)
+    divRow.appendChild(divCol1)
+    divRow.appendChild(divCol2)
+    document.querySelector('form').insertBefore(divRow, btnAgregarGenCat)
+    cantidad++
+})
+</script>
 {% endblock %}

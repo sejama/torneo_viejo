@@ -28,7 +28,9 @@ class TorneoController extends AbstractController
     #[Route('/nuevo', name: 'app_torneo_nuevo', methods: ['GET', 'POST'])]
     public function nuevo(Request $request, EntityManagerInterface $entityManager): Response
     {
+
         if ( $request->isMethod('POST') ) {
+            var_dump($request->request);die();
             $torneo = new Torneo();
             $torneo->setNombre($request->request->get('nombre'));
             $torneo->setDescripcion($request->request->get('descripcion'));
@@ -42,7 +44,12 @@ class TorneoController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_torneo_index', [], Response::HTTP_SEE_OTHER);
         }else{
-            return $this->render('torneo/nuevo.html.twig');}
+            $categorias = $entityManager->getRepository('App\Entity\Categoria')->findAll();
+            $generos = $entityManager->getRepository('App\Entity\Genero')->findAll();
+            return $this->render('torneo/nuevo.html.twig',[
+                'categorias' => $categorias,
+                'generos' => $generos
+            ]);}
     }
 
     #[Route('/new', name: 'app_torneo_new', methods: ['GET', 'POST'])]

@@ -1619,7 +1619,7 @@
 <!--Sede Fecha Cancha N° -->
 {{ dump(partidos) }}
 {% for partido in partidos %}
-    {{ partido.horario }}
+    {{ partido.horario ? partido.horario|date("d/m/Y H:i") : "Sin asignar" }}
 {% endfor %}
 <div class="table-responsive">
     <table class="table table-striped">
