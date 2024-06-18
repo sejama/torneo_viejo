@@ -21,6 +21,12 @@ class TorneoRepository extends ServiceEntityRepository
         parent::__construct($registry, Torneo::class);
     }
 
+    public function save(Torneo $torneo): void
+    {
+        $this->_em->persist($torneo);
+        $this->_em->flush();
+    }
+
 //    /**
 //     * @return Torneo[] Returns an array of Torneo objects
 //     */

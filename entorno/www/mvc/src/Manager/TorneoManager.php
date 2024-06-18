@@ -3,6 +3,8 @@
 namespace App\Manager;
 
 use App\Entity\Partido;
+use App\Entity\Torneo;
+use App\Entity\TorneoGeneroCategoria;
 use App\Entity\Zona;
 use App\Entity\ZonaEquipo;
 use App\Repository\CategoriaRepository;
@@ -27,6 +29,36 @@ class TorneoManager{
 
     ) {
         
+    }
+
+    public function createTorneoCategoria(
+        string $nombreTorneo,
+        string $descripcionTorneo,
+        \DateTimeImmutable $fechaInicio,
+        \DateTimeImmutable $fechaFin,
+        \DateTimeImmutable $fechaInicioInscripcion,
+        \DateTimeImmutable $fechaFinInscripcion,
+        array $categorias
+    )
+    {
+        $torneo = new Torneo ();
+        $torneo->setNombre($nombreTorneo);
+        $torneo->setDescripcion($descripcionTorneo);
+        $torneo->setFechaInicio($fechaInicio);
+        $torneo->setFechaFin($fechaFin);
+        $torneo->setFechaInicioInscripcion($fechaInicioInscripcion);
+        $torneo->setFechaFinInscripcion($fechaFinInscripcion);
+        $torneo->setCreatedAt(new \DateTimeImmutable());
+        $torneo->setUpdatedAt(new \DateTimeImmutable());
+        $this->torneoRepository->save($torneo);
+
+        foreach ($categorias as $categoria) {
+            $torneoGeneroCategoria = new TorneoGeneroCategoria();
+            $torneoGeneroCategoria->setTorneo($torneo);
+            $torneoGeneroCategoria->setGenero($this->generoRepository->find($categoria['genero']));
+            $torneoGeneroCategoria->setCategoria($this->categoriaRepository->find($categoria['categoria']));
+            
+        }
     }
 
     public function getTorneos(): array
