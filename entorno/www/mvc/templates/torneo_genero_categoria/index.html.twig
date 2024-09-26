@@ -18,6 +18,7 @@
         {% for torneo_genero_categorium in torneo_genero_categorias %}
             <tr>
                 <td>{{ torneo_genero_categorium.id }}</td>
+                <td>{{ torneo_genero_categorium.torneo.nombre }}</td>
                 <td>{{ torneo_genero_categorium.genero.nombre }}</td>
                 <td>{{ torneo_genero_categorium.categoria.nombre }}</td>
                 <td>

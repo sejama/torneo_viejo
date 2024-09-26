@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cancha;
 use App\Entity\Club;
 use App\Form\ClubType;
 use App\Repository\ClubRepository;
@@ -27,23 +28,34 @@ class ClubController extends AbstractController
     #[Route('/new', name: 'app_club_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $club = new Club();
-        $club->setCreatedAt(new \DateTimeImmutable());
-        $club->setUpdatedAt(new \DateTimeImmutable());
-        $form = $this->createForm(ClubType::class, $club);
-        $form->handleRequest($request);
+       
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->isMethod('POST')) {
+            $club = new Club();
+            $club->setCreatedAt(new \DateTimeImmutable());
+            $club->setUpdatedAt(new \DateTimeImmutable());
+            $club->setNombre($request->request->get('nombre'));
+            $club->setDireccion($request->request->get('direccion'));
+
+            $cantidad = (int)$request->request->get('cantidadCancha');
+
+            for ($i = 0; $i < $cantidad; $i++) {
+                $cancha = new Cancha();
+                $cancha->setNombre("Cancha " . ($i + 1));
+                $cancha->setClub($club);
+                $cancha->setCreatedAt(new \DateTimeImmutable());
+                $cancha->setUpdatedAt(new \DateTimeImmutable());
+
+                $entityManager->persist($cancha);
+            }
+
             $entityManager->persist($club);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_club_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('club/new.html.twig', [
-            'club' => $club,
-            'form' => $form,
-        ]);
+        return $this->render('club/nuevo.html.twig');
     }
 
     #[Route('/{id}', name: 'app_club_show', methods: ['GET'])]

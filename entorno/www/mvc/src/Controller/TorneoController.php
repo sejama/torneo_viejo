@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Torneo;
+use App\Entity\TorneoGeneroCategoria;
 use App\Form\TorneoType;
 use App\Manager\TorneoManager;
 use App\Repository\TorneoRepository;
@@ -30,7 +31,7 @@ class TorneoController extends AbstractController
     {
 
         if ( $request->isMethod('POST') ) {
-            var_dump($request->request);die();
+            //var_dump($request->request->all('categorias'));die();
             $torneo = new Torneo();
             $torneo->setNombre($request->request->get('nombre'));
             $torneo->setDescripcion($request->request->get('descripcion'));
@@ -40,6 +41,20 @@ class TorneoController extends AbstractController
             $torneo->setFechaFinInscripcion(new \DateTimeImmutable($request->request->get('fechaFinInscripcion') . ' ' . $request->request->get('horaFinInscripcion')));
             $torneo->setCreatedAt(new \DateTimeImmutable());
             $torneo->setUpdatedAt(new \DateTimeImmutable());
+
+            $arrayGenCat = $request->request->all('categorias');
+            foreach ($arrayGenCat as $genCat) {
+                $torneoCatGen = new TorneoGeneroCategoria();
+                $torneoCatGen->setTorneo($torneo);
+                $torneoCatGen->setCategoria($entityManager->getRepository('App\Entity\Categoria')->find((int)$genCat['categoria']));
+                $torneoCatGen->setGenero($entityManager->getRepository('App\Entity\Genero')->find((int)$genCat['genero']));
+                $torneoCatGen->setCreatedAt(new \DateTimeImmutable());
+                $torneoCatGen->setUpdatedAt(new \DateTimeImmutable());
+                $torneoCatGen->setCerrado(false);
+                $torneoCatGen->setCreado(false);
+                $entityManager->persist($torneoCatGen);
+            }
+            $torneoCatGen = new TorneoGeneroCategoria();
             $entityManager->persist($torneo);
             $entityManager->flush();
             return $this->redirectToRoute('app_torneo_index', [], Response::HTTP_SEE_OTHER);

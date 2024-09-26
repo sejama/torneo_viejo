@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Club{% endblock %}
+
+{% block body %}
+    <h1>Crear Club</h1>
+
+    <form action="{{ path('app_club_new') }}" method="post">
+        <div class="mb-3 form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="mb-3 form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control" id="direccion" name="direccion">
+        </div>
+        <div class="mb-3 form-group">
+            <label for="cantidadCancha">Cantidad de Canchas</label>
+            <input type="number" class="form-control" id="cantidadCancha" name="cantidadCancha" min="1">
+        </div>
+        <div class="mb-3 form-group">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ path('app_club_index') }}"><button type="button" class="btn btn-danger">Volver</button></a>
+        </div>
+{% endblock %}

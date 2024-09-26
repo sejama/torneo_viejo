@@ -27,22 +27,27 @@ class EquipoController extends AbstractController
     #[Route('/new', name: 'app_equipo_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $equipo = new Equipo();
-        $equipo->setCreatedAt(new \DateTimeImmutable());
-        $equipo->setUpdatedAt(new \DateTimeImmutable());
-        $form = $this->createForm(EquipoType::class, $equipo);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->isMethod('POST')) {
+            $equipo = new Equipo();
+            $equipo->setNombre($request->request->get('nombre'));
+            $selectGen = (int)$request->request->get('select-gen');
+            $selectCat = (int)$request->request->get('select-cat');
+            $equipo->setTorneoGeneroCategoria($entityManager->getRepository('App\Entity\TorneoGeneroCategoria')->findOneBy(['genero' => $selectGen, 'categoria' => $selectCat]));
+            $equipo->setCreatedAt(new \DateTimeImmutable());
+            $equipo->setUpdatedAt(new \DateTimeImmutable());
+
             $entityManager->persist($equipo);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_equipo_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('equipo/new.html.twig', [
-            'equipo' => $equipo,
-            'form' => $form,
+        $genCat = $entityManager->getRepository('App\Entity\TorneoGeneroCategoria')->findAll();
+        $generos = $entityManager->getRepository('App\Entity\Genero')->findAll();
+        return $this->render('equipo/nuevo.html.twig',[
+            'generos' => $generos,
+            'genCat' => $genCat
         ]);
     }
 

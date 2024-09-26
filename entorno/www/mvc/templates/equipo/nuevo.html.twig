@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Equipo{% endblock %}
+
+{% block body %}
+    <h1>Crear Equipo</h1>
+
+    <form action="{{ path('app_equipo_new') }}" method="post">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Equipo">
+            <label for="nombre">Nombre Equipo</label>
+        </div>
+        <div class="row g-2 align-items-center">
+            <div class="form-floating mb-3 col-6">
+                <select class="form-select" id="select-gen" name="select-gen" aria-label="Floating label select example">
+                    <option value='0' selected>Seleccionar Genero</option>
+                    {% for gen in generos %}
+                        <option value="{{ gen.id }}">{{ gen.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <label for="select-gen">Seleccionar Genero</label>
+            </div>
+            <div class="form-floating mb-3 col-6">
+                <select class="form-select" id="select-cat" name="select-cat" aria-label="Floating label select example">
+                    <option selected>Seleccionar Categoria</option>
+                </select>
+                <label for="select-cat">Seleccionar Categoria</label>
+            </div>
+        </div>
+        <div class="mb-3 form-group">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ path('app_equipo_index') }}"><button type="button" class="btn btn-danger">Volver</button></a>
+        </div>
+    </form>
+<script>
+    const selectGen = document.getElementById('select-gen');
+    selectGen.addEventListener('change', (e) => {
+        const id = e.target.value;
+        if (id == 0) {
+            const selectCat = document.getElementById('select-cat');
+            selectCat.innerHTML = '';
+            const option = document.createElement('option');
+            option.value = 0;
+            option.text = 'Seleccionar Categoria';
+            selectCat.appendChild(option);
+        }else{
+            const selectCat = document.getElementById('select-cat');
+            selectCat.innerHTML = '';
+            const option = document.createElement('option');
+            option.value = 0;
+            option.text = 'Seleccionar Categoria';
+            selectCat.appendChild(option);
+            {% for cat in genCat %} 
+                if (id == {{ cat.genero.id }}) {
+                    const option = document.createElement('option');
+                    option.value = {{ cat.categoria.id }};
+                    option.text = '{{ cat.categoria. nombre }}';
+                    selectCat.appendChild(option);
+                }
+            {% endfor %}
+        }
+    });
+</script>
+{% endblock %}

@@ -1615,36 +1615,6 @@
         {% endif %}
     {% endfor %}
     {% endif %}
-
-<!--Sede Fecha Cancha N° -->
-{{ dump(partidos) }}
-{% for partido in partidos %}
-    {{ partido.horario ? partido.horario|date("d/m/Y H:i") : "Sin asignar" }}
-{% endfor %}
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-            <th scope="col">Hora</th>
-            <th scope="col">Rama</th>
-            <th scope="col"></th>
-            <th scope="col">Partido</th>
-            <th scope="col"></th>
-            <th scope="col">Zona</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <th scope="row">09:00</th>
-            <td>F45</td>
-            <td>Equipo 1</td>
-            <td>vs</td>
-            <td>Equipo 2</td>
-            <td>A</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 <script>
     const selectTorneo = document.getElementById('selectTorneo');
     const selectGenero = document.getElementById('selectGenero');

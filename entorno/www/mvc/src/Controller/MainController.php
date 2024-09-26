@@ -63,6 +63,15 @@ class MainController extends AbstractController
     #[Route('/reglamento', name: 'app_main_reglamento', methods: ['GET'])]
     public function reglamento(): Response
     {
-        return $this->render('main/reglamento.html.twig');
+        return $this->render('main/reglamento/reglamento.html.twig');
+    }
+
+    #[Route('/fixture', name: 'app_main_fixture', methods: ['GET'])]
+    public function fixture(
+        PartidoRepository $pr,
+    ): Response
+    {
+        $partidos = $pr->findBy([], ['horario' => 'ASC']);
+        return $this->render('main/fixture/fixture.html.twig',['partidos' => $partidos]);
     }
 }

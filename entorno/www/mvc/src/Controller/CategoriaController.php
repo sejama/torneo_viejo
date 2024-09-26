@@ -28,24 +28,21 @@ class CategoriaController extends AbstractController
 
     #[Route('/new', name: 'app_categoria_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $categorium = new Categoria();
-        $categorium->setCreatedAt(new DateTimeImmutable());
-        $categorium->setUpdatedAt(new DateTimeImmutable());
-        $form = $this->createForm(CategoriaType::class, $categorium);
-        $form->handleRequest($request);
+    {      
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($categorium);
+        if ($request->isMethod('POST')) {
+            $categoria = new Categoria();
+            $categoria->setCreatedAt(new DateTimeImmutable());
+            $categoria->setUpdatedAt(new DateTimeImmutable());
+            $categoria->setNombre($request->request->get('nombre'));
+            $categoria->setDescripcion($request->request->get('descripcion'));
+            $entityManager->persist($categoria);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_categoria_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('categoria/new.html.twig', [
-            'categorium' => $categorium,
-            'form' => $form,
-        ]);
+        return $this->render('categoria/nuevo.html.twig');
     }
 
     #[Route('/{id}', name: 'app_categoria_show', methods: ['GET'])]

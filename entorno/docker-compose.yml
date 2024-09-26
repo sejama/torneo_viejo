@@ -1,10 +1,11 @@
-version: "3.9"
+version: '3.8'
 services:
   sejama-webserver:
     container_name: sejama-webserver
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
     volumes:
       - ./www:/var/www/html
     ports:
@@ -18,10 +19,10 @@ services:
     container_name: sejama-mysql-db
     image: mysql:8.0.32
     environment:
-       MYSQL_ROOT_PASSWORD: 'password'
-       MYSQL_DATABASE: 'test_db'
-       MYSQL_USER: 'user'
-       MYSQL_PASSWORD: 'pass'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'test_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'pass'
     restart: 'always'
     expose:
       - '3307'
@@ -48,4 +49,5 @@ services:
 volumes:
   mydatavolume:
 networks:
-  sejama-network: {}
+  sejama-network:
+    driver: bridge

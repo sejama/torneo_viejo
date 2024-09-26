@@ -27,23 +27,20 @@ class GeneroController extends AbstractController
     #[Route('/new', name: 'app_genero_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $genero = new Genero();
-        $genero->setCreatedAt(new \DateTimeImmutable());
-        $genero->setUpdatedAt(new \DateTimeImmutable());
-        $form = $this->createForm(GeneroType::class, $genero);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->isMethod('POST')) {
+            
+            $genero = new Genero();
+            $genero->setNombre($request->request->get('nombre'));
+            $genero->setCreatedAt(new \DateTimeImmutable());
+            $genero->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->persist($genero);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_genero_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('genero/new.html.twig', [
-            'genero' => $genero,
-            'form' => $form,
-        ]);
+        return $this->render('genero/nuevo.html.twig');
     }
 
     #[Route('/{id}', name: 'app_genero_show', methods: ['GET'])]
